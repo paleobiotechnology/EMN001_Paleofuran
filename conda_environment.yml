@@ -8,3 +8,5 @@ channels:
 dependencies:
   - conda-forge::snakemake=7.8.0
   - conda-forge::xlsxwriter=0.9.8
+  - conda-forge::ffq=0.2.1
+  - conda-forge::wget=1.20.3

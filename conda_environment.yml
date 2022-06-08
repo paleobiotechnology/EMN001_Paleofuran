@@ -1,0 +1,10 @@
+## You can use this file, or make multiple files, to create a conda environment for this project:
+##   conda env create -f environment.yml
+name: EMN001_Paleofuran
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - conda-forge::snakemake=7.8.0
+  - conda-forge::xlsxwriter=0.9.8

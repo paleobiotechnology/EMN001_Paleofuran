@@ -1,11 +1,12 @@
 ################################################################################
 # Project: Natural products from the Palaeolithic
 # Part: Data preparation
-# Step: Prepare the Neanderthal calculus samples from Weyrich et al. (2017)
+# Step: Prepare the sequencing data of the sediment samples collected at El
+#       Miron
 #
-# Download the sequencing data of the Neanderthal calculus samples published by
-# Weyrich et al. (2017) from ENA, pre-process them using nf-core/eager before
-# extracting the non-human sequencing data.
+# Download the sequencing data of the El Miron sediment samples from ENA,
+# pre-process them using nf-core/eager before extracting the non-human
+# sequencing data.
 #
 # Alex Huebner, 09/06/22
 ################################################################################
@@ -15,10 +16,12 @@ import json
 import pandas as pd
 
 #### SAMPLES ###################################################################
-SAMPLES = {'ElSidron1': 'SRS7890498',
-           'ElSidron2': 'SRS7890496',
-           'Spy1': 'SRS7890491',
-           'Spy2': 'SRS7890487'}
+SAMPLES = {'EMN002': 'ERSX0000001',
+           'EMN003': 'ERSX0000002',
+           'EMN004': 'ERSX0000003',
+           'EMN005': 'ERSX0000004',
+           'EMN007': 'ERSX0000005',
+           'EMN008': 'ERSX0000006'}
 ################################################################################
 
 #### Auxilliary functions ######################################################
@@ -32,7 +35,7 @@ def return_url(wildcards):
 
 rule all:
     input:
-        "05-results/PREP_Nextflow_EAGER_noReads_Weyrich2017_Neanderthals.tsv"
+        "05-results/PREP_Nextflow_EAGER_noReads_ElMiron_sediments.tsv"
 
 #### Download data from ENA ####################################################
 
@@ -94,34 +97,32 @@ rule validate_md5sum:
 
 #### Prepare input tables for nf-core/eager ####################################
 
-rule generate_eager_tsv:
+rule generate_eager_tsv_profile:
     input:
         expand("03-data/raw_data/{err}.validated", err=SAMPLES.values())
     output:
-        "04-analysis/eager/weyrich2017.tsv"
+        "04-analysis/eager/elmiron_sediments.tsv"
     message: "Generate the EAGER input TSV"
     params:
         seqdatadir = "tmp/ffq"
     run:
-        eager = pd.DataFrame.from_dict(SAMPLES, orient="index", columns=['Library_ID']) \
-            .reset_index() \
-            .rename({'index': 'Sample_Name'}, axis=1)
-        eager['Lane'] = 1
-        eager['Colour_Chemistry'] = 4
-        eager['SeqType'] = "PE"
-        eager['Organism'] = "Homo sapiens neanderthaliensis"
-        eager['Strandedness'] = "double"
-        eager['UDG_Treatment'] = "none"
-        eager['R1'] = [f"{params.seqdatadir}/{ers}_1.fastq.gz"
-                       for ers in eager['Library_ID']]
-        eager['R2'] = [f"{params.seqdatadir}/{ers}_2.fastq.gz"
-                       for ers in eager['Library_ID']]
-        eager['BAM'] = "NA"
-
-        eager = eager[['Sample_Name', 'Library_ID', 'Lane', 'Colour_Chemistry', 'SeqType',
-                       'Organism', 'Strandedness', 'UDG_Treatment', 'R1', 'R2', 'BAM']] \
-            .sort_values(['Sample_Name', 'Library_ID', 'Lane'])
-        eager.to_csv(output[0], sep="\t", index=False)
+        # Prepare table
+        table = {'Sample_Name': SAMPLES.keys(),
+                 'Library_ID': SAMPLES.values(),
+                 'Lane': [1] * 6,
+                 'Colour_Chemistry': [2] * 6,
+                 'SeqType': ['PE'] * 6,
+                 'Organism': 'sediment',
+                 'Strandedness': ['double'] * 6,
+                 'UDG_Treatment': ['none'] * 6, 
+                 'R1': [f'{os.getcwd()}/{params.seqdatadir}/{ers}_1.fastq.gz'
+                        for ers in SAMPLES.values()],
+                 'R2': [f'{os.getcwd()}/{params.seqdatadir}/{ers}_2.fastq.gz'
+                        for ers in SAMPLES.values()],
+                 'BAM': ['NA'] * 6}
+        pd.DataFrame.from_dict(table) \
+            .sort_values(['Sample_Name']) \
+            .to_csv(output[0], sep="\t", index=False)
 
 ################################################################################
 
@@ -129,12 +130,12 @@ rule generate_eager_tsv:
 
 rule run_eager:
     input:
-        "04-analysis/eager/weyrich2017.tsv"
+        "04-analysis/eager/elmiron_sediments.tsv"
     output:
-        touch("04-analysis/eager/weyrich2017.done")
-    message: "Run nf-core/EAGER to process the sequencing data of Weyrich2017"
+        touch("04-analysis/eager/elmiron_sediments.done")
+    message: "Run nf-core/EAGER to process the sequencing data of the El Miron sediments"
     params:
-        outdir = "04-analysis/eager/weyrich2017"
+        outdir = "04-analysis/eager/elmiron_sediments"
     shell:
         """
         nextflow run nf-core/eager -r 2.4.3 \
@@ -146,7 +147,6 @@ rule run_eager:
             --seq_dict '/mnt/archgen/Reference_Genomes/Human/hs37d5/hs37d5.dict' \
             --skip_deduplication --skip_damage_calculation \
             --complexity_filter_poly_g \
-            --skip_collapse \
             --outdir "{params.outdir}"
         """
 
@@ -156,7 +156,7 @@ rule run_eager:
 
 rule samtools_sort_by_name:
     input:
-        "04-analysis/eager/weyrich2017.done"
+        "04-analysis/eager/elmiron_sediments.done"
     output:
         pipe("tmp/eager_extract_unmapped/{sample}.nsorted.bam")
     message: "Sort the BAM file by name: {wildcards.sample}"
@@ -165,7 +165,7 @@ rule samtools_sort_by_name:
         mem = 12,
         cores = 4
     params:
-        bam = "04-analysis/eager/weyrich2017/mapping/bwa/{sample}_PE.mapped.bam"
+        bam = "04-analysis/eager/elmiron_sediments/mapping/bwa/{sample}_PE.mapped.bam"
     threads: 4
     shell:
         """
@@ -192,9 +192,9 @@ rule extract_unmapped_reads:
     input:
         "tmp/eager_extract_unmapped/{sample}.fixmate.bam"
     output:
-        pe1 = "03-data/eager_weyrich2017/{sample}_1.fastq.gz",
-        pe2 = "03-data/eager_weyrich2017/{sample}_2.fastq.gz",
-        pe0 = "03-data/eager_weyrich2017/{sample}_0.fastq.gz"
+        pe1 = "03-data/eager_elmironsediments/{sample}_1.fastq.gz",
+        pe2 = "03-data/eager_elmironsediments/{sample}_2.fastq.gz",
+        pe0 = "03-data/eager_elmironsediments/{sample}_0.fastq.gz"
     message: "Extract all reads for which are not aligned in a proper pair and convert to fastq: {wildcards.sample}"
     conda: "ENVS_samtools.yaml"
     resources:
@@ -211,30 +211,29 @@ rule extract_unmapped_reads:
 
 rule count_reads:
     input:
-        pe1 = "03-data/eager_weyrich2017/{sample}_1.fastq.gz",
-        pe2 = "03-data/eager_weyrich2017/{sample}_2.fastq.gz",
-        pe0 = "03-data/eager_weyrich2017/{sample}_0.fastq.gz"
+        pe1 = "03-data/eager_elmironsediments/{sample}_1.fastq.gz",
+        pe2 = "03-data/eager_elmironsediments/{sample}_2.fastq.gz",
+        pe0 = "03-data/eager_elmironsediments/{sample}_0.fastq.gz"
     output:
-        temp("03-data/eager_weyrich2017/{sample}.n")
+        temp("03-data/eager_elmironsediments/{sample}.n")
     message: "Count the number of reads: {wildcards.sample}"
     conda: "ENVS_bioawk.yaml"
     resources:
         mem = 2
     shell:
         """
-        reads_PE1=$(bioawk -c fastx 'END{{print NR}}' {input.pe1})
-        reads_PE2=$(bioawk -c fastx 'END{{print NR}}' {input.pe2})
-        echo -e "{wildcards.sample}\t${{reads_PE1}}\t${{reads_PE2}}" > {output}
+        reads_PE0=$(bioawk -c fastx 'END{{print NR}}' {input.pe0})
+        echo -e "{wildcards.sample}\t${{reads_PE0}}" > {output}
         """
 
 rule summarise_count_reads:
     input:
-        expand("03-data/eager_weyrich2017/{sample}.n", sample=SAMPLES.keys())
+        expand("03-data/eager_elmironsediments/{sample}.n", sample=SAMPLES.keys())
     output:
-        "05-results/PREP_Nextflow_EAGER_noReads_Weyrich2017_Neanderthals.tsv"
+        "05-results/PREP_Nextflow_EAGER_noReads_ElMiron_sediments.tsv"
     message: "Summarise the number of reads per sample"
     run:
-        pd.concat([pd.read_csv(fn, sep="\t", header=None, names=['sample', 'R1', 'R2'])
+        pd.concat([pd.read_csv(fn, sep="\t", header=None, names=['sample', 'R0'])
                    for fn in input]) \
             .sort_values(['sample']) \
             .to_csv(output[0], sep="\t", index=False)

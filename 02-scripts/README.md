@@ -13,6 +13,10 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     four Neanderthal dental calculus samples published by Weyrich *et al.* (2017) from ENA,
     pre-process the sequencing data using the Nextflow pipeline
     [nf-core/eager](https://nf-co.re/eager) and extract the non-human reads per individual
+  - `PREP_preprocessing_ElMiron_sediments.Snakefile`: download the sequencing data of the six El
+    Miron sediment samples generated for this study from ENA, pre-process the sequencing data using
+    the Nextflow pipeline [nf-core/eager](https://nf-co.re/eager) and extract the non-human reads
+    per individual
 
 2. `PUBL`: preparing the final figures and tables
 

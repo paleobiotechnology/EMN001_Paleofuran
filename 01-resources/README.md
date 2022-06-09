@@ -1,4 +1,4 @@
-# Overview of the folder `01-resources`
+## Overview of the folder `01-resources`
 
 This folder contains the basic information to reproduce the results of this study.
 

@@ -7,3 +7,5 @@ presented in the manuscript.
 
   - `PREP_Nextflow_EAGER_noReads_per_sample.tsv`: overview of the number of reads per individual and
     library type (all data and non-UDG data only) that were available for *de novo* assembly
+  - `PREP_Nextflow_EAGER_noReads_Weyrich2017_Neanderthals.tsv`: overview of the number of reads
+    available for the four Neanderthal calculus samples published by Weyrich *et al.* (2017)

@@ -6,9 +6,13 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
 
   - `PREP_download_from_ENA.Snakefile`: download the sequencing data from ENA with the help of the
     Python program [ffq](https://github.com/pachterlab/ffq)
-  - `PREP_preprocessing_sequencing_data.Snakefile`: prepare input file for pre-processing the
-    sequecing data with the Nextflow pipeline [nf-core/eager](https://nf-co.re/eager) and extract
-    and merge all non-human reads per individual
+  - `PREP_preprocessing_dentalcalculus_sequencing_data.Snakefile`: prepare input file for
+    pre-processing the dental calculus sequecing data with the Nextflow pipeline
+    [nf-core/eager](https://nf-co.re/eager) and extract and merge all non-human reads per individual
+  - `PREP_preprocessing_publishedNeanderthalcalculus.Snakefile`: download the sequencing data of the
+    four Neanderthal dental calculus samples published by Weyrich *et al.* (2017) from ENA,
+    pre-process the sequencing data using the Nextflow pipeline
+    [nf-core/eager](https://nf-co.re/eager) and extract the non-human reads per individual
 
 2. `PUBL`: preparing the final figures and tables
 

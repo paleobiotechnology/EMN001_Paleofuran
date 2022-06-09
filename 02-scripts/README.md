@@ -10,6 +10,12 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     sequecing data with the Nextflow pipeline [nf-core/eager](https://nf-co.re/eager) and extract
     and merge all non-human reads per individual
 
+2. `PUBL`: preparing the final figures and tables
+
+  - `PUBL_Dataset_S1.Snakefile`: combine the tables containing the information about the samples,
+    the sequencing data, and the number of DNA molecules available for *de novo* assembly into a
+    single XSLX file
+
 X. `ENVS`: conda environments for the use with Snakemake
 
   - `ENVS_bioawk.yaml`: [bioawk](https://github.com/lh3/bioawk)

@@ -18,7 +18,16 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     the Nextflow pipeline [nf-core/eager](https://nf-co.re/eager) and extract the non-human reads
     per individual
 
-2. `PUBL`: preparing the final figures and tables
+2. `ASMB`: analyses related to the *de novo* assembly and the non-reference binning
+
+3. `QUAL`: analyses related to the data quality
+
+  - `QUAL_freeBayes_nomismatches_MEGAHIT.Snakefile`: evaluate the number of substitutions (per
+    type), the minor allele frequencies of the variant calls, and the number of affected contigs for
+    which freeBayes inferred a different major allele than it was exported by MEGAHIT from the
+    assembly graph
+
+4. `PUBL`: preparing the final figures and tables
 
   - `PUBL_Dataset_S1.Snakefile`: combine the tables containing the information about the samples,
     the sequencing data, and the number of DNA molecules available for *de novo* assembly into a

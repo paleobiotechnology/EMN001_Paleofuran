@@ -3,6 +3,9 @@
 # Part: Publication
 # Step: Prepare Dataset S1
 #
+# Dependent on:
+#   - `PREP_preprocessing_dentalcalculus_sequencing_data.Snakefile`
+#
 # Alex Huebner, 08/06/22
 ################################################################################
 

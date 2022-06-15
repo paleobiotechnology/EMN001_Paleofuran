@@ -11,6 +11,9 @@
 # the non-UDG treated one. The latter will be used for the analysis of ancient
 # DNA damage.
 #
+# Dependent on:
+#   - PREP_download_from_ENA.Snakefile
+#
 # Alex Huebner, 09/06/22
 ################################################################################
 

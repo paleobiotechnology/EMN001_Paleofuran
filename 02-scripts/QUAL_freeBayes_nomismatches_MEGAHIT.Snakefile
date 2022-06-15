@@ -44,8 +44,17 @@ rule count_observed_mutations:
     threads: 1
     run:
         content = allel.read_vcf(params.vcf, fields=['variants/CHROM', 'variants/REF',
-                                                     'variants/ALT', 'calldata/AD',
-                                                     'calldata/DP'])
+                                                     'variants/ALT', 'calldata/AO',
+                                                     'calldata/DP', 'calldata/GT'])
+        # Filter VCF for genotypes with ALT allele
+        alt_pos = np.where(content['calldata/GT'][:, :, 0] == 1)[0].tolist()
+        content['variants/CHROM'] = content['variants/CHROM'][alt_pos]
+        content['variants/REF'] = content['variants/REF'][alt_pos]
+        content['variants/ALT'] = content['variants/ALT'][alt_pos, :]
+        content['calldata/AO'] = np.take(content['calldata/AO'], alt_pos, 0)
+        content['calldata/DP'] = np.take(content['calldata/DP'], alt_pos, 0)
+        content['calldata/DP'] = np.abs(content['calldata/DP'])
+
         # Type of substitutions
         substitutions = {}
         for i in range(content['variants/REF'].shape[0]):
@@ -70,7 +79,7 @@ rule count_observed_mutations:
             .to_csv(output.substs, sep="\t", index=False)
 
         # Minor allele frequency
-        minor_alleles = content['calldata/AD'][:, :, 1] / content['calldata/DP'][:, 0][:, np.newaxis]
+        minor_alleles = content['calldata/AO'][:, :, 0] / content['calldata/DP'][:, 0][:, np.newaxis]
         ma_bincounts = np.bincount(np.digitize(minor_alleles[:,0], np.arange(0, 1, 0.05)))
         pd.DataFrame.from_dict({'nMismatches': ma_bincounts}) \
             .transpose() \

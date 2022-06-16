@@ -4,6 +4,7 @@
 # Step: Prepare Dataset S2
 #
 # Dependent on:
+#   - ASMB_denovo_assembly_binning.Snakefile
 #   - QUAL_freeBayes_nomismatches_MEGAHIT.Snakefile
 #
 # Alex Huebner, 15/06/22
@@ -18,7 +19,8 @@ rule all:
     output:
         "06-figures_tables/Dataset_S2.xlsx"
     message: "Generate the XLSX file for the Dataset S2"
-    params: 
+    params:
+        asmb_stats = "05-results/ASMB_assemblystats_calN50_metaQUAST.tsv",
         fb_nsubst = "05-results/QUAL_freeBayes_nSubsts.tsv",
         fb_mafs = "05-results/QUAL_freeBayes_distributionMAF.tsv",
         fb_ncontigs = "05-results/QUAL_freeBayes_nContigs.tsv"
@@ -39,6 +41,43 @@ rule all:
 
         writer = pd.ExcelWriter(output[0], engine='xlsxwriter')
         workbook = writer.book
+
+        # Dataset S2a: summary of the assembly stats
+        asmb_stats = pd.read_csv(params.asmb_stats, sep="\t")
+        asmb_stats = asmb_stats.iloc[:,:21]
+        asmb_stats.columns = ['sample', 'total length [bp]', '# of contigs',
+                              '# of contigs >= 1,000 bp', '# of contigs >= 5,000 bp',
+                              '# of contigs >= 10,000 bp', '# of contigs >= 25,000 bp',
+                              '# of contigs >= 50,000 bp', 'N0', 'N10', 'N20', 'N30',
+                              'N40', 'N50', 'N60', 'N70', 'N80', 'N90', 'N100', 'CDS', 'genes']
+        asmb_stats.to_excel(writer, sheet_name="S2a - de novo assembly stats", index=False,
+                             header=False, startrow=3)
+        ## Sheet: Sample overview
+        s2a_sheet = writer.sheets["S2a - de novo assembly stats"]
+        s2a_sheet.write(0, 0, "Table S2a: Overview of performance of the de novo "
+                        "assembly of the metagenomic sequencing data. Only contigs "
+                        "with a minimal length of 500 bp were considered. The columns N0 "
+                        "to N100 represent the maximal and minimal contig length plus "
+                        "the nine deciles. The number of coding sequences was determined "
+                        "prodigal and the number of genes using Prokka.",
+                          workbook.add_format({'bold': True, 'align': 'left'}))
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'border': 0
+        })
+        for ci, cname in enumerate(asmb_stats.columns.values):
+            s2a_sheet.write(2, ci, cname, header_format)
+        s2a_sheet.set_column(0, 0, determine_col_width(asmb_stats.iloc[:, 0],
+                                                       asmb_stats.columns[0]) + 1,
+                             workbook.add_format({'align': 'center'}))
+        for i in range(1, asmb_stats.shape[1]):
+            s2a_sheet.set_column(i, i,
+                                 determine_col_width(asmb_stats.iloc[:, i].astype(str),
+                                                     asmb_stats.columns[i]) + 2,
+                                 workbook.add_format({'align': 'center',
+                                                     'num_format': "#,##0"}))
 
         # Dataset S2b: genotype calling using freeBayes vs. MEGAHIT
         ## Number of substitutions

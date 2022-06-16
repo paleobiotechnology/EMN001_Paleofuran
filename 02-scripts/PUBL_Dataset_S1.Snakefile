@@ -4,7 +4,8 @@
 # Step: Prepare Dataset S1
 #
 # Dependent on:
-#   - `PREP_preprocessing_dentalcalculus_sequencing_data.Snakefile`
+#   - PREP_preprocessing_dentalcalculus_sequencing_data.Snakefile
+#   - QUAL_fragmentlengths.Snakefile
 #
 # Alex Huebner, 08/06/22
 ################################################################################
@@ -18,7 +19,8 @@ rule prepare_dataset_s1:
     params:
         sample = "01-resources/FellowsYates_PNAS2021_TableS1_SheetA.tsv",
         seqdata = "01-resources/overview_sequencingdata.tsv",
-        nreads = "05-results/PREP_Nextflow_EAGER_noReads_per_sample.tsv"
+        nreads = "05-results/PREP_Nextflow_EAGER_noReads_per_sample.tsv",
+        fraglength = "05-results/QUAL_fragmentlength_distribution.tsv"
     run:
         # Read the sequencing data information
         seqdata = pd.read_csv(params.seqdata, sep="\t")
@@ -62,14 +64,19 @@ rule prepare_dataset_s1:
                             .drop(['individualId'], axis=1)], axis=1)
         nreads = nreads.iloc[:, [0, 1, 3, 2, 4]]
 
+        # Fragment length distribution
+        fraglength = pd.read_csv("05-results/QUAL_fragmentlength_distribution.tsv", sep="\t")
+
         # Export to Excel as multi-sheet document
         writer = pd.ExcelWriter(output[0], engine='xlsxwriter')
-        sample_info.to_excel(writer, sheet_name="Table S1a - Sample overview", index=False,
+        sample_info.to_excel(writer, sheet_name="S1a - Sample overview", index=False,
                              header=False, startrow=3)
-        seqdata.to_excel(writer, sheet_name="Table S1b - Seq. data overview", index=False,
+        seqdata.to_excel(writer, sheet_name="S1b - Seq. data overview", index=False,
                          header=False, startrow=3)
-        nreads.to_excel(writer, sheet_name="Table S1c - Number of DNA mol.", index=False,
+        nreads.to_excel(writer, sheet_name="S1c - Number of DNA mol.", index=False,
                         header=False, startrow=3)
+        fraglength.to_excel(writer, sheet_name="S1d - DNA molecule length dist.",
+                            index=False, header=False, startrow=3)
 
         # Add formatting
         def determine_col_width(col, colname):
@@ -82,7 +89,7 @@ rule prepare_dataset_s1:
 
         workbook = writer.book
         ## Sheet: Sample overview
-        samplesheet = writer.sheets['Table S1a - Sample overview']
+        samplesheet = writer.sheets['S1a - Sample overview']
         samplesheet.write(0, 0, "Table S1a: Overview of the dental calculus samples. "
                           "The analysis group refers to grouping used in Fellows Yates et al. (2021).",
                           workbook.add_format({'bold': True, 'align': 'left'}))
@@ -106,7 +113,7 @@ rule prepare_dataset_s1:
                                        workbook.add_format({'align': 'center',
                                                             'num_format': "0.0000"}))
         ## Sheet: Number of reads
-        seqdatasheet = writer.sheets["Table S1b - Seq. data overview"]
+        seqdatasheet = writer.sheets["S1b - Seq. data overview"]
         seqdatasheet.write(0, 0, "Table S1b: Overview of the sequencing data used in this study. "
                            "The sequencing setup indicates whether the library was sequenced "
                            "paired-end (PE) or single-end (SE) and the following number indicates "
@@ -128,7 +135,7 @@ rule prepare_dataset_s1:
                                                         seqdata.columns[i]) + 1,
                                     workbook.add_format({'align': 'center'}))
         ## Sheet: Sequencing data overview
-        nreadssheet = writer.sheets["Table S1c - Number of DNA mol."]
+        nreadssheet = writer.sheets["S1c - Number of DNA mol."]
         nreadssheet.write(0, 0, "Table S1c: Overview of the number of DNA molecules per "
                           "individual that were used for assembly. All data were used for "
                           "assembly process, while the non-UDG data were used for the "
@@ -142,7 +149,6 @@ rule prepare_dataset_s1:
             'valign': 'vcenter',
             'border': 0
         })
-
         nreadssheet.merge_range('B3:C3', 'all data', header_format)
         nreadssheet.merge_range('D3:E3', 'non-UDG data', header_format)
         nreadssheet.write(3, 0, "individual Id", header_format)
@@ -158,5 +164,39 @@ rule prepare_dataset_s1:
                                12,
                                workbook.add_format({'align': 'center',
                                                     'num_format': "#,##0"}))
+
+        ## Sheet: fragment length distribution
+        fraglensheet = writer.sheets["S1d - DNA molecule length dist."]
+        fraglensheet.write(0, 0, "Table S1d: Overview of the distribution of "
+                           "DNA molecule fragmenth length across samples. The "
+                           "molecule length was inferred by overlapping read pairs "
+                           "of sequencing data generated on 2x 75 bp paired-end "
+                           "Illumina sequencing runs using fastp requiring an "
+                           "overlap of at least 11 bp. The proportions of DNA "
+                           "molecules with a certain length in basepair are listed. "
+                           "Read pairs that could not be merged because their DNA "
+                           "molecule was > 140 bp were summarised.",
+                          workbook.add_format({'bold': True, 'align': 'left'}))
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'border': 0
+        })
+        for ci, cname in enumerate(fraglength.columns.values):
+            fraglensheet.write(2, ci, cname, header_format)
+        fraglensheet.set_column(0, 0,
+                                determine_col_width(fraglength.iloc[:, 0],
+                                                    fraglength.columns[0]) + 1,
+                                workbook.add_format({'align': 'center'}))
+        fraglensheet.set_column(1, 1,
+                                17,
+                                workbook.add_format({'align': 'center',
+                                                     'num_format': "#,##0"}))
+        fraglensheet.set_column(2, fraglength.shape[1],
+                                6,
+                                workbook.add_format({'align': 'center',
+                                                     'num_format': "0.0000"}))
+
         # Save XLSX file
         writer.save()

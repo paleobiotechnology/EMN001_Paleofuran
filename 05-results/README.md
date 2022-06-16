@@ -16,6 +16,8 @@ presented in the manuscript.
 
 3. `QUAL`: results related to the data quality
 
+  - `QUAL_fragmentlength_distribution.tsv`: the overview of the distribution of DNA molecule lengths
+    across the sequencing data generated on 2x 75 bp paired-end Illumina sequencing runs
   - `QUAL_freeBayes_nSubsts.tsv`: the overview of the frequency of each allele difference between the
     allele exported by MEGAHIT from the assembly graph and the genotype call inferred by freeBayes
     was observed

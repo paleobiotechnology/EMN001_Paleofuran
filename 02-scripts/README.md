@@ -22,6 +22,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
 
 3. `QUAL`: analyses related to the data quality
 
+  - `QUAL_fragmentlengths.Snakefile`: summarise the DNA molecule fragment length across the
+    sequencing data generated on 2x 75 bp paired-end Illumina sequencing runs for all samples
   - `QUAL_freeBayes_nomismatches_MEGAHIT.Snakefile`: evaluate the number of substitutions (per
     type), the minor allele frequencies of the variant calls, and the number of affected contigs for
     which freeBayes inferred a different major allele than it was exported by MEGAHIT from the

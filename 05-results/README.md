@@ -14,6 +14,9 @@ presented in the manuscript.
 
 2. `ASMB`: results related to the *de novo* assembly and non-reference binning
 
+  - `ASMB_assemblystats_calN50_metaQUAST.tsv`: the overview of the performance of the *de novo*
+    assembly summarised using calN50, metaQUAST, Prokka and pyDamage
+
 3. `QUAL`: results related to the data quality
 
   - `QUAL_fragmentlength_distribution.tsv`: the overview of the distribution of DNA molecule lengths

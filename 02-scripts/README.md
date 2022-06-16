@@ -20,6 +20,10 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
 
 2. `ASMB`: analyses related to the *de novo* assembly and the non-reference binning
 
+  - `ASMB_denovo_assembly_binning.Snakefile`: prepare the sample table and config file for
+    assembling the ancient and modern DNA samples separately and run the assembly pipeline
+    https://github.com/alexhbnr/ancient_metagenome_assembly
+
 3. `QUAL`: analyses related to the data quality
 
   - `QUAL_fragmentlengths.Snakefile`: summarise the DNA molecule fragment length across the

@@ -38,6 +38,9 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
   - `PUBL_Dataset_S1.Snakefile`: combine the tables containing the information about the samples,
     the sequencing data, and the number of DNA molecules available for *de novo* assembly into a
     single XSLX file
+  - `PUBL_FigureS_freeBayescorrection.Snakefile`: plot the supplementary figure summarising the
+    results of the substitution types and minor allele frequencies that were observed when
+    correcting the contig sequences using freeBayes
 
 X. `ENVS`: conda environments for the use with Snakemake
 

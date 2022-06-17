@@ -92,7 +92,7 @@ panel_c <- mafs %>%
                    "]90%, 100%]")) %>%
   ggplot(aes(x = label, y = frac)) +
   geom_col() +
-  labs(x = "minor allele frequency",
+  labs(x = "alternative allele frequency",
        y = "frequency") +
   theme_classic(base_size = 8) +
   theme(axis.text.x = element_text(size = 7))

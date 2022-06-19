@@ -38,11 +38,17 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
   - `PUBL_Dataset_S1.Snakefile`: combine the tables containing the information about the samples,
     the sequencing data, and the number of DNA molecules available for *de novo* assembly into a
     single XSLX file
+  - `PUBL_Dataset_S2.Snakefile`: combine the tables containing the results about the de novo
+    assembly of the ancient and modern dental calculus samples
   - `PUBL_FigureS_freeBayescorrection.Snakefile`: plot the supplementary figure summarising the
     results of the substitution types and minor allele frequencies that were observed when
     correcting the contig sequences using freeBayes
+  - `PUBL_FigureS_denovoassembly_metaQUAST_calN50.Snakefile`: plot the supplementary figure
+    summarising the evaluation of the *de novo* assembly performance of the ancient and modern
+    dental calculus samples
 
 X. `ENVS`: conda environments for the use with Snakemake
 
   - `ENVS_bioawk.yaml`: [bioawk](https://github.com/lh3/bioawk)
+  - `ENVS_fastp.yaml`: [fastp](https://github.com/OpenGene/fastp)
   - `ENVS_samtools.yaml`: [samtools](https://github.com/samtools/samtools)

@@ -10,11 +10,6 @@
 # Alex Huebner, 17/06/22
 ################################################################################
 
-import os
-
-if not os.path.isdir("snakemake_tmp"):
-    os.makedirs("snakemake_tmp")
-
 rule all:
     output:
         pdf = "06-figures_tables/FigureS_ASMB01.pdf",

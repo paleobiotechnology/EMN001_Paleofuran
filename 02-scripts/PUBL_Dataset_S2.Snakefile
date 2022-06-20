@@ -6,6 +6,7 @@
 # Dependent on:
 #   - ASMB_denovo_assembly_binning.Snakefile
 #   - QUAL_freeBayes_nomismatches_MEGAHIT.Snakefile
+#   - QUAL_pyDamage_summary.Snakefile
 #
 # Alex Huebner, 15/06/22
 ################################################################################
@@ -23,7 +24,8 @@ rule all:
         asmb_stats = "05-results/ASMB_assemblystats_calN50_metaQUAST.tsv",
         fb_nsubst = "05-results/QUAL_freeBayes_nSubsts.tsv",
         fb_mafs = "05-results/QUAL_freeBayes_distributionMAF.tsv",
-        fb_ncontigs = "05-results/QUAL_freeBayes_nContigs.tsv"
+        fb_ncontigs = "05-results/QUAL_freeBayes_nContigs.tsv",
+        pydamage = "05-results/QUAL_pyDamage_summary_qvalue_predaccuracy.tsv"
     threads: 1
     run:
         # Auxilliary functions
@@ -44,12 +46,12 @@ rule all:
 
         # Dataset S2a: summary of the assembly stats
         asmb_stats = pd.read_csv(params.asmb_stats, sep="\t")
-        asmb_stats = asmb_stats.iloc[:,:21]
+        asmb_stats = asmb_stats.iloc[:,:19]
         asmb_stats.columns = ['sample', 'total length [bp]', '# of contigs',
                               '# of contigs >= 1,000 bp', '# of contigs >= 5,000 bp',
                               '# of contigs >= 10,000 bp', '# of contigs >= 25,000 bp',
                               '# of contigs >= 50,000 bp', 'N0', 'N10', 'N20', 'N30',
-                              'N40', 'N50', 'N60', 'N70', 'N80', 'N90', 'N100', 'CDS', 'genes']
+                              'N40', 'N50', 'N60', 'N70', 'N80', 'N90', 'N100']
         asmb_stats.to_excel(writer, sheet_name="S2a - de novo assembly stats", index=False,
                              header=False, startrow=3)
         ## Sheet: Sample overview
@@ -72,7 +74,13 @@ rule all:
         s2a_sheet.set_column(0, 0, determine_col_width(asmb_stats.iloc[:, 0],
                                                        asmb_stats.columns[0]) + 1,
                              workbook.add_format({'align': 'center'}))
-        for i in range(1, asmb_stats.shape[1]):
+        for i in range(1, 8):
+            s2a_sheet.set_column(i, i,
+                                 determine_col_width(asmb_stats.iloc[:, i].astype(str),
+                                                     asmb_stats.columns[i]),
+                                 workbook.add_format({'align': 'center',
+                                                     'num_format': "#,##0"}))
+        for i in range(8, asmb_stats.shape[1]):
             s2a_sheet.set_column(i, i,
                                  determine_col_width(asmb_stats.iloc[:, i].astype(str),
                                                      asmb_stats.columns[i]) + 2,
@@ -165,6 +173,57 @@ rule all:
                                                      dataset_s2b.columns[i]) + 1,
                                  workbook.add_format({'align': 'center',
                                                      'num_format': "0.00"}))
+
+        # Dataset S2c: PyDamage results
+        pydamage = pd.read_csv("05-results/QUAL_pyDamage_summary_qvalue_predaccuracy.tsv", sep="\t")
+        pydamage['ancContigs'] = (pydamage['ancContigs'] * 100 / pydamage['evalContigs']).round(decimals=1)
+        pydamage['evalContigs'] = (pydamage['evalContigs'] * 100 / pydamage['totalContigs']).round(decimals=1)
+        pydamage.columns = (['sample', 'total # of contigs', '% of contigs with coverage >= 5x',
+                             '% of contigs with q-value < 0.05', 'PA == 0%'] + 
+                            [f"{i - 5}% <= PA < {i}%" for i in range(5, 105, 5)])
+        pydamage = pydamage.iloc[:, list(range(4)) + list(range(8, 25))]
+        pydamage.to_excel(writer, sheet_name="S2c - pyDamage analysis", index=False,
+                             header=False, startrow=3)
+        ## Sheet: Sample overview
+        s2c_sheet = writer.sheets["S2c - pyDamage analysis"]
+        s2c_sheet.write(0, 0, "Table S2c: Overview of the evaluation of the "
+                              "presence of ancient DNA damage using pyDamage. "
+                              "We only considered contigs that had a minimal coverage "
+                              "of 5-fold to avoid wrong inference due to the lack of "
+                              "sufficient data. From these contigs, we considered "
+                              "the contigs 'ancient', when the q-value returned by "
+                              "pyDamage was < 0.05. The columns '15% <= PA < 20%' to "
+                              "'95% <= PA < 100%' summarise the number of contigs that "
+                              "had a predicted accuracy (PA) in this range.",
+                          workbook.add_format({'bold': True, 'align': 'left'}))
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'border': 0
+        })
+        for ci, cname in enumerate(pydamage.columns.values):
+            s2c_sheet.write(2, ci, cname, header_format)
+        s2c_sheet.set_column(0, 0, determine_col_width(pydamage.iloc[:, 0],
+                                                       pydamage.columns[0]) + 1,
+                             workbook.add_format({'align': 'center'}))
+        s2c_sheet.set_column(1, 1,
+                             determine_col_width(pydamage.iloc[:, 1].astype(str),
+                                                 pydamage.columns[i]) + 1,
+                             workbook.add_format({'align': 'center',
+                                                 'num_format': "0"}))
+        for i in [2, 3]:  # float columns with a single digit
+            s2c_sheet.set_column(i, i,
+                                 determine_col_width(None,
+                                                     pydamage.columns[i]) + 1,
+                                 workbook.add_format({'align': 'center',
+                                                     'num_format': "0.0"}))
+        for i in range(4, 21):  # float columns with five digits
+            s2c_sheet.set_column(i, i,
+                                 determine_col_width(None,
+                                                     pydamage.columns[i]) + 1,
+                                 workbook.add_format({'align': 'center',
+                                                     'num_format': "0.00000"}))
 
         # Save XLSX file
         writer.save()

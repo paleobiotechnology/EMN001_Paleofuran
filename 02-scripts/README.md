@@ -48,6 +48,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
   - `PUBL_FigureS_denovoassembly_metaQUAST_calN50.Snakefile`: plot the supplementary figure
     summarising the evaluation of the *de novo* assembly performance of the ancient and modern
     dental calculus samples
+  - `PUBL_FigureS_pyDamage_contigs.Snakefile`: plot the supplementar figure summarising the results
+    of pyDamage on contig level
 
 X. `ENVS`: conda environments for the use with Snakemake
 

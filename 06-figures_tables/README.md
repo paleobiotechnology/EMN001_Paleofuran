@@ -16,3 +16,4 @@ This folder contains the final figures and tables presented in this study.
   minor allele frequencies that were observed when correcting the contig sequences using freeBayes
 - `FigureS_ASMB02.pdf`: Supplementary figure summarising the results of the evaluation of the *de
   novo* assembly performance with respect to the contig lengths
+- `FigureS_ASMB03.pdf`: Supplementary figure summarising the results of pyDamage on contig level

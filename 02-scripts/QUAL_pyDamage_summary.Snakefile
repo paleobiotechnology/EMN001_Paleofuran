@@ -40,6 +40,7 @@ rule summarise_pydamage:
         total_contigs = pydamage.shape[0]
         pydamage = pydamage \
             .query("coverage >= 5")
+        anc_contigs = pydamage.query("qvalue < 0.05 and damage_model_p <= 0.6").shape[0]
 
         # Bin the prediction accuracy in 1% bins
         df = pd.DataFrame.from_dict({"bin": range(21),
@@ -51,7 +52,7 @@ rule summarise_pydamage:
             .assign(sample=wildcards.sample,
                     totalContigs=total_contigs,
                     evalContigs=pydamage.shape[0],
-                    ancContigs=(pydamage.qvalue < 0.05).sum())
+                    ancContigs=anc_contigs)
 
         df.iloc[:, list(range(21, 25)) + list(range(21))] \
             .to_csv(output[0], sep="\t", index=False, float_format="%.5f")

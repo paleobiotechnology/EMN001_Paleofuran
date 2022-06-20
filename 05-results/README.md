@@ -28,3 +28,6 @@ presented in the manuscript.
     that freeBayes inferred to be the genotype by 5% frequency bins
   - `QUAL_freeBayes_nContigs.tsv`: the overview of the number of contigs per sample for which a
     difference between the MEGAHIT and freeBayes sequence could be observed
+  - `QUAL_pyDamage_summary_qvalue_predaccuracy.tsv` summary of the pyDamage results regarding the
+    fraction of contigs that are considered "ancient" by pyDamage and the distribution of the
+    predicted accuracy

@@ -32,6 +32,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     type), the minor allele frequencies of the variant calls, and the number of affected contigs for
     which freeBayes inferred a different major allele than it was exported by MEGAHIT from the
     assembly graph
+  - `QUAL_pyDamage_summary.Snakefile`: summarise the pyDamage results regarding the fraction of
+    contigs that are considered "ancient" by pyDamage and the distribution of the predicted accuracy
 
 4. `PUBL`: preparing the final figures and tables
 

@@ -15,15 +15,13 @@ pydamage <- readxl::read_excel(snakemake@params[["dataset_s2"]],
 ## Panel a: fraction of contigs with coverage >= 5-fold
 pyd_panela <- pydamage %>%
   select(sample, frac = `% of contigs with coverage >= 5x`) %>%
-  mutate(frac = frac / 100) %>%
-  left_join(sample_info %>%
-            mutate(sample = str_sub(sampleId, 1, 6)) %>%
-            select(sample, sampletype = `Common name`) %>%
-            distinct(),
-            by = "sample") %>%
+  mutate(frac = frac / 100,
+         sample = if_else(sample %in% c("EMN001", "PES001", "PLV001"),
+                          sample, "other"),
+         sample = factor(sample, levels = c("EMN001", "PES001", "PLV001", "other"))) %>%
   ggplot(aes(x = 1, y = frac)) +
   geom_boxplot(outlier.shape = NA) +
-  geom_jitter(aes(fill = sampletype), size = 2.25,
+  geom_jitter(aes(fill = sample), size = 2.25,
               pch = 21, width = 0.25, alpha = .8) +
   coord_flip() +
   labs(x = "",
@@ -32,24 +30,25 @@ pyd_panela <- pydamage %>%
   scale_y_continuous(labels = scales::percent_format(),
                      breaks = seq(0, 1, 0.25),
                      limit = c(0, NA)) +
+  scale_fill_manual(values = c("#C23616", "#0097E6", "#E1B12C", "grey50")) +
   theme(axis.title.y = element_blank(),
         axis.text.y = element_blank(),
         axis.line.y = element_blank(),
         axis.ticks.y = element_blank(),
-        legend.position = "top") +
-  guides(fill = guide_legend(nrow = 2))
+        legend.position = "top",
+        legend.title = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
 
 ## Panel b: fraction of contigs with q-value < 0.05 with p_damage_model <= 0.6
 pyd_panelb <-  pydamage %>%
   select(sample, frac = `% of contigs with q-value < 0.05`) %>%
-  mutate(frac = frac / 100) %>%
-  left_join(sample_info %>%
-            mutate(sample = str_sub(sampleId, 1, 6)) %>%
-            select(sample, sampletype = `Common name`),
-            by = "sample") %>%
+  mutate(frac = frac / 100,
+         sample = if_else(sample %in% c("EMN001", "PES001", "PLV001"),
+                          sample, "other"),
+         sample = factor(sample, levels = c("EMN001", "PES001", "PLV001", "other"))) %>%
   ggplot(aes(x = 1, y = frac)) +
   geom_boxplot(outlier.shape = NA) +
-  geom_jitter(aes(fill = sampletype), size = 2.25,
+  geom_jitter(aes(fill = sample), size = 2.25,
               pch = 21, width = 0.25, alpha = .8) +
   coord_flip() +
   labs(x = "",
@@ -58,12 +57,14 @@ pyd_panelb <-  pydamage %>%
   scale_y_continuous(labels = scales::percent_format(),
                      breaks = seq(0, 1, 0.25),
                      limits = c(0, NA)) +
+  scale_fill_manual(values = c("#C23616", "#0097E6", "#E1B12C", "grey50")) +
   theme(axis.title.y = element_blank(),
         axis.text.y = element_blank(),
         axis.line.y = element_blank(),
         axis.ticks.y = element_blank(),
-        legend.position = "top") +
-  guides(fill = guide_legend(nrow = 2))
+        legend.position = "top",
+        legend.title = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
 
 ## Panel c: prediction accuracy for the samples EMN001, PES001, and PLV001
 predacc_df <- pydamage %>%
@@ -85,15 +86,16 @@ pyd_panelc <- predacc_df %>%
        y = "cumulative fraction of contigs") +
   scale_y_continuous(labels = scales::percent_format()) +
   scale_fill_manual(values = c("#C23616", "#0097E6", "#E1B12C")) +
-  theme(legend.position = "top",
+  theme(legend.position = "none",
+        panel.grid.major.y = element_line(colour = "grey50", linetype = 3, size = 0.5),
         axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
-  guides(fill = guide_legend(nrow = 1))
+  guides(fill = "none")
 
 # Stitch together
-plt <- pyd_panela + pyd_panelb + guide_area() + pyd_panelc +
-  plot_layout(width = c(0.5, 0.5), heights = c(0.2, 0.25, 0.55),
-              guides = "collect", design = c("AB
-                                              CC
+plt <- guide_area() + pyd_panela + pyd_panelb + pyd_panelc +
+  plot_layout(width = c(0.5, 0.5), heights = c(0.1, 0.3, 0.6),
+              guides = "collect", design = c("AA
+                                              BC
                                               DD")) +
   plot_annotation(tag_levels = "a") & theme(legend.position = "top")
 

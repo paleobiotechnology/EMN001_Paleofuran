@@ -36,7 +36,8 @@ pyd_panela <- pydamage %>%
         axis.text.y = element_blank(),
         axis.line.y = element_blank(),
         axis.ticks.y = element_blank(),
-        legend.position = "top")
+        legend.position = "top") +
+  guides(fill = guide_legend(nrow = 2))
 
 ## Panel b: fraction of contigs with q-value < 0.05 with p_damage_model <= 0.6
 pyd_panelb <-  pydamage %>%
@@ -61,7 +62,8 @@ pyd_panelb <-  pydamage %>%
         axis.text.y = element_blank(),
         axis.line.y = element_blank(),
         axis.ticks.y = element_blank(),
-        legend.position = "top")
+        legend.position = "top") +
+  guides(fill = guide_legend(nrow = 2))
 
 ## Panel c: prediction accuracy for the samples EMN001, PES001, and PLV001
 predacc_df <- pydamage %>%
@@ -72,36 +74,28 @@ predacc_df <- pydamage %>%
   arrange(predacc_bin) %>%
   mutate(cumsum_frac = cumsum(frac)) %>%
   filter(sample %in% c("EMN001", "PLV001", "PES001")) %>%
-  left_join(sample_info %>%
-              mutate(sample = str_sub(sampleId, 1, 6)) %>%
-              select(sample, sampletype = `Common name`),
-              by = "sample") %>%
+  mutate(sample = factor(sample, levels = c("EMN001", "PES001", "PLV001"))) %>%
   ungroup()
 
 pyd_panelc <- predacc_df %>%
   ggplot(aes(x = predacc_bin, y = cumsum_frac)) +
   geom_line(aes(group = sample), size = 0.5, colour = "grey20", lty = 3) +
-  geom_point(aes(fill = sampletype, group = sample), size = 2.5, pch = 21) +
-  geom_text_repel(data = filter(predacc_df,
-                                predacc_bin == "90% <= PA < 95%"),
-                  aes(label = sample),
-                  size = 2.5,
-                  nudge_y = 0.3,
-                  xlim = c(NA, 14),
-                  ylim = c(0.25, NA)) +
+  geom_point(aes(fill = sample, group = sample), size = 2, pch = 21, alpha = 0.8) +
   labs(x = "predicted accuracy (PA) bins",
        y = "cumulative fraction of contigs") +
   scale_y_continuous(labels = scales::percent_format()) +
-  theme(legend.position = "none",
-        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5))
+  scale_fill_manual(values = c("#C23616", "#0097E6", "#E1B12C")) +
+  theme(legend.position = "top",
+        axis.text.x = element_text(angle = 90, hjust = 1, vjust = 0.5)) +
+  guides(fill = guide_legend(nrow = 1))
 
 # Stitch together
-plt <- guide_area() + pyd_panela + pyd_panelb + pyd_panelc +
-  plot_layout(width = c(0.5, 0.5), heights = c(0.1, 0.2, 0.7),
-              guides = "collect", design = c("AA
-                                              BC
+plt <- pyd_panela + pyd_panelb + guide_area() + pyd_panelc +
+  plot_layout(width = c(0.5, 0.5), heights = c(0.2, 0.25, 0.55),
+              guides = "collect", design = c("AB
+                                              CC
                                               DD")) +
-  plot_annotation(tag_levels = "a")
+  plot_annotation(tag_levels = "a") & theme(legend.position = "top")
 
 # Save
 ggsave(snakemake@output[["pdf"]],

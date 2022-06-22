@@ -11,6 +11,7 @@
 ################################################################################
 
 import json
+import os
 
 import pandas as pd
 
@@ -229,12 +230,24 @@ rule count_reads:
 
 rule summarise_count_reads:
     input:
-        expand("03-data/eager_weyrich2017/{sample}.n", sample=SAMPLES.keys())
+        nreads = expand("03-data/eager_weyrich2017/{sample}.n", sample=SAMPLES.keys()),
+        ffq = expand("tmp/ffq/{err}.json", err=SAMPLES.values())
     output:
         "05-results/PREP_Nextflow_EAGER_noReads_Weyrich2017_Neanderthals.tsv"
     message: "Summarise the number of reads per sample"
     run:
-        pd.concat([pd.read_csv(fn, sep="\t", header=None, names=['sample', 'R1', 'R2'])
-                   for fn in input]) \
+        ena_accessions = pd.DataFrame([(os.path.basename(fn).replace(".json", ""),
+                                        json.load(open(fn, "rt"))[0]['accession'])
+                                        for fn in input.ffq],
+                                      columns=['secondary_sample_accession', "run_accession"])
+        sample_acc_map = {v: k for k, v in SAMPLES.items()}
+        ena_accessions['sample'] = [sample_acc_map[acc]
+                                    for acc in ena_accessions['secondary_sample_accession']]
+
+        nreads = pd.concat([pd.read_csv(fn, sep="\t", header=None, names=['sample', 'R1', 'R2'])
+                   for fn in input.nreads])
+
+        ena_accessions.merge(nreads, how="left", on="sample") \
+            [['sample', 'secondary_sample_accession', 'run_accession', 'R1', 'R2']]  \
             .sort_values(['sample']) \
             .to_csv(output[0], sep="\t", index=False)

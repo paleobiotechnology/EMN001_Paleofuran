@@ -2,6 +2,13 @@
 
 This folder contains the final figures and tables presented in this study.
 
+### Figures:
+
+- `Figure1.pdf`: main figure containing an overview map of all samples, the DNA molecule length and
+  contig length distributions for the samples EMN001, PES001, and PLV001, the overview of the
+  reconstructed MAGs for the five samples with a HQ Chlorobiaceae MAG, and the aDNA damage for two
+  MAGs of EMN001
+
 ### Supplementary Tables:
 
 - `Dataset_S1.xlsx`: XLSX file containing the tables holding the sample and sequencing data

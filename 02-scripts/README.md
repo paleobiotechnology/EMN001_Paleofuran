@@ -37,6 +37,10 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
 
 4. `PUBL`: preparing the final figures and tables
 
+  - `PUBL_Figure1.Snakefile`: plot an overview map of all samples, the DNA molecule length
+    and contig length distributions for the samples EMN001, PES001, and PLV001, the overview of the
+    reconstructed MAGs for the five samples with a HQ Chlorobiaceae MAG, and the aDNA damage for two
+    MAGs of EMN001
   - `PUBL_Dataset_S1.Snakefile`: combine the tables containing the information about the samples,
     the sequencing data, and the number of DNA molecules available for *de novo* assembly into a
     single XSLX file

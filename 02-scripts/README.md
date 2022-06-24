@@ -34,6 +34,9 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     assembly graph
   - `QUAL_pyDamage_summary.Snakefile`: summarise the pyDamage results regarding the fraction of
     contigs that are considered "ancient" by pyDamage and the distribution of the predicted accuracy
+  - `QUAL_refalignment_Chlorobiaceae.Snakefile`: align the short-read sequencing data of all dental
+    calculus samples against the contigs of EMN001 and evaluate the number of aligned reads against
+    the contigs that were assigned to the Chlorobiaceae MAG
 
 4. `PUBL`: preparing the final figures and tables
 

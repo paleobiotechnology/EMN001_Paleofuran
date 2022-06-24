@@ -49,6 +49,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     single XSLX file
   - `PUBL_Dataset_S2.Snakefile`: combine the tables containing the results about the de novo
     assembly of the ancient and modern dental calculus samples
+  - `PUBL_Dataset_S4.Snakefile`: combine the tables containing the results on the alignment of the
+    short-read sequencing data against the contigs assembled from EMN001
   - `PUBL_FigureS_freeBayescorrection.Snakefile`: plot the supplementary figure summarising the
     results of the substitution types and minor allele frequencies that were observed when
     correcting the contig sequences using freeBayes
@@ -61,5 +63,7 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
 X. `ENVS`: conda environments for the use with Snakemake
 
   - `ENVS_bioawk.yaml`: [bioawk](https://github.com/lh3/bioawk)
+  - `ENVS_bowtie2.yaml`: [bowtie2](https://github.com/BenLangmead/bowtie2)
   - `ENVS_fastp.yaml`: [fastp](https://github.com/OpenGene/fastp)
+  - `ENVS_picard.yaml`: [picard](https://broadinstitute.github.io/picard)
   - `ENVS_samtools.yaml`: [samtools](https://github.com/samtools/samtools)

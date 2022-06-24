@@ -16,6 +16,10 @@ This folder contains the final figures and tables presented in this study.
   sample
 - `Dataset_S2.xlsx`: XLSX file containing the results of the evaluation of the *de novo* assembly
   performance
+- `Dataset_S4.xlsx`: XLSX file containing the results of the alignment of the short-read sequencing
+  data against the assembled contigs of EMN001 for all dental calculus samples, the Neanderthal
+  dental calculus samples previously published by Weyrich *et al.* (2017), and control samples
+  (sediment samples and human remains from El Miron plus extraction and library controls)
 
 ### Supplementary Figures:
 

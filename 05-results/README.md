@@ -34,3 +34,9 @@ presented in the manuscript.
   - `QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv`: the overview of the number of reads
     aligned to the Chlorobiaceae MAG contigs and to all contigs of EMN001 for each dental calculus
     sample
+
+4. `REFG`: results related to constructing genomes using reference genomes
+
+  - `REFG_Chlorobiaceae_genomes_snpAD.tsv`: the overview of the performance of the recovery of
+    Chlorobiaceae genomes from samples with strong evidence of Chlorobiaceae DNA using the EMN001
+    Chlorobiaceae MAG as the reference

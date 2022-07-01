@@ -38,7 +38,14 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     calculus samples against the contigs of EMN001 and evaluate the number of aligned reads against
     the contigs that were assigned to the Chlorobiaceae MAG
 
-4. `PUBL`: preparing the final figures and tables
+4. `REFG`: analyses related to constructing genomes using reference genomes
+
+  - `REFG_Chlorobiaceae_genomes.Snakefile`: reconstruct the Chlorobiaceae genome for all samples
+    without strong evidence of Chlorobiaceae DNA using the EMN001 Chlorobiaceae MAG as the reference
+
+5. `PHYL`: analyses related to phylogenetics
+
+6. `PUBL`: preparing the final figures and tables
 
   - `PUBL_Figure1.Snakefile`: plot an overview map of all samples, the DNA molecule length
     and contig length distributions for the samples EMN001, PES001, and PLV001, the overview of the

@@ -18,7 +18,8 @@ rule prepare_dataset_s4:
     message: "Prepare the overview table of the published Neanderthal calculus samples, the reconstruction of Chlorobiaceae genomes, and the contamination analysis"
     params:
         nea_samples = "05-results/PREP_Nextflow_EAGER_noReads_Weyrich2017_Neanderthals.tsv",
-        ref_alignment_calc = "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv"
+        ref_alignment_calc = "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv",
+        snpad = "05-results/REFG_Chlorobiaceae_genomes_snpAD.tsv"
     run:
         # Auxilliary functions
         ## Add formatting
@@ -108,5 +109,50 @@ rule prepare_dataset_s4:
                                                  ref_aln_calc.columns[3]),
                              workbook.add_format({'align': 'center',
                                                  'num_format': "0.00"}))
+
+        # Dataset S4c: overview of snpAD genotyping results
+        snpad = pd.read_csv(params.snpad, sep="\t") \
+            .rename({'sites_covered': 'sites with coverage >= 1-fold',
+                     'sites_genotyped': 'sites genotyped',
+                     'HOMR': 'homozygous REF',
+                     'HET': 'heterozygous',
+                     'HOMA': 'homozygous ALT'}, axis=1)
+        snpad = snpad.iloc[:, list(range(6)) + [11, 12, 7, 16, 6, 8, 9, 10, 13, 14, 15, 17]]
+        snpad.to_excel(writer, sheet_name="S4c - genotyping snpAD", index=False,
+                             header=False, startrow=3)
+        ## Sheet: Sample overview
+        s4c_sheet = writer.sheets["S4c - genotyping snpAD"]
+        s4c_sheet.write(0, 0, "Table S4c: Overview of the snpAD genotyping results "
+                        "for the samples with strong evidence of Chlorobiaceae DNA. "
+                        "The number of sites to which at least a single read could "
+                        "be aligned and the sites genotypes are relative to the size "
+                        "of the EMN001 Chlorobiaceae MAG (1.88 Mb). Based on the "
+                        "number of genotyped sites, the fraction of sites with a "
+                        "homozygous genotype as the reference, with a heterozygous "
+                        "genotype, and a homozygous alternative genotype are reported. "
+                        "The remainder of the column lists the type of substitutions "
+                        "that were observed at sites with a homozygous alternative genotype.",
+                        workbook.add_format({'bold': True, 'align': 'left'}))
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'border': 0
+        })
+        for ci, cname in enumerate(snpad.columns.values):
+            s4c_sheet.write(2, ci, cname, header_format)
+        s4c_sheet.set_column(0, 0, determine_col_width(snpad.iloc[:, 0],
+                                                       snpad.columns[0]),
+                            workbook.add_format({'align': 'center'}))
+        for i in range(1, 6):  # float columns
+            s4c_sheet.set_column(i, i, determine_col_width(snpad.iloc[:, i].astype(str),
+                                                           snpad.columns[i]),
+                                 workbook.add_format({'align': 'center',
+                                                      'num_format': "0.00000"}))
+        s4c_sheet.set_column(6, 17,  # numerical columns
+                                determine_col_width(snpad.iloc[:, i].astype(str),
+                                                    snpad.columns[i]) + 1,
+                                workbook.add_format({'align': 'center',
+                                                     'num_format': "#,##0"}))
         # Save XLSX file
         writer.save()

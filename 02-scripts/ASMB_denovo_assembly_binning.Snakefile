@@ -24,10 +24,16 @@ import yaml
 
 import pandas as pd
 
+#### SAMPLES ###################################################################
+SAMPLES = pd.read_csv("01-resources/overview_sequencingdata.tsv", sep="\t")['individualId'].tolist()
+################################################################################
 
 rule all:
     input:
-        "05-results/ASMB_assemblystats_calN50_metaQUAST.tsv"
+        "05-results/ASMB_assemblystats_calN50_metaQUAST.tsv",
+        "05-results/ASMB_MAGS_metaWRAP_prefilter.tsv"
+
+#### Prepare input files for running pipeline ##################################
 
 rule prepare_input_table:
     output:
@@ -96,6 +102,10 @@ rule write_config:
         with open(f"04-analysis/ancient_metagenome_assembly-mDNA_samples.config", "w", encoding="utf8") as outfile:
             yaml.dump(config, outfile, default_flow_style=False, allow_unicode=True)
 
+################################################################################
+
+#### Run assembly pipeline #####################################################
+
 rule run_assembly_pipeline:
     input:
         tsv = "04-analysis/ancient_metagenome_assembly-{sampletype}_samples.tsv",
@@ -111,6 +121,49 @@ rule run_assembly_pipeline:
         snakemake --configfile {input.config} \
             --use-conda --conda-prefix conda --profile sge -j 10 -k
         """
+
+################################################################################
+
+#### Evaluate performance ######################################################
+
+rule no_bins_per_binner:
+    input:
+        expand("04-analysis/ancient_metagenome_assembly/summary_{sampletype}_samples.tsv", sampletype=['aDNA', 'mDNA'])
+    output:
+        temp("tmp/binner_stats/{sample}.nbins.txt")
+    message: "Count the number of bins per binner: {wildcards.sample}"
+    params:
+        dir = "04-analysis/ancient_metagenome_assembly/binning/metawrap/INITIAL_BINNING"
+    run:
+        with open(output[0], "wt") as outfile:
+            s = wildcards.sample
+            if not wildcards.sample.startswith("JAE") and not wildcards.sample.startswith("VLC"):
+                assembler = "megahit"
+            else:
+                assembler = "metaspades"
+            for binner in ['metabat2', 'maxbin2', 'concoct']:
+                n = sum([fn.split(".")[1].isnumeric()
+                         for fn in glob(f"{params.dir}/{wildcards.sample}-{assembler}/{binner}_bins/bin.*.fa")])
+                s += "\t" + str(n)
+            outfile.write(s + "\n")
+
+rule summarise_nbins:
+    input:
+        expand("tmp/binner_stats/{sample}.nbins.txt", sample=SAMPLES)
+    output:
+        "05-results/ASMB_nBins_initialbinning.tsv"
+    message: "Combine the number of bin results into a single table"
+    run:
+        pd.concat([pd.read_csv(fn, sep='\t', header=None,
+                               names=['sample', 'metabat2', 'maxbin2', 'concoct'])
+                   for fn in input]) \
+            .sort_values(['sample']) \
+            .drop_duplicates() \
+            .to_csv(output[0], sep="\t", index=False)
+
+################################################################################
+
+#### Summary ###################################################################
 
 rule summarise_assembly_stats:
     input:
@@ -132,3 +185,21 @@ rule summarise_assembly_stats:
             .sort_values(['sample']) \
             .to_csv(output[0], sep="\t", index=False, float_format="%0.3f")
 
+rule summarise_binning_stats:
+    input:
+        nbins = "05-results/ASMB_nBins_initialbinning.tsv",
+        tsv = expand("04-analysis/ancient_metagenome_assembly/summary_{sampletype}_samples.tsv", sampletype=['aDNA', 'mDNA'])
+    output:
+        "05-results/ASMB_MAGS_metaWRAP_prefilter.tsv"
+    message: "Summarise the list of bins after the refinement using MetaWRAP"
+    params:
+        qual = "04-analysis/ancient_metagenome_assembly/stats/bin_quality",
+    run:
+        # Summarise the overview of the bin quality (checkM, GUNC, BUSCO)
+        binqual = pd.concat([pd.read_csv(fn, sep="\t")
+                             for fn in glob(f"{params.qual}/*.tsv")
+                             if os.stat(fn).st_size > 28])
+
+        binqual.to_csv(output[0], sep="\t", index=False, float_format="%.2f")
+
+################################################################################

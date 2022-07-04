@@ -16,6 +16,10 @@ presented in the manuscript.
 
   - `ASMB_assemblystats_calN50_metaQUAST.tsv`: the overview of the performance of the *de novo*
     assembly summarised using calN50, metaQUAST, Prokka and pyDamage
+  - `ASMB_nBins_initialbinning.tsv`: the overview of the number of bins that were returned by the
+    individual binners metabat2, maxbin2, and concoct for each sample
+  - `ASMB_MAGS_metaWRAP_prefilter.tsv`: the overview of the quality of the MAGs refined by metaWRAP
+    prior to filtering for chimeric contigs
 
 3. `QUAL`: results related to the data quality
 

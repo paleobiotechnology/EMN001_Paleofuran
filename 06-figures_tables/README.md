@@ -16,6 +16,8 @@ This folder contains the final figures and tables presented in this study.
   sample
 - `Dataset_S2.xlsx`: XLSX file containing the results of the evaluation of the *de novo* assembly
   performance
+- `Dataset_S3.xlsx`: XLSX file containing the number of MAGs after binning and the results of the
+  the quality evaluation before and after the automatic refinement of the metaWRAP refined MAGs
 - `Dataset_S4.xlsx`: XLSX file containing the results of the alignment of the short-read sequencing
   data against the assembled contigs of EMN001 for all dental calculus samples and the Neanderthal
   dental calculus samples previously published by Weyrich *et al.* (2017), and the results on the

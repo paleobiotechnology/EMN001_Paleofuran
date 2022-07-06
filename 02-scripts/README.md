@@ -61,6 +61,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     single XSLX file
   - `PUBL_Dataset_S2.Snakefile`: combine the tables containing the results about the de novo
     assembly of the ancient and modern dental calculus samples
+  - `PUBL_Dataset_S3.Snakefile`: combine the tables containing the number of MAGs after binning and
+    the quality evaluation before and after the automatic refinement of the metaWRAP refined MAGs
   - `PUBL_Dataset_S4.Snakefile`: combine the tables containing the results on the alignment of the
     short-read sequencing data against the contigs assembled from EMN001
   - `PUBL_FigureS_freeBayescorrection.Snakefile`: plot the supplementary figure summarising the

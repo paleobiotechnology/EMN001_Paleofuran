@@ -60,8 +60,7 @@ rule all:
                         "assembly of the metagenomic sequencing data. Only contigs "
                         "with a minimal length of 500 bp were considered. The columns N0 "
                         "to N100 represent the maximal and minimal contig length plus "
-                        "the nine deciles. The number of coding sequences was determined "
-                        "prodigal and the number of genes using Prokka.",
+                        "the nine deciles.",
                           workbook.add_format({'bold': True, 'align': 'left'}))
         header_format = workbook.add_format({
             'bold': True,

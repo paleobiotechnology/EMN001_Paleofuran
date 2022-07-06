@@ -32,3 +32,5 @@ This folder contains the final figures and tables presented in this study.
 - `FigureS_ASMB03.pdf`: Supplementary figure summarising the results of pyDamage on contig level
 - `FigureS_ASMB04.pdf`: Supplementary figure summarising the quality estimates of the MAGs refined
   by metaWRAP estimated using checkM, BUSCO, and GUNC
+- `FigureS_ASMB05.pdf`: Supplementary figure summarising the quality estimates of the MAGs refined
+  by metaWRAP estimated using checkM and GUNC after automatically refining them using MMSeqs2

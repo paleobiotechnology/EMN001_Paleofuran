@@ -67,6 +67,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     dental calculus samples
   - `PUBL_FigureS_pyDamage_contigs.Snakefile`: plot the supplementar figure summarising the results
     of pyDamage on contig level
+  - `PUBL_FigureS_MAGquality_prefilter.Snakefile`: plot the quality analysis of the MAGs refined by
+    metaWRAP estimated using checkM, BUSCO, and GUNC
 
 X. `ENVS`: conda environments for the use with Snakemake
 

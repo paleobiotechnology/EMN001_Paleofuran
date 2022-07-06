@@ -17,9 +17,9 @@ This folder contains the final figures and tables presented in this study.
 - `Dataset_S2.xlsx`: XLSX file containing the results of the evaluation of the *de novo* assembly
   performance
 - `Dataset_S4.xlsx`: XLSX file containing the results of the alignment of the short-read sequencing
-  data against the assembled contigs of EMN001 for all dental calculus samples, the Neanderthal
-  dental calculus samples previously published by Weyrich *et al.* (2017), and control samples
-  (sediment samples and human remains from El Miron plus extraction and library controls)
+  data against the assembled contigs of EMN001 for all dental calculus samples and the Neanderthal
+  dental calculus samples previously published by Weyrich *et al.* (2017), and the results on the
+  genotype calling along the EMN001 Chlorobiaceae MAG using snpAD
 
 ### Supplementary Figures:
 
@@ -28,3 +28,5 @@ This folder contains the final figures and tables presented in this study.
 - `FigureS_ASMB02.pdf`: Supplementary figure summarising the results of the evaluation of the *de
   novo* assembly performance with respect to the contig lengths
 - `FigureS_ASMB03.pdf`: Supplementary figure summarising the results of pyDamage on contig level
+- `FigureS_ASMB04.pdf`: Supplementary figure summarising the quality estimates of the MAGs refined
+  by metaWRAP estimated using checkM, BUSCO, and GUNC

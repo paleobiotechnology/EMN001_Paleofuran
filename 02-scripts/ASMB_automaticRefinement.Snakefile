@@ -130,7 +130,7 @@ rule summary:
         qual[['sample_binID', 'sample', 'bin',
               'pass.MIMAG_medium', 'pass.MIMAG_high', 'pass.GUNC', 'pass.Polyrate',
               'GUNC.n_contigs', 'GUNC.divergence_level', 'GUNC.contamination_portion',
-              'GUNC.n_effective_surplus_clades', 'checkM.genome_size', 'checkM.GC',
+              'GUNC.n_effective_surplus_clades', 'GUNC.CSS', 'checkM.genome_size', 'checkM.GC',
               'checkM.coding_density', 'checkM.N50_contigs', 'checkM.lineage',
               'checkM.completeness', 'checkM.contamination', 'checkM.strain_heterogeneity',
               'meanCov', 'breadth', 'polyrate']] \

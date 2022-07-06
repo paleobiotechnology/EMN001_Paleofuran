@@ -3,6 +3,11 @@
 This folder contains the results of the analyses that are used to produce the figures and tables
 presented in the manuscript.
 
+0. Folders:
+
+  - `genomes`: contains the FastA files of the metagenome-assembled genomes used for the
+    phylogenetic analyses
+
 1. `PREP`: results related to the data preparation
 
   - `PREP_Nextflow_EAGER_noReads_per_sample.tsv`: the overview of the number of reads per individual
@@ -20,6 +25,8 @@ presented in the manuscript.
     individual binners metabat2, maxbin2, and concoct for each sample
   - `ASMB_MAGS_metaWRAP_prefilter.tsv`: the overview of the quality of the MAGs refined by metaWRAP
     prior to filtering for chimeric contigs
+  - `ASMB_MAGS_metaWRAP_postfilter.tsv`: the overview of the quality of the MAGs refined by metaWRAP
+    after filtering for chimeric contigs
 
 3. `QUAL`: results related to the data quality
 

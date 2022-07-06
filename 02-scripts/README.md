@@ -24,6 +24,10 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     assembling the ancient and modern DNA samples separately, run the assembly pipeline
     https://github.com/alexhbnr/ancient_metagenome_assembly, and summarise the results at contig and
     bin level
+  - `ASMB_automaticRefinement.Snakefile`: prepare the sample table and config file for automatically
+    refining the MAGs obtained from metaWRAP for the anceint and modern DNA samples separately, run
+    the refinement pipeline https://github.com/alexhbnr/automatic_MAG_refinement, and summarise the
+    results
 
 3. `QUAL`: analyses related to the data quality
 

@@ -42,6 +42,9 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
   - `QUAL_refalignment_Chlorobiaceae.Snakefile`: align the short-read sequencing data of all dental
     calculus samples against the contigs of EMN001 and evaluate the number of aligned reads against
     the contigs that were assigned to the Chlorobiaceae MAG
+  - `QUAL_aDNA_damage_MAGs.Snakefile`: determine the amount of aDNA by quantifying the frequency of
+    the substitutions for all five samples with HQ Chlorobiaceae MAGs against the genomes of the
+    species *Chlorobium limicola* and *Desulfobulbus oralis*
 
 4. `REFG`: analyses related to constructing genomes using reference genomes
 
@@ -82,6 +85,7 @@ X. `ENVS`: conda environments for the use with Snakemake
 
   - `ENVS_bioawk.yaml`: [bioawk](https://github.com/lh3/bioawk)
   - `ENVS_bowtie2.yaml`: [bowtie2](https://github.com/BenLangmead/bowtie2)
+  - `ENVS_damageprofiler.yaml`: [damageprofiler](https://github.com/Integrative-Transcriptomics/DamageProfiler)
   - `ENVS_fastp.yaml`: [fastp](https://github.com/OpenGene/fastp)
   - `ENVS_picard.yaml`: [picard](https://broadinstitute.github.io/picard)
   - `ENVS_samtools.yaml`: [samtools](https://github.com/samtools/samtools)

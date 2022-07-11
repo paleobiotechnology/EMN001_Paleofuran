@@ -181,13 +181,13 @@ figure5_panelg <- mags_postflt %>%
   mutate(ratio = ratio / 100) %>%
   ggplot(aes(x = sampletype, y = ratio, group = sampletype)) +
   geom_boxplot(outlier.shape = NA) +
-  geom_hline(yintercept = 0.005, size = 0.5, colour = "red", lty = 2) +
+  geom_hline(yintercept = 0.01, size = 0.5, colour = "red", lty = 2) +
   geom_jitter(aes(fill = sampletype), size = 2, pch = 21, width = .25, alpha = .7) +
   facet_wrap(~ MIMAG, nrow = 1) +
   labs(x = "",
        y = "ratio non-syn. to syn. minor alleles",
        fill = "sample type") +
-  scale_y_continuous(labels = scales::percent_format()) +
+  scale_y_continuous(labels = scales::percent_format(), breaks = c(0, 0.01, 0.02)) +
   theme(legend.position = "top",
         legend.title = element_text(size = 9),
         legend.text = element_text(size = 8),
@@ -237,7 +237,7 @@ figure5_panelh <- left_join(mags_preflt %>%
 # Stitch together
 plt <- guide_area() + figure5_panela + figure5_panelb + figure5_panelc +
        figure5_paneld + figure5_panele + figure5_panelf +
-       figure5_panelg + figure5_panelh +
+       figure5_panelh + figure5_panelg +
   plot_layout(heights = c(0.1, 0.45, 0.45), guides = "collect",
               design = c("AAAA
                           BCDE

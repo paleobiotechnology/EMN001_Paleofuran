@@ -28,6 +28,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     refining the MAGs obtained from metaWRAP for the anceint and modern DNA samples separately, run
     the refinement pipeline https://github.com/alexhbnr/automatic_MAG_refinement, and summarise the
     results
+  - `ASMB_rRNA_tRNA_search.Snakefile`: search for the presence of tRNAs and rRNAs in the MAGs that
+    fulfill the completeness and contamination estimates for a high-quality MAG following MIMAG
 
 3. `QUAL`: analyses related to the data quality
 

@@ -1,0 +1,7 @@
+name: infernal
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bioconda::infernal=1.1.4

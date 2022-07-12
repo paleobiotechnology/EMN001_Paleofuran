@@ -1,0 +1,7 @@
+name: trnascan-se
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bioconda::trnascan-se=2.0.9

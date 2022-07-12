@@ -27,6 +27,8 @@ presented in the manuscript.
     prior to filtering for chimeric contigs
   - `ASMB_MAGS_metaWRAP_postfilter.tsv`: the overview of the quality of the MAGs refined by metaWRAP
     after filtering for chimeric contigs
+  - `ASMB_rRNA_tRNA_presence.tsv`: the results for the presence of tRNAs and rRNAs in the MAGs that
+    fulfill the completeness and contamination estimates for a high-quality MAG following MIMAG
 
 3. `QUAL`: results related to the data quality
 

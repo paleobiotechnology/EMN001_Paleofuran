@@ -23,7 +23,11 @@ rule all:
         nbins = "05-results/ASMB_nBins_initialbinning.tsv",
         metawrap = "05-results/ASMB_MAGS_metaWRAP_prefilter.tsv",
         mag_preflt = "05-results/ASMB_MAGS_metaWRAP_prefilter.tsv",
-        mag_postflt = "05-results/ASMB_MAGS_metaWRAP_postfilter.tsv"
+        mag_postflt = "05-results/ASMB_MAGS_metaWRAP_postfilter.tsv",
+        rnas = "05-results/ASMB_rRNA_tRNA_presence.tsv",
+        repr_mags = "05-results/ASMB_representativeMAGs.tsv",
+        taxprof = "05-results/ASMB_taxonomic_profiling_MAGs.tsv",
+        oraltaxon = "05-results/ASMB_oraltaxon_classification.tsv"
     threads: 1
     run:
         # Auxilliary functions
@@ -255,6 +259,113 @@ rule all:
                                  ceil(determine_col_width(None,
                                                           dataset_s3c.columns[i]) / 2),
                                  workbook.add_format({'align': 'center',
+                                                      'num_format': "0.00"}))
+
+        # Dataset S3d: the number of tRNAs and rRNAs
+        rnas = pd.read_csv(params.rnas, sep="\t")
+        rnas = rnas.fillna("")
+        rnas.to_excel(writer, sheet_name="S3d - tRNAs and rRNAs", index=False,
+                      header=False, startrow=3)
+        ## Sheet: Sample overview
+        s3d_sheet = writer.sheets["S3d - tRNAs and rRNAs"]
+        s3d_sheet.write(0, 0, "Table S3d: Overview of the number of tRNAs and "
+                        "rRNAs that were identified by tRNAscan-SE and INFERNAL, "
+                        "respectively, for all MAGs that fulfilled the MIMAG "
+                        "criteria for a high-quality MAG with respect to "
+                        "completeness and contamination.",
+                        workbook.add_format({'bold': True, 'align': 'left'}))
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'border': 0
+        })
+        for ci, cname in enumerate(rnas.columns.values):
+            s3d_sheet.write(2, ci, cname, header_format)
+        s3d_sheet.set_column(0, 0, determine_col_width(rnas.iloc[:, 0],
+                                                       rnas.columns[0]) + 1,
+                             workbook.add_format({'align': 'center'}))
+        for i in range(1, 26):
+            s3d_sheet.set_column(i, i,
+                                 determine_col_width(rnas.iloc[:, i].astype(str),
+                                                     rnas.columns[i]) + 1,
+                                 workbook.add_format({'align': 'center',
+                                                     'num_format': "#,##0"}))
+        s3d_sheet.set_column(26, 26, determine_col_width(rnas.iloc[:, 26],
+                                                         rnas.columns[26]) + 1,
+                             workbook.add_format({'align': 'center'}))
+
+        # Dataset S3e: representative MAGs with taxonomic assignments
+        ## Load data
+        repr_mags = pd.read_csv(params.repr_mags, sep="\t")
+        taxprof = pd.read_csv(params.taxprof, sep="\t")
+        oraltaxon = pd.read_csv(params.oraltaxon, sep="\t")
+
+        ## Adjust columns
+        repr_mags['primary cluster'] = repr_mags['cluster'].str.split("_").str[0].astype(int)
+        repr_mags['secondary cluster'] = repr_mags['cluster'].str.split("_").str[1].astype(int)
+
+        dataset_s3e = repr_mags[['binID', 'primary cluster', 'secondary cluster',
+                                 'genome size [Mb]', 'N50', 'completeness [%]',
+                                 'contamination [%]', 'cluster size', 'members of cluster']] \
+            .merge(taxprof, how="left", on="binID") \
+            .merge(oraltaxon.iloc[:, [0, 1, 3, 2]], how="left", on="binID")
+        dataset_s3e.to_excel(writer, sheet_name="S3e - representative MAGs", index=False,
+                             header=False, startrow=3)
+        ## Sheet: Sample overview
+        s3e_sheet = writer.sheets["S3e - representative MAGs"]
+        s3e_sheet.write(0, 0, "Table S3e: Overview of the representative MAGs obtained "
+                        "from all dental calculus samples. The primary and secondary "
+                        "cluster indicate whether the genomes had a similarity of >= 90% "
+                        "or >= 95%, respectively. The completeness and contamination "
+                        "estimates were calculated using checkM. The GTDB and "
+                        "single-genome bin (SGB) classification shows the taxonomic "
+                        "assignment using either GTDBTK or PhyloPhlAn3's metagenomic "
+                        "module. The SGB classification-based metrics consider whether "
+                        "this MAG has a known (kSGB) or unknown (uSGB) closely related "
+                        "genome. The column 'oral taxon' indicates whether there was a "
+                        "reference genome present in the HOMD that shared an ANI of >= "
+                        "80% (primary) or >= 95% (secondary).",
+                        workbook.add_format({'bold': True, 'align': 'left'}))
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'border': 0
+        })
+        for ci, cname in enumerate(dataset_s3e.columns.values):
+            s3e_sheet.write(2, ci, cname, header_format)
+        for i in [0, 11, 12, 15, 16, 17, 18]:  # string columns
+            s3e_sheet.set_column(i, i,
+                                 determine_col_width(dataset_s3e.iloc[:, i],
+                                                     dataset_s3e.columns[i]) + 1,
+                                 workbook.add_format({'align': 'center',
+                                                      'valign': 'vcenter'}))
+        s3e_sheet.set_column(8, 8,
+                             determine_col_width(None,
+                                                 dataset_s3e.columns[i]) + 24,
+                             workbook.add_format({'align': 'left',
+                                                  'valign': 'vcenter',
+                                                  'text_wrap': True}))
+        for i in [9, 10]:  # string columns with left alignment
+            s3e_sheet.set_column(i, i,
+                                 determine_col_width(dataset_s3e.iloc[:, i],
+                                                     dataset_s3e.columns[i]) + 1,
+                                 workbook.add_format({'align': 'left',
+                                                      'valign': 'vcenter'}))
+        for i in [1, 2, 4, 7]:  # integers
+            s3e_sheet.set_column(i, i,
+                                 determine_col_width(dataset_s3e.iloc[:, i].astype(str),
+                                                     dataset_s3e.columns[i]) + 1,
+                                 workbook.add_format({'align': 'center',
+                                                     'valign': 'vcenter',
+                                                     'num_format': "#,##0"}))
+        for i in [3, 5, 6, 13, 14, 19]:  # integers
+            s3e_sheet.set_column(i, i,
+                                 determine_col_width(dataset_s3e.iloc[:, i].astype(str),
+                                                     dataset_s3e.columns[i]) + 1,
+                                 workbook.add_format({'align': 'center',
+                                                      'valign': 'vcenter',
                                                       'num_format': "0.00"}))
 
         # Save XLSX file

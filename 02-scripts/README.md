@@ -30,6 +30,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     results
   - `ASMB_rRNA_tRNA_search.Snakefile`: search for the presence of tRNAs and rRNAs in the MAGs that
     fulfill the completeness and contamination estimates for a high-quality MAG following MIMAG
+  - `ASMB_dereplication.Snakefile`: use dRep to dereplicate the MAGs into representative genomes and
+    compare these representative genomes against the HOMD for close matches
 
 3. `QUAL`: analyses related to the data quality
 
@@ -88,6 +90,9 @@ X. `ENVS`: conda environments for the use with Snakemake
   - `ENVS_bioawk.yaml`: [bioawk](https://github.com/lh3/bioawk)
   - `ENVS_bowtie2.yaml`: [bowtie2](https://github.com/BenLangmead/bowtie2)
   - `ENVS_damageprofiler.yaml`: [damageprofiler](https://github.com/Integrative-Transcriptomics/DamageProfiler)
+  - `ENVS_dRep.yaml`: [dRep](https://github.com/MrOlm/drep)
+  - `ENVS_infernal.yaml`: [INFERNAL](http://eddylab.org/infernal/)
   - `ENVS_fastp.yaml`: [fastp](https://github.com/OpenGene/fastp)
   - `ENVS_picard.yaml`: [picard](https://broadinstitute.github.io/picard)
   - `ENVS_samtools.yaml`: [samtools](https://github.com/samtools/samtools)
+  - `ENVS_trnascanse.yaml`: [tRNAscan-SE](https://github.com/UCSC-LoweLab/tRNAscan-SE)

@@ -1,0 +1,8 @@
+name: dRep
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bioconda::drep=3.3.0
+  - bioconda::checkm-genome=1.2.0

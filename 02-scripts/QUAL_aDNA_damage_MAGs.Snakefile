@@ -18,7 +18,7 @@ if not os.path.isdir("snakemake_tmp"):
 
 #### SAMPLES ###################################################################
 CONTIGS = "04-analysis/ancient_metagenome_assembly/alignment/megahit/EMN001-megahit.fasta.gz"
-MAGS = ['EMN001-megahit_006',  # Desulfobulbus oralis
+MAGS = ['EMN001-megahit_001',  # Abot439
         'EMN001-megahit_021',  # Chlorobium limicola
        ]
 SAMPLES = ['EMN001', 'PES001', 'PLV001', 'RIG001', 'GOY005']
@@ -30,7 +30,7 @@ wildcard_constraints:
 
 rule all:
     input:
-        "05-results/QUAL_damageprofile_Climicola_Doralis.tsv"
+        "05-results/QUAL_damageprofile_Climicola_Abot439.tsv"
 
 rule prepare_fasta:
     output:
@@ -209,7 +209,7 @@ rule summarise_damageprofiler:
     input:
         expand("tmp/damageprofiling_mags/{sample}-{mag}/5p_freq_misincorporations.txt", sample=SAMPLES, mag=MAGS)
     output:
-        "05-results/QUAL_damageprofile_Climicola_Doralis.tsv"
+        "05-results/QUAL_damageprofile_Climicola_Abot439.tsv"
     message: "Summarise the substitution frequency at the 5' end"
     run:
         damage = pd.concat([pd.read_csv(fn, sep="\t", skiprows=3) \
@@ -217,7 +217,7 @@ rule summarise_damageprofiler:
                             for fn in input])
         damage['sample'] = damage['sample_MAG'].str.split("-").str[0]
         damage['MAG'] = damage['sample_MAG'].str.split("_").str[1]
-        damage['MAG'] = ["Doralis" if m == "006" else "Climicola" for m in damage['MAG'].tolist()]
+        damage['MAG'] = ["Abot439" if m == "001" else "Climicola" for m in damage['MAG'].tolist()]
         damage = damage.drop(["sample_MAG"], axis=1)
         damage.iloc[:, [-2, -1] + list(range(0, 13))] \
             .to_csv(output[0], sep="\t", index=False, float_format="%.4f")

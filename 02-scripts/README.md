@@ -50,7 +50,7 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     the contigs that were assigned to the Chlorobiaceae MAG
   - `QUAL_aDNA_damage_MAGs.Snakefile`: determine the amount of aDNA by quantifying the frequency of
     the substitutions for all five samples with HQ Chlorobiaceae MAGs against the genomes of the
-    species *Chlorobium limicola* and *Desulfobulbus oralis*
+    species *Chlorobium limicola* and Abot439
 
 4. `REFG`: analyses related to constructing genomes using reference genomes
 

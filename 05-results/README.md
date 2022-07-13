@@ -53,9 +53,9 @@ presented in the manuscript.
   - `QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv`: the overview of the number of reads
     aligned to the Chlorobiaceae MAG contigs and to all contigs of EMN001 for each dental calculus
     sample
-  - `QUAL_damageprofile_Climicola_Doralis.tsv`: the substitution frequency for all five samples with
-    HQ Chlorobiaceae MAGs against the genomes of the species *Chlorobium limicola* and
-    *Desulfobulbus oralis* at the 5' end of the reads
+  - `QUAL_damageprofile_Climicola_Abot439.tsv`: the substitution frequency for all five samples with
+    HQ Chlorobiaceae MAGs against the genomes of the species *Chlorobium limicola* and Abot439 at
+    the 5' end of the reads
 
 4. `REFG`: results related to constructing genomes using reference genomes
 

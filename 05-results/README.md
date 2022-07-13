@@ -33,6 +33,8 @@ presented in the manuscript.
     them using dRep dereplicate
   - `ASMB_oraltaxon_classification.tsv`: the overview of whether or not there was a close genome to
     the representative MAGs in the HOMD database and their respective evolutionary distance
+  - `ASMB_taxonomic_profiling_MAGs.tsv`: the overview of the taxonomic assignments of the
+    representative MAGs against the GTDB and the SGB database
 
 3. `QUAL`: results related to the data quality
 

@@ -32,6 +32,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     fulfill the completeness and contamination estimates for a high-quality MAG following MIMAG
   - `ASMB_dereplication.Snakefile`: use dRep to dereplicate the MAGs into representative genomes and
     compare these representative genomes against the HOMD for close matches
+  - `ASMB_taxonomic_profiling_MAGs.Snakefile`: generate the taxonomic profiles of the representative
+    MAGs using the GTDBTK and PhyloPhlAn3's metagenomic mode
 
 3. `QUAL`: analyses related to the data quality
 

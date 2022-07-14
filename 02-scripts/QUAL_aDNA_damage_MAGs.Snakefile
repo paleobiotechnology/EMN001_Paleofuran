@@ -78,12 +78,13 @@ rule bowtie2:
     params:
         index = "tmp/damageprofiling_mags/EMN001_contigs",
         pe1 = "03-data/eager_fastqs/{sample}-nonUDG_1.fastq.gz",
-        pe2 = "03-data/eager_fastqs/{sample}-nonUDG_2.fastq.gz"
+        pe2 = "03-data/eager_fastqs/{sample}-nonUDG_2.fastq.gz",
+        pe0 = lambda wildcards: f"-U 03-data/eager_fastqs/{wildcards.sample}-nonUDG_0.fastq.gz" if wildcards.sample in ['PES001', 'GOY005'] else ""
     threads: 16
     shell:
         """
         bowtie2 -p {threads} --very-sensitive -N 1 -x {params.index} \
-            -1 {params.pe1} -2 {params.pe2} > {output}
+            -1 {params.pe1} -2 {params.pe2} {params.pe0} > {output}
         """
 
 rule sam2bam:

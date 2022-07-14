@@ -88,6 +88,9 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     metaWRAP estimated using checkM and GUNC
   - `PUBL_FigureS_MAG_taxonomicclassification.Snakefile`: plot the summary of the taxonomic
     assignment of the MAGs against the GTDB
+  - `PUBL_FigureS_aDNA_damage_Chlorobium_Flexilinea.Snakefile`: plot the summary of the ancient DNA
+    damage of the samples with a HQ Chlorobium MAG against the representative MAG of the genus
+    Chlorobium and Flexilinea of EMN001
 
 X. `ENVS`: conda environments for the use with Snakemake
 

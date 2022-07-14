@@ -86,6 +86,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     metaWRAP estimated using checkM, BUSCO, and GUNC
   - `PUBL_FigureS_MAGquality_postfilter.Snakefile`: plot the quality analysis of the MAGs refined by
     metaWRAP estimated using checkM and GUNC
+  - `PUBL_FigureS_MAG_taxonomicclassification.Snakefile`: plot the summary of the taxonomic
+    assignment of the MAGs against the GTDB
 
 X. `ENVS`: conda environments for the use with Snakemake
 

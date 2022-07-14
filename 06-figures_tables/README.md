@@ -34,3 +34,5 @@ This folder contains the final figures and tables presented in this study.
   by metaWRAP estimated using checkM, BUSCO, and GUNC
 - `FigureS_ASMB05.pdf`: Supplementary figure summarising the quality estimates of the MAGs refined
   by metaWRAP estimated using checkM and GUNC after automatically refining them using MMSeqs2
+- `FigureS_ASMB06.pdf`: Supplementary figure summarising the taxonomic assignmnet of the MAGs
+  against the GTDB

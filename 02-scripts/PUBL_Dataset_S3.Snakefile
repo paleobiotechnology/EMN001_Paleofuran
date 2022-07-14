@@ -300,7 +300,6 @@ rule all:
         repr_mags = pd.read_csv(params.repr_mags, sep="\t")
         taxprof = pd.read_csv(params.taxprof, sep="\t")
         oraltaxon = pd.read_csv(params.oraltaxon, sep="\t")
-
         ## Adjust columns
         repr_mags['primary cluster'] = repr_mags['cluster'].str.split("_").str[0].astype(int)
         repr_mags['secondary cluster'] = repr_mags['cluster'].str.split("_").str[1].astype(int)
@@ -367,6 +366,141 @@ rule all:
                                  workbook.add_format({'align': 'center',
                                                       'valign': 'vcenter',
                                                       'num_format': "0.00"}))
+
+        # Dataset S3f: number of modern and ancient MAGs per representative MAG 
+        all_mags = []
+        for mag in repr_mags[['binID', 'members of cluster']].itertuples():
+            if type(mag._2) == float:
+                all_mags.append((mag.binID, mag.binID))
+            else:
+                for redmag in mag._2.split(", "):
+                    all_mags.append((mag.binID, redmag))
+                all_mags.append((mag.binID, mag.binID))
+        all_mags_df = pd.DataFrame(all_mags, columns=['binID', 'redundant_MAG']) \
+            .merge(mag_postflt[['binID', 'pass.MIMAG_high']], how="left",
+                   left_on="redundant_MAG", right_on="binID") \
+            .rename({'binID_x': 'representative MAG',
+                     'redundant_MAG': 'redundant MAG',
+                     'pass.MIMAG_high': 'MIMAG'}, axis=1) \
+            .drop(['binID_y'], axis=1)
+        all_mags_df['sampletype'] = ((all_mags_df['redundant MAG'].str.startswith("JAE")) |
+                                     (all_mags_df['redundant MAG'].str.startswith("VLC")))
+        nonred_mag_clustercount = all_mags_df.groupby(['representative MAG', 'sampletype'])['MIMAG'].value_counts() \
+            .to_frame() \
+            .rename({'MIMAG': 'n'}, axis=1) \
+            .reset_index()
+        nonred_mag_clustercount['sampletype'] = ["modern" if s else "ancient"
+                                                 for s in nonred_mag_clustercount['sampletype'].tolist()]
+        nonred_mag_clustercount['MIMAG'] = ["HQ" if m else "MQ"
+                                            for m in nonred_mag_clustercount['MIMAG'].tolist()]
+        nonred_mag_clustercount['columnname'] = nonred_mag_clustercount['sampletype'] + " - " + nonred_mag_clustercount['MIMAG']
+        nonred_mag_clustercount = nonred_mag_clustercount[['representative MAG', 'columnname', 'n']] \
+            .set_index(['representative MAG', 'columnname']) \
+            .unstack() \
+            .fillna(0) \
+            .astype(int) \
+            .reset_index()
+        nonred_mag_clustercount.columns = [c[0] if i == 0 else c[1]
+                                           for i, c in enumerate(nonred_mag_clustercount.columns)]
+        nonred_mag_clustercount.to_excel(writer, sheet_name="S3f - overview of MAG clusters", index=False,
+                             header=False, startrow=3)
+        ## Sheet: Sample overview
+        s3f_sheet = writer.sheets["S3f - overview of MAG clusters"]
+        s3f_sheet.write(0, 0, "Table S3f: Overview of the number of MAGs "
+                        "that were clustered with the representative MAGs "
+                        "with respect to their sample type (ancient or sample) "
+                        "and their quality following MIMAG criteria.",
+                          workbook.add_format({'bold': True, 'align': 'left'}))
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'border': 0
+        })
+        for ci, cname in enumerate(nonred_mag_clustercount.columns.values):
+            s3f_sheet.write(2, ci, cname, header_format)
+        s3f_sheet.set_column(0, 0, determine_col_width(nonred_mag_clustercount.iloc[:, 0],
+                                                       nonred_mag_clustercount.columns[0]) + 1,
+                             workbook.add_format({'align': 'center'}))
+        for i in range(1, 5):
+            s3f_sheet.set_column(i, i,
+                                 determine_col_width(nonred_mag_clustercount.iloc[:, i].astype(str),
+                                                     nonred_mag_clustercount.columns[i]) + 1,
+                                 workbook.add_format({'align': 'center',
+                                                     'num_format': "#,##0"}))
+
+        # Dataset S3g: aDNA damage against 
+        ## Load data
+        # repr_mags = pd.read_csv(params.repr_mags, sep="\t")
+        # taxprof = pd.read_csv(params.taxprof, sep="\t")
+        # oraltaxon = pd.read_csv(params.oraltaxon, sep="\t")
+        # ## Adjust columns
+        # repr_mags['primary cluster'] = repr_mags['cluster'].str.split("_").str[0].astype(int)
+        # repr_mags['secondary cluster'] = repr_mags['cluster'].str.split("_").str[1].astype(int)
+
+        # dataset_s3e = repr_mags[['binID', 'primary cluster', 'secondary cluster',
+                                 # 'genome size [Mb]', 'N50', 'completeness [%]',
+                                 # 'contamination [%]', 'cluster size', 'members of cluster']] \
+            # .merge(taxprof, how="left", on="binID") \
+            # .merge(oraltaxon.iloc[:, [0, 1, 3, 2]], how="left", on="binID")
+        # dataset_s3e.to_excel(writer, sheet_name="S3e - representative MAGs", index=False,
+                             # header=False, startrow=3)
+        # ## Sheet: Sample overview
+        # s3e_sheet = writer.sheets["S3e - representative MAGs"]
+        # s3e_sheet.write(0, 0, "Table S3e: Overview of the representative MAGs obtained "
+                        # "from all dental calculus samples. The primary and secondary "
+                        # "cluster indicate whether the genomes had a similarity of >= 90% "
+                        # "or >= 95%, respectively. The completeness and contamination "
+                        # "estimates were calculated using checkM. The GTDB and "
+                        # "single-genome bin (SGB) classification shows the taxonomic "
+                        # "assignment using either GTDBTK or PhyloPhlAn3's metagenomic "
+                        # "module. The SGB classification-based metrics consider whether "
+                        # "this MAG has a known (kSGB) or unknown (uSGB) closely related "
+                        # "genome. The column 'oral taxon' indicates whether there was a "
+                        # "reference genome present in the HOMD that shared an ANI of >= "
+                        # "80% (primary) or >= 95% (secondary).",
+                        # workbook.add_format({'bold': True, 'align': 'left'}))
+        # header_format = workbook.add_format({
+            # 'bold': True,
+            # 'align': 'center',
+            # 'valign': 'vcenter',
+            # 'border': 0
+        # })
+        # for ci, cname in enumerate(dataset_s3e.columns.values):
+            # s3e_sheet.write(2, ci, cname, header_format)
+        # for i in [0, 11, 12, 15, 16, 17, 18]:  # string columns
+            # s3e_sheet.set_column(i, i,
+                                 # determine_col_width(dataset_s3e.iloc[:, i],
+                                                     # dataset_s3e.columns[i]) + 1,
+                                 # workbook.add_format({'align': 'center',
+                                                      # 'valign': 'vcenter'}))
+        # s3e_sheet.set_column(8, 8,
+                             # determine_col_width(None,
+                                                 # dataset_s3e.columns[i]) + 24,
+                             # workbook.add_format({'align': 'left',
+                                                  # 'valign': 'vcenter',
+                                                  # 'text_wrap': True}))
+        # for i in [9, 10]:  # string columns with left alignment
+            # s3e_sheet.set_column(i, i,
+                                 # determine_col_width(dataset_s3e.iloc[:, i],
+                                                     # dataset_s3e.columns[i]) + 1,
+                                 # workbook.add_format({'align': 'left',
+                                                      # 'valign': 'vcenter'}))
+        # for i in [1, 2, 4, 7]:  # integers
+            # s3e_sheet.set_column(i, i,
+                                 # determine_col_width(dataset_s3e.iloc[:, i].astype(str),
+                                                     # dataset_s3e.columns[i]) + 1,
+                                 # workbook.add_format({'align': 'center',
+                                                     # 'valign': 'vcenter',
+                                                     # 'num_format': "#,##0"}))
+        # for i in [3, 5, 6, 13, 14, 19]:  # integers
+            # s3e_sheet.set_column(i, i,
+                                 # determine_col_width(dataset_s3e.iloc[:, i].astype(str),
+                                                     # dataset_s3e.columns[i]) + 1,
+                                 # workbook.add_format({'align': 'center',
+                                                      # 'valign': 'vcenter',
+                                                      # 'num_format': "0.00"}))
+
 
         # Save XLSX file
         writer.save()

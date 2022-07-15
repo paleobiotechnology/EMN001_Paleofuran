@@ -262,14 +262,14 @@ mags_overview <- mags %>%
          `SGB type`) %>%
   mutate(sample = factor(sample, levels = c("EMN001", "PES001", "GOY005", "PLV001", "RIG001")),
          chlorobium = binID %in% c("EMN001_021", "PLV001_002", "GOY005_001",
-                                   "PES001_010", "PLV001_001", "RIG001_014")) %>%
+                                   "PES001_018", "PLV001_001", "RIG001_014")) %>%
   arrange(sample, desc(completeness)) %>%
   mutate(binID = factor(binID, levels = .$binID)) %>%
   group_by(sample) %>%
   mutate(r = row_number(desc(completeness))) %>%
   ungroup() %>%
-  mutate(x = (r - 1) %/% 10,
-         y = abs((r - 1) %% 10 - 10),
+  mutate(x = (r - 1) %/% 8,
+         y = abs((r - 1) %% 8 - 8),
          type = case_when(chlorobium ~ "Chlorobium",
                           `oral taxon` != "none" ~ "oral taxon",
                           `SGB type` == "kSGB" ~ "known SGB",
@@ -305,10 +305,10 @@ panel_d <- ggplot() +
   facet_wrap(~ id,
              labeller = as_labeller(sample_names),
              nrow = 1) +
-  labs(x = "samples with Chlorobiaceae MAGs",
+  labs(x = "samples with HQ Chlorobium MAGs",
        y = "metagenome-assembled genomes") +
   scale_fill_manual(values = c("#E57373", "#42A5F5", "#2C3E50", "#795548", "white"),
-                    labels = c("Chlorobiaceae MAG", "oral taxa", "other known MAG", "other unknown MAG", "")) +
+                    labels = c("Chlorobium MAG", "oral taxa", "other known MAG", "other unknown MAG", "")) +
   theme(legend.position = "top",
         legend.margin = margin(0, 0, 0, 0),
         legend.title = element_blank(),
@@ -318,6 +318,7 @@ panel_d <- ggplot() +
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.line = element_blank(),
+        strip.text = element_text(size = 7),
         strip.background = element_blank()) +
   guides(fill = guide_legend(nrow = 2))
 

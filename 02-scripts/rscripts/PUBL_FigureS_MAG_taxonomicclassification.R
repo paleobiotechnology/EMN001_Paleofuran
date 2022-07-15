@@ -50,7 +50,7 @@ taxon_assignment_summary <- taxon_assignment %>%
 plt <- taxon_assignment_summary %>%
   mutate(label = if_else(is.na(genus), str_c("Unassigned: ", n_cluster),
                          str_c(str_replace(genus, "g__", ""), ": ", n_cluster))) %>%
-  arrange(desc(`ancient - HQ`), desc(`modern - HQ`)) %>%
+  arrange(desc(`ancient - HQ`), desc(`ancient - MQ`), desc(`modern - HQ`), desc(`modern - MQ`)) %>%
   mutate(label = factor(label, levels = .$label),
          oral = if_else(oral > 0, "oral", "other")) %>%
   arrange(label, oral) %>%

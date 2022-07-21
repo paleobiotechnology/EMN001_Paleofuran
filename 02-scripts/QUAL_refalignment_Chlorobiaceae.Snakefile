@@ -21,13 +21,12 @@ if not os.path.isdir("snakemake_tmp"):
 #### SAMPLES ###################################################################
 # Dental claculus samples this study
 SAMPLES = {os.path.basename(fn).replace("-alldata.concatenated", ""): fn.replace(".concatenated", "")
-           for fn in glob("03-data/eager_fastqs/*-alldata.concatenated")
-           if not os.path.basename(fn).startswith("EMN001")}
+           for fn in glob("03-data/eager_fastqs/*-alldata.concatenated")}
 # Published dental calculus samples
 for fn in glob("03-data/eager_weyrich2017/*_1.fastq.gz"):
     SAMPLES[os.path.basename(fn).replace("_1.fastq.gz", "")] = fn.replace("_1.fastq.gz", "")
 EMN001_CONTIGS = "04-analysis/ancient_metagenome_assembly/alignment/megahit/EMN001-megahit.fasta.gz"
-EMN001_CHL_MAG = "/mnt/archgen/users/huebner/EMN001_Paleofuran_prelimres/tmp/automatic_MAG_refinement-aDNA_samples_human/EMN001-megahit/bins/EMN001-megahit_021.fasta.gz"
+EMN001_CHL_MAG = "04-analysis/automatic_MAG_refinement/aDNA_samples_human/EMN001-megahit/bins/EMN001-megahit_021.fasta.gz"
 ################################################################################
 
 wildcard_constraints:
@@ -37,7 +36,8 @@ localrules: unzip_fasta
 
 rule all:
     input:
-        "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv"
+        expand("04-analysis/refalignment/{sample}.{reads}", sample=SAMPLES, reads=['n_aligned', 'n_total'])
+        "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv",
 
 rule unzip_fasta:
     output:
@@ -218,7 +218,7 @@ rule total_reads:
 
 rule summary:
     input:
-        expand("04-analysis/refalignment/{sample}.{reads}", sample=SAMPLES.keys(), reads=['n_aligned', 'n_total'])
+        expand("04-analysis/refalignment/{sample}.{reads}", sample=[s for s in SAMPLES if s != "EMN001"], reads=['n_aligned', 'n_total'])
     output:
         "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv"
     message: "Summarise the read counts"

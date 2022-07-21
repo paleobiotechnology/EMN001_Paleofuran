@@ -22,8 +22,8 @@ if not os.path.isdir("snakemake_tmp"):
 
 #### SAMPLES ###################################################################
 alignment_stats = pd.read_csv("05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv", sep="\t")
-SAMPLES = alignment_stats.query("alignedReads >= 50000")['sample'].tolist()
-EMN001_CHL_MAG = "/mnt/archgen/users/huebner/EMN001_Paleofuran_prelimres/tmp/automatic_MAG_refinement-aDNA_samples_human/EMN001-megahit/bins/EMN001-megahit_021.fasta.gz"
+SAMPLES = alignment_stats.query("alignedReads >= 50000")['sample'].tolist() + ['EMN001']
+EMN001_CHL_MAG = "04-analysis/automatic_MAG_refinement/aDNA_samples_human/EMN001-megahit/bins/EMN001-megahit_021.fasta.gz"
 CONTIGNAMES = {str(i): name for i, (name, _) in enumerate(pyfastx.Fasta(EMN001_CHL_MAG, build_index=False))}
 TOTALLENGTH = sum([len(seq) for _, seq in pyfastx.Fasta(EMN001_CHL_MAG, build_index=False)])
 ################################################################################
@@ -298,7 +298,7 @@ rule summary_stats:
 
 rule concat_snpAD_summary:
     input:
-        expand("04-analysis/refalignment/snpAD/{sample}.snpAD_summary", sample=SAMPLES)
+        expand("04-analysis/refalignment/snpAD/{sample}.snpAD_summary", sample=SAMPLES[:-1])
     output:
         "05-results/REFG_Chlorobiaceae_genomes_snpAD.tsv"
     message: "Concatenate the summary stats files"

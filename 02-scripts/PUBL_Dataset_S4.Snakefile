@@ -72,16 +72,16 @@ rule prepare_dataset_s4:
         # the Chlorobiaceae MAG of EMN001
         ref_aln_calc = pd.read_csv(params.ref_alignment_calc, sep="\t") \
             .sort_values(['alignedReads'], ascending=False) \
-            .rename({'alignedReads': '# of reads against the Chlorobiaceae MAG',
+            .rename({'alignedReads': '# of reads against the Chlorobium MAG',
                      'totalReads': 'total # of reads'}, axis=1)
-        ref_aln_calc['% aligned'] = (ref_aln_calc['# of reads against the Chlorobiaceae MAG'] * 100 /
+        ref_aln_calc['% aligned'] = (ref_aln_calc['# of reads against the Chlorobium MAG'] * 100 /
                                      ref_aln_calc['total # of reads']).round(2)
         ref_aln_calc.to_excel(writer, sheet_name="S4b - ref. alignment ag. EMN001", index=False,
                              header=False, startrow=3)
         ## Sheet: Sample overview
         s4b_sheet = writer.sheets["S4b - ref. alignment ag. EMN001"]
         s4b_sheet.write(0, 0, "Table S4b: Overview of the number of reads that "
-                        "could be aligned to the contigs of the Chlorobiaceae MAG "
+                        "could be aligned to the contigs of the Chlorobium MAG "
                         "of EMN001 for all dental calculus samples. The available "
                         "short-read sequencing data were aligned against all contigs "
                         "assembled from the sample EMN001 to avoid spurious "
@@ -123,10 +123,10 @@ rule prepare_dataset_s4:
         ## Sheet: Sample overview
         s4c_sheet = writer.sheets["S4c - genotyping snpAD"]
         s4c_sheet.write(0, 0, "Table S4c: Overview of the snpAD genotyping results "
-                        "for the samples with strong evidence of Chlorobiaceae DNA. "
+                        "for the samples with strong evidence of Chlorobium DNA. "
                         "The number of sites to which at least a single read could "
                         "be aligned and the sites genotypes are relative to the size "
-                        "of the EMN001 Chlorobiaceae MAG (1.88 Mb). Based on the "
+                        "of the EMN001 Chlorobium MAG (1.88 Mb). Based on the "
                         "number of genotyped sites, the fraction of sites with a "
                         "homozygous genotype as the reference, with a heterozygous "
                         "genotype, and a homozygous alternative genotype are reported. "

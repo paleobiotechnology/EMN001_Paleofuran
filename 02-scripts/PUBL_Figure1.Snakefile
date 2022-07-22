@@ -20,7 +20,6 @@ rule all:
     params: 
         dataset_s1 = "06-figures_tables/Dataset_S1.xlsx",
         dataset_s2 = "06-figures_tables/Dataset_S2.xlsx",
-        mags = "../EMN001_Paleofuran_prelimres/tmp/MAG_automaticrefinement_summary.tsv",
-        damageprofiler = "../EMN001_Paleofuran_prelimres/05-results/QUAL_damageprofiler_EMN001_MAGs.tsv"
+        dataset_s3 = "06-figures_tables/Dataset_S3.xlsx"
     script:
         "rscripts/PUBL_Figure1.R"

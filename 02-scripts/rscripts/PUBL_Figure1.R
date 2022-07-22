@@ -26,14 +26,22 @@ assembly <- readxl::read_excel(snakemake@params[["dataset_s2"]],
   mutate(sampletype = if_else(str_sub(sample, 1, 3) %in% c("JAE", "VLC"),
                               "modern", "ancient"))
 ## Overview list of the MAGs
-mags <- fread(snakemake@params[["mags"]]) %>%
-  mutate(sample = str_replace(sample, "-megahit", "")) %>%
+mags <- readxl::read_excel(snakemake@params[["dataset_s3"]],
+                           sheet = 3, skip = 2) %>%
+  mutate(sample = str_sub(binID, 1, 6)) %>%
   filter(sample %in% c("EMN001", "PES001", "GOY005", "RIG001", "PLV001"),
-         pass.MIMAG_medium) %>%
+         `checkM completeness [%]` >= 50,
+         `checkM contamination [%]` < 10,
+         `GUNC contamination [%]` < 10,
+         `GUNC clade separation score` < 0.45,
+         `ratio non-syn. to syn. minor alleles [%]` < 1) %>%
   mutate(sample = factor(sample, levels = c("EMN001", "PES001", "RIG001", "GOY005", "PLV001")))
+nonred_mags <- readxl::read_excel(snakemake@params[["dataset_s3"]],
+                                  sheet = 5, skip = 2)
 ## Damageprofiler overview for C. limicola and D. oralis for EMN001
-damageprofiler <- fread(snakemake@params[["damageprofiler"]]) %>%
-  mutate(taxon = if_else(MAG == "EMN001-megahit_006", "D. oralis", "C. limicola"))
+damageprofiler <- readxl::read_excel(snakemake@params[["dataset_s3"]],
+                                     sheet = 7, skip = 2) %>%
+  filter(sample == "EMN001")
 
 # Colour schemes
 ## EMN001, PES001, PLV001, and modern
@@ -231,49 +239,51 @@ panel_c <- assembly %>%
 # Panel d: Overview of the MAGs
 ## Prepare the data for plotting
 mags_overview <- mags %>%
-  select(sample_binID, sample, nearestGenome,
-         highquality = pass.MIMAG_high,
-         completeness = checkM.completeness) %>%
+  mutate(representative = binID %in% nonred_mags$binID) %>%
+  left_join(list(nonred_mags %>%
+                 select(binID, `members of cluster`, `oral taxon`, `SGB type`) %>%
+                 separate_rows(`members of cluster`, sep = ", ") %>%
+                 rename(reprMAG = binID,
+                        binID = `members of cluster`) %>%
+                 mutate(binID = ifelse(is.na(binID), reprMAG, binID)),
+                 nonred_mags %>%
+                 filter(str_sub(binID, 1, 6) %in% c("EMN001", "PES001", "GOY005",
+                                                    "PLV001", "RIG001")) %>%
+                 select(binID, `oral taxon`, `SGB type`) %>%
+                 mutate(reprMAG = binID)) %>%
+            bind_rows(),
+            by = "binID") %>%
+  distinct() %>%
+  select(binID, sample, MIMAG,
+         completeness = `checkM completeness [%]`,
+         representative,
+         reprMAG,
+         `oral taxon`,
+         `SGB type`) %>%
+  mutate(sample = factor(sample, levels = c("EMN001", "PES001", "GOY005", "PLV001", "RIG001")),
+         chlorobium = binID %in% c("EMN001_021", "PLV001_002", "GOY005_001",
+                                   "PES001_018", "PLV001_001", "RIG001_014")) %>%
   arrange(sample, desc(completeness)) %>%
-  mutate(sample_binID = factor(sample_binID, levels = .$sample_binID)) %>%
+  mutate(binID = factor(binID, levels = .$binID)) %>%
   group_by(sample) %>%
   mutate(r = row_number(desc(completeness))) %>%
   ungroup() %>%
-  mutate(x = (r - 1) %/% 10,
-         y = abs((r - 1) %% 10 - 10),
-         chlorobiaceae = str_detect(nearestGenome, "s__Chlorob"),
-         species = str_match(nearestGenome, ".+\\|(s_.+)\\|t__.+")[,2],
-         type = case_when(chlorobiaceae ~ "Chlorobiaceae",
-                          species %in% c("s__Aggregatibacter_aphrophilus",
-                                         "s__Anaerolineaceae_bacterium_oral_taxon_439",
-                                         "s__Candidatus_Saccharibacteria_unclassified_SGB19801",
-                                         "s__Cutibacterium_acnes",
-                                         "s__Desulfobulbus_oralis",
-                                         "s__Desulfomicrobium_orale",
-                                         "s__Eubacterium_minutum",
-                                         "s__Johnsonella_ignava",
-                                         "s__Kytococcus_sedentarius",
-                                         "s__Lautropia_mirabilis",
-                                         "s__Leptotrichia_sp_oral_taxon_212",
-                                         "s__Methanobrevibacter_oralis",
-                                         "s__Olsenella_sp_oral_taxon_807",
-                                         "s__Parvimonas_sp_oral_taxon_110",
-                                         "s__Peptostreptococcaceae_bacterium_oral_taxon_113",
-                                         "s__Peptostreptococcaceae_bacterium_pGA_8",
-                                         "s__Peptostreptococcus_stomatis",
-                                         "s__Propionibacterium_sp_oral_taxon_192",
-                                         "s__Schaalia_odontolytica",
-                                         "s__Streptococcus_sinensis") ~ "oral taxon",
-                           str_sub(nearestGenome, 1, 1) == "k" ~ "known MAG",
-                           T ~ "unknown MAG"),
-         type = factor(type, levels = c("Chlorobiaceae", "oral taxon", "known MAG",
-                                        "unknown MAG")),
-         quality = factor(if_else(highquality, "HQ", "MQ"), levels = c("HQ", "MQ")),
+  mutate(x = (r - 1) %/% 8,
+         y = abs((r - 1) %% 8 - 8),
+         type = case_when(chlorobium ~ "Chlorobium",
+                          `oral taxon` != "none" ~ "oral taxon",
+                          `SGB type` == "kSGB" ~ "known SGB",
+                          `SGB type` == "uSGB" ~ "unknown SGB"),
+         type = factor(type, levels = c("Chlorobium", "oral taxon", "known SGB",
+                                        "unknown SGB")),
+         quality = factor(if_else(MIMAG == "high", "HQ", "MQ"), levels = c("HQ", "MQ")),
          id = as.numeric(sample))
+
 sample_names <- tibble(x = as.numeric(mags_overview$sample),
                        y = as.character(mags_overview$sample)) %>%
                 distinct() %>%
                 deframe()
+
 ## Convert the data to a numeric-only dataframe for scatterpie
 mags_overview_numeric <- mags_overview %>%
   select(id, x, y, r, type, completeness) %>%
@@ -283,22 +293,22 @@ mags_overview_numeric <- mags_overview %>%
 ## Plot
 panel_d <- ggplot() +
   geom_scatterpie(data = mags_overview_numeric,
-                  aes(x = x, y = y, group = r, r = 0.25),
+                  aes(x = x, y = y, group = r, r = 0.4),
                   cols = LETTERS[1:5], colour = NA) +
   geom_segment(data = mags_overview %>%
                       filter(quality == "HQ"),
-               aes(x = x - 0.15, xend = x + 0.15,
-                   y = y - 0.35, yend = y - 0.35),
+               aes(x = x - 0.2, xend = x + 0.2,
+                   y = y - 0.5, yend = y - 0.5),
                colour = "#9C27B0") +
   geom_hline(yintercept = 0, size = 0.5, colour = "grey50") +
   coord_equal() +
   facet_wrap(~ id,
              labeller = as_labeller(sample_names),
              nrow = 1) +
-  labs(x = "samples with Chlorobiaceae MAGs",
+  labs(x = "samples with HQ Chlorobium MAGs",
        y = "metagenome-assembled genomes") +
   scale_fill_manual(values = c("#E57373", "#42A5F5", "#2C3E50", "#795548", "white"),
-                    labels = c("Chlorobiaceae MAG", "oral taxa", "other known MAG", "other unknown MAG", "")) +
+                    labels = c("Chlorobium MAG", "oral taxa", "other known MAG", "other unknown MAG", "")) +
   theme(legend.position = "top",
         legend.margin = margin(0, 0, 0, 0),
         legend.title = element_blank(),
@@ -308,15 +318,17 @@ panel_d <- ggplot() +
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         axis.line = element_blank(),
+        strip.text = element_text(size = 7),
         strip.background = element_blank()) +
-  guides(fill = guide_legend(nrow = 1))
+  guides(fill = guide_legend(nrow = 2))
 
 # Panel E
 ## Prepare data
 damage_profile <- damageprofiler %>%
-  select(-MAG) %>%
+  select(-c(sample, MAG)) %>%
+  rename(taxon = genus, Pos = `position from 5' end of read`) %>%
   pivot_longer(-c(taxon, Pos), names_to = "substitution", values_to = "freq") %>%
-  mutate(taxon = factor(taxon, levels = c("C. limicola", "D. oralis")),
+  mutate(taxon = factor(taxon, levels = c("Chlorobium", "Flexilinea")),
          substitution = case_when(
                           substitution %in% c("C>T", "G>A") ~ substitution,
                           substitution %in% c("T>C", "A>G") ~ "transitions",

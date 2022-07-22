@@ -36,3 +36,6 @@ This folder contains the final figures and tables presented in this study.
   by metaWRAP estimated using checkM and GUNC after automatically refining them using MMSeqs2
 - `FigureS_ASMB06.pdf`: Supplementary figure summarising the taxonomic assignmnet of the MAGs
   against the GTDB
+- `FigureS_ASM007.pdf`: Supplementary figure summarising of the ancient DNA damage of the samples
+  with a HQ Chlorobium MAG against the representative MAG of the genus Chlorobium and Flexilinea of
+  EMN001

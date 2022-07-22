@@ -5,6 +5,12 @@
 #
 # Dependent on:
 #   - ASMB_denovo_assembly_binning.Snakefile
+#   - ASMB_automaticRefinement.Snakefile
+#   - ASMB_rRNA_tRNA_search.Snakefile
+#   - ASMB_dereplication.Snakefile
+#   - ASMB_taxonomic_profiling_MAGs.Snakefile
+#   - QUAL_aDNA_damage_MAGs.Snakefile
+#   - ASMB_pyDamage_MAGs.Snakefile
 #
 # Alex Huebner, 04/07/22
 ################################################################################
@@ -28,7 +34,8 @@ rule all:
         repr_mags = "05-results/ASMB_representativeMAGs.tsv",
         taxprof = "05-results/ASMB_taxonomic_profiling_MAGs.tsv",
         oraltaxon = "05-results/ASMB_oraltaxon_classification.tsv",
-        damage = "05-results/QUAL_damageprofile_Climicola_Abot439.tsv"
+        damage = "05-results/QUAL_damageprofile_Climicola_Abot439.tsv",
+        damage_mags = "05-results/ASMB_pyDamage_MAGs.tsv"
     threads: 1
     run:
         # Auxilliary functions
@@ -179,28 +186,39 @@ rule all:
 
         # Dataset S3c: overview of the MAG quality post-filtering
         mag_postflt = pd.read_csv(params.mag_postflt, sep="\t")
-        mag_postflt = pd.read_csv("05-results/ASMB_MAGS_metaWRAP_postfilter.tsv", sep="\t")
-
         # Change format of columns
         mag_postflt['GUNC.contamination_portion'] *= 100
         mag_postflt['GUNC.contamination_portion'] = mag_postflt['GUNC.contamination_portion'].astype(int)
         mag_postflt['checkM.genome_size'] /= 1000000
         mag_postflt['polyrate'] *= 100
+        mag_postflt['pass.QUAL'] = ((mag_postflt['GUNC.contamination_portion'] < 10) &
+                                    (mag_postflt['GUNC.CSS'] < 0.45) &
+                                    (mag_postflt['checkM.completeness'] >= 50) &
+                                    (mag_postflt['checkM.contamination'] < 10) &
+                                    (mag_postflt['polyrate'] < 1)).astype(str)
+        # Evaluate qualities
+        MIMAG = {0: 'low', 1: 'medium', 2: 'high'}
+        mag_postflt['MIMAG'] = [MIMAG[i] for i in (mag_postflt['pass.MIMAG_medium'].astype(int) +
+                                                   mag_postflt['pass.MIMAG_high'].astype(int))]
+        # Add pyDamage evaluation
+        damage_mags = pd.read_csv(params.damage_mags, sep="\t")
          
         # Select columns and reorder
         dataset_s3c = mag_postflt[['binID', 'checkM.genome_size', 'GUNC.n_contigs',
-                                  'checkM.N50_contigs', 'checkM.GC', 'meanCov',
-                                  'checkM.completeness', 'checkM.contamination',
+                                  'checkM.N50_contigs', 'checkM.GC', 'meanCov', 'pass.QUAL',
+                                  'MIMAG', 'checkM.completeness', 'checkM.contamination',
                                   'checkM.strain_heterogeneity',
                                   'GUNC.divergence_level',
                                   'GUNC.contamination_portion',
                                   'GUNC.n_effective_surplus_clades', 'GUNC.CSS', 'polyrate']] \
+            .merge(damage_mags, how="left", on="binID") \
             .rename({'checkM.genome_size': 'genome size [Mb]',
                      'GUNC.n_contigs': 'no. of contigs',
                      'checkM.N50_contigs': 'N50 [bp]',
                      'checkM.longest_contig': 'longest contig [bp]',
                      'checkM.GC': 'GC [%]',
                      'meanCov': 'mean coverage',
+                     'pass.QUAL': 'passed quality filters',
                      'checkM.completeness': 'checkM completeness [%]',
                      'checkM.contamination': 'checkM contamination [%]',
                      'checkM.strain_heterogeneity': 'checkM strain heterogeneity [%]',
@@ -208,28 +226,36 @@ rule all:
                      'GUNC.contamination_portion': 'GUNC contamination [%]',
                      'GUNC.n_effective_surplus_clades': 'GUNC effective no. of surplus clades',
                      'GUNC.CSS': 'GUNC clade separation score',
-                     'polyrate': 'ratio non-syn. to syn. minor alleles [%]'}, axis=1) \
+                     'polyrate': 'ratio non-syn. to syn. minor alleles [%]',
+                     'qvalue': 'pyDamage q-value',
+                     'predicted_accuracy': 'pyDamage predicted accuracy',
+                     'CtoT-0': 'C>T pos. 1',
+                     'CtoT-1': 'C>T pos. 2',
+                     'CtoT-2': 'C>T pos. 3',
+                     'CtoT-3': 'C>T pos. 4',
+                     'CtoT-4': 'C>T pos. 5',
+                     }, axis=1) \
             .sort_values(['binID'])
-
-        # Evaluate qualities
-        MIMAG = {0: 'low', 1: 'medium', 2: 'high'}
-        dataset_s3c['MIMAG'] = [MIMAG[i] for i in (mag_postflt['pass.MIMAG_medium'].astype(int) +
-                                                   mag_postflt['pass.MIMAG_high'].astype(int))]
-
 
         dataset_s3c.to_excel(writer, sheet_name="S3c - MAG results postfilter", index=False,
                              header=False, startrow=3)
         ## Sheet: MAG overview post-filtering
         s3c_sheet = writer.sheets["S3c - MAG results postfilter"]
         s3c_sheet.write(0, 0, "Table S3c: Overview of the quality of the metagenome-"
-                        "assembled genomes prior to filtering. The quality was "
+                        "assembled genomes (MAGs) prior to filtering. The quality was "
                         "estimated using checkM, GUNC, and the script polymut.py from "
                         "the GitHub repository https://github.com/SegataLab/cmseq. This "
                         "script evaluates all sites in coding sequences with minor "
                         "alleles that have a frequency of at least than 20% and "
                         "calculates the ratio between the ones that would cause a "
                         "non-synonymous substitution compared to the major allele "
-                        "and the ones that would cause a synonymous substitution.",
+                        "and the ones that would cause a synonymous substitution. "
+                        "The column MIMAG highlights the scoring of the genome "
+                        "according the minimum information for MAGs ignoring "
+                        "the requirement of transfer or ribosomal RNAs for "
+                        "high-quality genomes. The presence of ancient DNA "
+                        "damage was evaluated using pyDamage and the median "
+                        "values per MAG were reported.",
                         workbook.add_format({'bold': True, 'align': 'left'}))
         header_format = workbook.add_format({
             'bold': True,
@@ -240,11 +266,11 @@ rule all:
         })
         for ci, cname in enumerate(dataset_s3c.columns.values):
             s3c_sheet.write(2, ci, cname, header_format)
-        for i in [0, 9, 14]:
+        for i in [0, 6, 7, 11]:  # string columns
             s3c_sheet.set_column(i, i, determine_col_width(dataset_s3c.iloc[:, i],
                                                            dataset_s3c.columns[i]) + 1,
-                                workbook.add_format({'align': 'center'}))
-        for i in list(range(2, 4)) + [10]:  # integer columns
+                                 workbook.add_format({'align': 'center'}))
+        for i in list(range(2, 4)) + [12]:  # integer columns
             s3c_sheet.set_column(i, i,
                                  determine_col_width(None,
                                                      dataset_s3c.columns[i]),
@@ -255,12 +281,13 @@ rule all:
                                                  dataset_s3c.columns[5]) + 1,
                              workbook.add_format({'align': 'center',
                                                   'num_format': "0.00"}))
-        for i in [1] + list(range(5, 9)) + list(range(11, 14)):  # float columns
+        for i in [1, 5] + list(range(8, 11)) + list(range(13, 23)):  # float columns
             s3c_sheet.set_column(i, i,
                                  ceil(determine_col_width(None,
                                                           dataset_s3c.columns[i]) / 2),
                                  workbook.add_format({'align': 'center',
                                                       'num_format': "0.00"}))
+
 
         # Dataset S3d: the number of tRNAs and rRNAs
         rnas = pd.read_csv(params.rnas, sep="\t")

@@ -22,6 +22,9 @@ This folder contains the final figures and tables presented in this study.
   data against the assembled contigs of EMN001 for all dental calculus samples and the Neanderthal
   dental calculus samples previously published by Weyrich *et al.* (2017), and the results on the
   genotype calling along the EMN001 Chlorobiaceae MAG using snpAD
+  - `Dataset_S5.txt`: A txt file containing all the assembly accessions of the Chlorobiales genomes 
+  as downloaded from the NCBI assembly database on the 2nd of November 2021. These were used to 
+  construct the entire chlorobiales genome in phylophlan.
 
 ### Supplementary Figures:
 

@@ -65,7 +65,8 @@ rule prepare_dataset_s1:
         nreads = nreads.iloc[:, [0, 1, 3, 2, 4]]
 
         # Fragment length distribution
-        fraglength = pd.read_csv("05-results/QUAL_fragmentlength_distribution.tsv", sep="\t")
+        fraglength = pd.read_csv(params.fraglength, sep="\t") \
+            .drop(['no. of DNA molecules'], axis=1)
 
         # Export to Excel as multi-sheet document
         writer = pd.ExcelWriter(output[0], engine='xlsxwriter')
@@ -74,7 +75,7 @@ rule prepare_dataset_s1:
         seqdata.to_excel(writer, sheet_name="S1b - Seq. data overview", index=False,
                          header=False, startrow=3)
         nreads.to_excel(writer, sheet_name="S1c - Number of DNA mol.", index=False,
-                        header=False, startrow=3)
+                        header=False, startrow=4)
         fraglength.to_excel(writer, sheet_name="S1d - DNA molecule length dist.",
                             index=False, header=False, startrow=3)
 
@@ -160,7 +161,7 @@ rule prepare_dataset_s1:
                                determine_col_width(nreads.iloc[:, 0],
                                                    nreads.columns[0]) + 1,
                                workbook.add_format({'align': 'center'}))
-        nreadssheet.set_column(1, 5,
+        nreadssheet.set_column(1, 4,
                                12,
                                workbook.add_format({'align': 'center',
                                                     'num_format': "#,##0"}))

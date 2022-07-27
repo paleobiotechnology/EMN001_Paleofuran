@@ -1,0 +1,7 @@
+name: MISC_PhyloPhlAn3
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - phylophlan=3.0.2

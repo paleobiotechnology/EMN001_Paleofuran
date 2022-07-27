@@ -56,7 +56,7 @@ checkpoint extract_genus_Flexilinea_urls:
     output:
         "04-analysis/phylogenetics/Flexilinea/ncbi_assembly_flexilinea_urls.txt"
     message: "Downlaod the list of genomes of the genus Flexilinea from NCBI Assembly"
-    conda: "MISC_entrez.yaml"
+    conda: "ENVS_entrez.yaml"
     shell:
         """
         esearch -db assembly -query '"Anaerolineaceae"[Organism] AND (latest[filter] AND all[filter] NOT anomalous[filter])' | \
@@ -67,7 +67,7 @@ rule extract_genus_Flexilinea_taxids:
     output:
         "04-analysis/phylogenetics/Flexilinea/ncbi_assembly_flexilinea_taxids.txt"
     message: "Extract the information on the AssemblyAccession, Taxid, and SpeciesName from NCBI Assembly"
-    conda: "MISC_entrez.yaml"
+    conda: "ENVS_entrez.yaml"
     shell:
         """
         esearch -db assembly -query '"Anaerolineaceae"[Organism] AND (latest[filter] AND all[filter] NOT anomalous[filter])' | \
@@ -119,7 +119,7 @@ rule drep_dereplicate:
     output:
         "tmp/Flexilinea_tree/drep/data_tables/Wdb.csv"
     message: "Dereplicate genomes of family Chlorobiaceae using dRep"
-    conda: "REFG_Chlorobiaceae_alignment.yaml"
+    conda: "ENVS_dRep.yaml"
     params:
         outdir = "tmp/Flexilinea_tree/drep",
         indir = "tmp/Flexilinea_tree/refgenomes"
@@ -173,7 +173,7 @@ rule phylophlan3_write_config:
     output:
         "04-analysis/phylogenetics/Flexilinea/config.cfg"
     message: "Write the config file for PhyloPhlAn3"
-    conda: "MISC_PhyloPhlAn3.yaml"
+    conda: "ENVS_PhyloPhlAn3.yaml"
     shell:
         """
         phylophlan_write_config_file \
@@ -192,7 +192,7 @@ rule setup_flexilinea_coregenes:
     output:
         "tmp/Flexilinea_tree/core_genes/s__Flexilinea_flocculi/s__Flexilinea_flocculi.faa"
     message: "Download the core genes of Flexilinea flocculi and generate a database"
-    conda: "MISC_PhyloPhlAn3.yaml"
+    conda: "ENVS_PhyloPhlAn3.yaml"
     params:
         dir = "tmp/Flexilinea_tree/core_genes"
     shell:
@@ -212,7 +212,7 @@ rule phylophlan3_tree:
     output:
         "04-analysis/phylogenetics/Flexilinea/RAxML_bestTree.genomes_refined.tre"
     message: "Run PhyloPhlAn3 to generate a tree of the genus Flexilinea"
-    conda: "MISC_PhyloPhlAn3.yaml"
+    conda: "ENVS_PhyloPhlAn3.yaml"
     params:
         genomes = "tmp/Flexilinea_tree/genomes",
         db_folder = "tmp/Flexilinea_tree/core_genes",
@@ -314,7 +314,7 @@ rule fastani:
     output:
         "05-results/PHYL_Flexilinea_fastANI.tsv"
     message: "Calculate the pairwise ANI for the ancient MAGs and the neighbouring clades"
-    conda: "../EMN001_Paleofuran_prelimres/02-scripts/ENVS_fastani.yaml"
+    conda: "ENVS_fastani.yaml"
     threads: 16
     shell:
         """

@@ -62,3 +62,12 @@ presented in the manuscript.
   - `REFG_Chlorobiaceae_genomes_snpAD.tsv`: the overview of the performance of the recovery of
     Chlorobiaceae genomes from samples with strong evidence of Chlorobiaceae DNA using the EMN001
     Chlorobiaceae MAG as the reference
+
+5. `PHYL`: results related to phylogenetic analyses
+
+  - `PHYL_Flexilinea_proteintree_taxa.tsv`: the overview of the comparative genomes for the analysis
+    of the family Anaerolineaceae
+  - `PHYL_Flexilinea_proteintree_RAxML.tre`: the phylogenetic tree of the family Anaerolineaceae
+    generated using RAxML
+  - `PHYL_Flexilinea_fastANI.tsv`: the pairwise average nucleotide identity for all members of the
+    genus *Flexilinea* and its neighbouring clades after discarding contigs shorter than 2 kb

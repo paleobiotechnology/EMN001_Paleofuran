@@ -59,6 +59,10 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
 
 5. `PHYL`: analyses related to phylogenetics
 
+  - `PHYL_Flexilinea_proteinalignment.Snakefile`: reconstruct the phylogeny of the family
+    Anaerolineaceae using the ancient MAGs assigned to the genus Flexilinea based on the protein
+    sequences of the UniProt genes associated with the species *Flexilinea flocculi*
+
 6. `PUBL`: preparing the final figures and tables
 
   - `PUBL_Figure1.Snakefile`: plot an overview map of all samples, the DNA molecule length
@@ -98,8 +102,10 @@ X. `ENVS`: conda environments for the use with Snakemake
   - `ENVS_bowtie2.yaml`: [bowtie2](https://github.com/BenLangmead/bowtie2)
   - `ENVS_damageprofiler.yaml`: [damageprofiler](https://github.com/Integrative-Transcriptomics/DamageProfiler)
   - `ENVS_dRep.yaml`: [dRep](https://github.com/MrOlm/drep)
+  - `ENVS_entrez.yaml`: [entrez](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
   - `ENVS_infernal.yaml`: [INFERNAL](http://eddylab.org/infernal/)
   - `ENVS_fastp.yaml`: [fastp](https://github.com/OpenGene/fastp)
+  - `ENVS_PhyloPhlAn3.yaml`: [PhyloPhlAn3](https://github.com/biobakery/phylophlan)
   - `ENVS_picard.yaml`: [picard](https://broadinstitute.github.io/picard)
   - `ENVS_samtools.yaml`: [samtools](https://github.com/samtools/samtools)
   - `ENVS_trnascanse.yaml`: [tRNAscan-SE](https://github.com/UCSC-LoweLab/tRNAscan-SE)

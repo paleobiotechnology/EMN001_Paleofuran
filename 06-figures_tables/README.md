@@ -22,11 +22,14 @@ This folder contains the final figures and tables presented in this study.
   data against the assembled contigs of EMN001 for all dental calculus samples and the Neanderthal
   dental calculus samples previously published by Weyrich *et al.* (2017), and the results on the
   genotype calling along the EMN001 Chlorobiaceae MAG using snpAD
-- `Dataset_S5.txt`: XLSX file containing all the assembly accessions of the Chlorobiales genomes 
+- `Dataset_S5.txt`: XLSX file containing all the assembly accessions of the Chlorobiales genomes
   as downloaded from the NCBI assembly database on the 2nd of November 2021 and the ones used
   for the dreplicated trees and for Figure2.
-- `Dataset_S6.xlsx` : XLXS file with all the results of the functional annotation of the ancient 
+- `Dataset_S6.xlsx` : XLXS file containing all the results of the functional annotation of the ancient
   bins using EggNog and diamond alignment.
+- `Dataset_S7.xlsx` : XLXS file containing the network analysis of the butyrolactone BGCs as generated
+  by bigscape and a summary of the GCFs and GCCs estimated.
+
 
 ### Supplementary Figures:
 

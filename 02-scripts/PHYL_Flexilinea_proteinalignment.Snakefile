@@ -50,7 +50,8 @@ def return_fasta_fn(wildcards):
 rule all:
     input:
         "05-results/PHYL_Flexilinea_proteintree_taxa.tsv",
-        "05-results/PHYL_Flexilinea_proteintree_RAxML.tre"
+        "05-results/PHYL_Flexilinea_proteintree_RAxML.tre",
+        "05-results/PHYL_Flexilinea_proteintree_RAxML_bootstrap.tre"
 
 checkpoint extract_genus_Flexilinea_urls:
     output:
@@ -320,5 +321,112 @@ rule fastani:
         """
         fastANI --ql {input.lst} --rl {input.lst} -t {threads} -k 16 --matrix -o {output}
         """
+
+################################################################################
+
+#### Calculate the bootstrap analysis for the same subset as fastANI ###########
+
+checkpoint raxml_samplelist:
+    input:
+        "05-results/PHYL_Flexilinea_proteintree_taxa.tsv"
+    output:
+        touch("04-analysis/phylogenetics/Flexilinea/raxml_bootstrap_subset.done")
+    message: "Prepare the input list for fastANI from all sequences belonging to the genus Flexilinea"
+    params:
+        amag = "05-results/genomes/flexilinea",
+        refgenomes = "tmp/Flexilinea_tree/drep/dereplicated_genomes",
+        outdir = "tmp/Flexilinea_tree/bootstrap"
+    run:
+        # Prepare reference genomes
+        taxids = pd.read_csv(input[0], sep="\t")
+        accids = taxids.loc[taxids['NCBI taxonomy Id'] \
+                .isin([1946754, 1946750, 2699749, 2017390,
+                       1678840, 1946749, 1889813])]['accession Id'].tolist()
+        accids.append("GCA_004294845.1")
+        os.makedirs(params.outdir)
+        for accid in accids:
+            os.symlink(f"{os.getcwd()}/{params.refgenomes}/{accid}.fna",
+                       f"{params.outdir}/{accid}.fa")
+        # Prepare MAGs
+        for fn in glob(f"{params.amag}/*.fa.gz"):
+            accid = os.path.basename(fn).replace(".fa.gz", "")
+            with open(f"{params.outdir}/{accid}.fa", "wb") as outfile:
+                with gzip.open(fn, "rb") as fastafile:
+                    for line in fastafile:
+                        outfile.write(line)
+
+rule phylophlan3_bootstrap_tree:
+    input:
+        database = "tmp/Flexilinea_tree/core_genes/s__Flexilinea_flocculi/s__Flexilinea_flocculi.faa",
+        config = "04-analysis/phylogenetics/Flexilinea/config.cfg",
+        genomes = "04-analysis/phylogenetics/Flexilinea/raxml_bootstrap_subset.done"
+    output:
+        "04-analysis/phylogenetics/Flexilinea/bootstrap/RAxML_bestTree.bootstrap_refined.tre"
+    message: "Run PhyloPhlAn3 to generate a tree of the genus Flexilinea"
+    conda: "ENVS_PhyloPhlAn3.yaml"
+    params:
+        genomes = "tmp/Flexilinea_tree/bootstrap",
+        db_folder = "tmp/Flexilinea_tree/core_genes",
+        outdir = "04-analysis/phylogenetics/Flexilinea/bootstrap"
+    log: "04-analysis/phylogenetics/Flexilinea/bootstrap/phylophlan.log"
+    threads: 36
+    shell:
+        """
+        phylophlan \
+            -i {params.genomes} \
+            -d s__Flexilinea_flocculi \
+            --databases_folder {params.db_folder} \
+            --diversity medium \
+            --accurate \
+            --genome_extension .fa \
+            -f {input.config} \
+            -o Flexilinea \
+            --output_folder {params.outdir} \
+            --nproc {threads} \
+            --verbose 2>&1 | tee {log}
+        for fn in bootstrap_concatenated.aln bootstrap.tre bootstrap_resolved.tre \
+                  RAxML_bestTree.bootstrap_refined.tre RAxML_info.bootstrap_refined.tre RAxML_result.bootstrap_refined.tre; do
+            mv {params.outdir}/Flexilinea/${{fn}} {params.outdir}/
+        done
+        """
+
+rule raxml_bootstrap:
+    input:
+        "04-analysis/phylogenetics/Flexilinea/bootstrap/RAxML_bestTree.bootstrap_refined.tre"
+    output:
+        "04-analysis/phylogenetics/Flexilinea/bootstrap/RAxML_bipartitionsBranchLabels.Flexilinea_RAxML_wbootstrap.tre"
+    message: "Re-run RAxML with bootstrapping"
+    conda: "ENVS_PhyloPhlAn3.yaml"
+    params:
+        tre = f"{os.getcwd()}/04-analysis/phylogenetics/Flexilinea/bootstrap/bootstrap_resolved.tre",
+        aln = f"{os.getcwd()}/04-analysis/phylogenetics/Flexilinea/bootstrap/bootstrap_concatenated.aln",
+        wdir = f"{os.getcwd()}/04-analysis/phylogenetics/Flexilinea/bootstrap"
+    threads: 20
+    shell:
+        """
+        raxmlHPC-PTHREADS-SSE3 -m PROTCATLG -p 1989 \
+            -b 1 \
+            -N 100 \
+            -t {params.tre} \
+            -w {params.wdir} \
+            -s {params.aln} \
+            -n bootstrap_refined_bootstrap.tre \
+            -T {threads} &&
+        raxmlHPC-PTHREADS-SSE3 -m PROTCATLG \
+            -w {params.wdir} \
+            -f b \
+            -n Flexilinea_RAxML_wbootstrap.tre \
+            -t {params.wdir}/RAxML_bestTree.bootstrap_refined.tre \
+            -z {params.wdir}/RAxML_bootstrap.bootstrap_refined_bootstrap.tre
+        """
+
+rule copy_raxml_bootstrap:
+    input:
+        "04-analysis/phylogenetics/Flexilinea/bootstrap/RAxML_bipartitionsBranchLabels.Flexilinea_RAxML_wbootstrap.tre"
+    output:
+        "05-results/PHYL_Flexilinea_proteintree_RAxML_bootstrap.tre"
+    message: "Copy the RAxML tree witht the bootstrap support values to the results"
+    shell:
+        "cp {input} {output}"
 
 ################################################################################

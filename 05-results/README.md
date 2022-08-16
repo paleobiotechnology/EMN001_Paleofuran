@@ -71,3 +71,6 @@ presented in the manuscript.
     generated using RAxML
   - `PHYL_Flexilinea_fastANI.tsv`: the pairwise average nucleotide identity for all members of the
     genus *Flexilinea* and its neighbouring clades after discarding contigs shorter than 2 kb
+  - `PHYL_Flexilinea_proteintree_RAxML_bootstrap.tre`: the phylogenetic tree of a subset of the
+    family Anaerolineaceae generated using RAxML with the clade support inferred from a bootstrap
+    analysis

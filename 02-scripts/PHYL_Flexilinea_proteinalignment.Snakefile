@@ -297,7 +297,7 @@ checkpoint fastani_samplelist:
 rule filter_fasta:
     output:
         "tmp/Flexilinea_tree/fastani/{genome}.fa"
-    message: "Discard contigs < 2 kb: {wildcards.genome}"
+    message: "Discard contigs < 3 kb: {wildcards.genome}"
     conda: "ENVS_bioawk.yaml"
     resources:
         mem = 8
@@ -305,7 +305,7 @@ rule filter_fasta:
         fa = lambda wildcards: f"tmp/Flexilinea_tree/drep/dereplicated_genomes/{wildcards.genome}.fna" if wildcards.genome.startswith("GC") else f"05-results/genomes/flexilinea/{wildcards.genome}.fa.gz"
     shell:
         """
-        bioawk -c fastx '{{if (length($seq) >= 2000){{print ">" $name "\\n" $seq}}}}' {params.fa} > {output}
+        bioawk -c fastx '{{if (length($seq) >= 3000){{print ">" $name "\\n" $seq}}}}' {params.fa} > {output}
         """
 
 rule fastani:

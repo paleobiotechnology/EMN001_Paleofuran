@@ -14,8 +14,11 @@ presented in the manuscript.
     and library type (all data and non-UDG data only) that were available for *de novo* assembly
   - `PREP_Nextflow_EAGER_noReads_Weyrich2017_Neanderthals.tsv`: the overview of the number of reads
     available for the four Neanderthal calculus samples published by Weyrich *et al.* (2017)
-  - `PREP_Nextflow_EAGER_noReads_ElMiron_sediments.tsv`: the overview of the number of the number of
-    reads available for the six El Miron sediment samples generated for this study
+  - `PREP_Nextflow_EAGER_noReads_ElMiron_sediments.tsv`: the overview of the number of reads
+    available for the six El Miron sediment samples generated for this study
+  - `PREP_Nextflow_EAGER_noReads_ElMiron_toebone.tsv`: the overview of the number of
+    reads available for the El Miron toe bone sample, whose metagenomic sequencing data was
+    generated for Fu *et al.* (2016), but has not been published
 
 2. `ASMB`: results related to the *de novo* assembly and non-reference binning
 

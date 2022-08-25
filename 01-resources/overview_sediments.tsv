@@ -1,0 +1,7 @@
+sampleId	description	latitude	longitude	country	locality	libraryId	libraryType	libraryTreatment	sequencingPlatform	sequencingSetup	secondary_sample_accession	run_accession	study_accession
+EMN002.A	Layer 17 square H3	43.247175	-3.45249	Spain	Cantabria, Ramales de la Victoria	EMN002.A0101	dsDNA	none	NovaSeq6000	PE100	ERS12841704	ERR10114878	PRJEB55583
+EMN003.A	Layer 504 square Y6 subsquare B	43.247175	-3.45249	Spain	Cantabria, Ramales de la Victoria	EMN003.A0101	dsDNA	none	NovaSeq6000	PE100	ERS12841705	ERR10114879	PRJEB55583
+EMN004.A	Layer 504 square X6 subsquare D	43.247175	-3.45249	Spain	Cantabria, Ramales de la Victoria	EMN004.A0101	dsDNA	none	NovaSeq6000	PE100	ERS12841706	ERR10114880	PRJEB55583
+EMN005.A	Layer 105 square W7 subsquare C	43.247175	-3.45249	Spain	Cantabria, Ramales de la Victoria	EMN005.A0101	dsDNA	none	NovaSeq6000	PE100	ERS12841707	ERR10114881	PRJEB55583
+EMN007.A	Layer 505 square X6 subsquare D	43.247175	-3.45249	Spain	Cantabria, Ramales de la Victoria	EMN007.A0101	dsDNA	none	NovaSeq6000	PE100	ERS12841708	ERR10114882	PRJEB55583
+EMN008.A	Layer 503 square Y5 subsquare B	43.247175	-3.45249	Spain	Cantabria, Ramales de la Victoria	EMN008.A0101	dsDNA	none	NovaSeq6000	PE100	ERS12841709	ERR10114883	PRJEB55583

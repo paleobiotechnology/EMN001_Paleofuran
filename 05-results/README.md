@@ -19,6 +19,8 @@ presented in the manuscript.
   - `PREP_Nextflow_EAGER_noReads_ElMiron_toebone.tsv`: the overview of the number of
     reads available for the El Miron toe bone sample, whose metagenomic sequencing data was
     generated for Fu *et al.* (2016), but has not been published
+  - `PREP_Nextflow_EAGER_noReads_labcontrols.tsv`: the overview of the number of reads available for
+    the extraction and library control samples
 
 2. `ASMB`: results related to the *de novo* assembly and non-reference binning
 

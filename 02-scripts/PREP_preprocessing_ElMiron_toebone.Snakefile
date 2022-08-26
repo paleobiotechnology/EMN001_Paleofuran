@@ -16,7 +16,7 @@ import json
 import pandas as pd
 
 #### SAMPLES ###################################################################
-SAMPLES = {'ElMiron': ["A5268", "A5279", "A5301"]}  # six IDs
+SAMPLES = pd.read_csv("01-resources/overview_ElMiron_humanremains.tsv", sep="\t")
 ################################################################################
 
 #### Auxilliary functions ######################################################
@@ -94,7 +94,7 @@ rule validate_md5sum:
 
 rule generate_eager_tsv_profile:
     input:
-        expand("03-data/raw_data/{err}.validated", err=SAMPLES.values())
+        expand("03-data/raw_data/{err}.validated", err=SAMPLES['run_accession'].tolist())
     output:
         "04-analysis/eager/elmiron_toebone.tsv"
     message: "Generate the EAGER input TSV"
@@ -102,8 +102,8 @@ rule generate_eager_tsv_profile:
         seqdatadir = "tmp/ffq"
     run:
         # Prepare table
-        table = {'Sample_Name': "ElMiron",
-                 'Library_ID': SAMPLES["ElMiron"],
+        table = {'Sample_Name': SAMPLES['sampleId'].tolist(),
+                 'Library_ID': SAMPLES['libraryId'].tolist(),
                  'Lane': [1] * 6,
                  'Colour_Chemistry': [2] * 6,
                  'SeqType': ['PE'] * 6,
@@ -111,9 +111,9 @@ rule generate_eager_tsv_profile:
                  'Strandedness': ['single'] * 6,
                  'UDG_Treatment': ['full'] * 6, 
                  'R1': [f'{os.getcwd()}/{params.seqdatadir}/{ers}_1.fastq.gz'
-                        for ers in SAMPLES["ElMiron"]],
+                        for ers in SAMPLES['run_accession']],
                  'R2': [f'{os.getcwd()}/{params.seqdatadir}/{ers}_2.fastq.gz'
-                        for ers in SAMPLES["ElMiron"]],
+                        for ers in SAMPLES['run_accession']],
                  'BAM': ['NA'] * 6}
         pd.DataFrame.from_dict(table) \
             .sort_values(['Library_ID']) \
@@ -142,6 +142,7 @@ rule run_eager:
             --seq_dict '/mnt/archgen/Reference_Genomes/Human/hs37d5/hs37d5.dict' \
             --skip_deduplication --skip_damage_calculation \
             --complexity_filter_poly_g \
+            --clip_reverse_adaptor GGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \
             --outdir "{params.outdir}"
         """
 
@@ -206,7 +207,7 @@ rule extract_unmapped_reads:
 
 rule concat_fastqs:
     input:
-        lambda wildcards: [f"tmp/eager_extract_unmapped/{lib}_{i}.fastq.gz" for lib in LIBRARIES for i in range(3)]
+        lambda wildcards: [f"tmp/eager_extract_unmapped/{lib}_{i}.fastq.gz" for lib in SAMPLES['libraryId'] for i in range(3)]
     output:
         pe0 = "03-data/eager_elmirontoebone/ElMiron_0.fastq.gz",
         pe1 = "03-data/eager_elmirontoebone/ElMiron_1.fastq.gz",
@@ -218,7 +219,7 @@ rule concat_fastqs:
     run:
         for i in range(3):
             with open(f"{params.outdir}/ElMiron_{i}.fastq.gz", "wb") as outfile:
-                for lib in LIBRARIES:
+                for lib in SAMPLES['libraryId']:
                     with open(f"{params.tmpdir}/{lib}_{i}.fastq.gz", "rb") as libfile:
                         for line in libfile:
                             outfile.write(line)
@@ -236,7 +237,6 @@ rule count_reads:
         mem = 2
     shell:
         """
-        reads_PE1=$(bioawk -c fastx 'END{{print NR}}' {input.pe1})
-        reads_PE2=$(bioawk -c fastx 'END{{print NR}}' {input.pe2})
-        echo -e "sample\tR1\tR2\nElMiron\t${{reads_PE1}}\t${{reads_PE2}}\n" > {output}
+        reads_PE0=$(bioawk -c fastx 'END{{print NR}}' {input.pe0})
+        echo -e "sample\tR0\nElMiron\t${{reads_PE0}}\n" > {output}
         """

@@ -16,12 +16,7 @@ import json
 import pandas as pd
 
 #### SAMPLES ###################################################################
-SAMPLES = {'EMN002': 'ERSX0000001',
-           'EMN003': 'ERSX0000002',
-           'EMN004': 'ERSX0000003',
-           'EMN005': 'ERSX0000004',
-           'EMN007': 'ERSX0000005',
-           'EMN008': 'ERSX0000006'}
+SAMPLES = pd.read_csv("01-resources/overview_sediments.tsv", sep="\t")
 ################################################################################
 
 #### Auxilliary functions ######################################################
@@ -99,7 +94,7 @@ rule validate_md5sum:
 
 rule generate_eager_tsv_profile:
     input:
-        expand("03-data/raw_data/{err}.validated", err=SAMPLES.values())
+        expand("03-data/raw_data/{err}.validated", err=SAMPLES['run_accession'].tolist())
     output:
         "04-analysis/eager/elmiron_sediments.tsv"
     message: "Generate the EAGER input TSV"
@@ -107,18 +102,18 @@ rule generate_eager_tsv_profile:
         seqdatadir = "tmp/ffq"
     run:
         # Prepare table
-        table = {'Sample_Name': SAMPLES.keys(),
-                 'Library_ID': SAMPLES.values(),
+        table = {'Sample_Name': SAMPLES['sampleId'].tolist(),
+                 'Library_ID': SAMPLES['libraryId'].tolist(),
                  'Lane': [1] * 6,
                  'Colour_Chemistry': [2] * 6,
                  'SeqType': ['PE'] * 6,
                  'Organism': 'sediment',
                  'Strandedness': ['double'] * 6,
-                 'UDG_Treatment': ['none'] * 6, 
+                 'UDG_Treatment': ['none'] * 6,
                  'R1': [f'{os.getcwd()}/{params.seqdatadir}/{ers}_1.fastq.gz'
-                        for ers in SAMPLES.values()],
+                        for ers in SAMPLES['run_accession']],
                  'R2': [f'{os.getcwd()}/{params.seqdatadir}/{ers}_2.fastq.gz'
-                        for ers in SAMPLES.values()],
+                        for ers in SAMPLES['run_accession']],
                  'BAM': ['NA'] * 6}
         pd.DataFrame.from_dict(table) \
             .sort_values(['Sample_Name']) \
@@ -228,7 +223,7 @@ rule count_reads:
 
 rule summarise_count_reads:
     input:
-        expand("03-data/eager_elmironsediments/{sample}.n", sample=SAMPLES.keys())
+        expand("03-data/eager_elmironsediments/{sample}.n", sample=SAMPLES['sampleId'].tolist())
     output:
         "05-results/PREP_Nextflow_EAGER_noReads_ElMiron_sediments.tsv"
     message: "Summarise the number of reads per sample"

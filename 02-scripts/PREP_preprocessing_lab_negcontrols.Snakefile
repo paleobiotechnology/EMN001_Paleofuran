@@ -162,6 +162,7 @@ rule run_eager_dsDNA:
             --bwa_index '/mnt/archgen/Reference_Genomes/Human/hs37d5' \
             --seq_dict '/mnt/archgen/Reference_Genomes/Human/hs37d5/hs37d5.dict' \
             --skip_deduplication --skip_damage_calculation \
+            --skip_collapse \
             --complexity_filter_poly_g \
             --outdir "{params.outdir}"
         """
@@ -185,6 +186,7 @@ rule run_eager_ssDNA:
             --bwa_index '/mnt/archgen/Reference_Genomes/Human/hs37d5' \
             --seq_dict '/mnt/archgen/Reference_Genomes/Human/hs37d5/hs37d5.dict' \
             --skip_deduplication --skip_damage_calculation \
+            --skip_collapse \
             --complexity_filter_poly_g \
             --clip_reverse_adaptor GGAAGAGCGTCGTGTAGGGAAAGAGTGTAGATCTCGGTGGTCGCCGTATCATT \
             --outdir "{params.outdir}"
@@ -261,10 +263,20 @@ rule count_reads:
     conda: "ENVS_bioawk.yaml"
     resources:
         mem = 2
+    params:
+        seqtype = lambda wildcards: SAMPLES.loc[SAMPLES['libraryId'] == wildcards.sample, 'sequencingSetup'].values[0]
     shell:
         """
-        reads_PE0=$(bioawk -c fastx 'END{{print NR}}' {input.pe0})
-        echo -e "{wildcards.sample}\t${{reads_PE0}}" > {output}
+        if [[ "{params.seqtype}" = "PE" ]]; then
+            reads_PE0=0
+            reads_PE1=$(bioawk -c fastx 'END{{print NR}}' {input.pe1})
+            reads_PE2=$(bioawk -c fastx 'END{{print NR}}' {input.pe2})
+        else
+            reads_PE0=$(bioawk -c fastx 'END{{print NR}}' {input.pe0})
+            reads_PE1=0
+            reads_PE2=0
+        fi
+        echo -e "{wildcards.sample}\t${{reads_PE0}}\t${{reads_PE1}}\t${{reads_PE2}}" > {output}
         """
 
 rule summarise_count_reads:
@@ -274,7 +286,7 @@ rule summarise_count_reads:
         "05-results/PREP_Nextflow_EAGER_noReads_labcontrols.tsv"
     message: "Summarise the number of reads per sample"
     run:
-        pd.concat([pd.read_csv(fn, sep="\t", header=None, names=['sample', 'R0'])
+        pd.concat([pd.read_csv(fn, sep="\t", header=None, names=['sample', 'R0', 'R1', 'R2'])
                    for fn in input]) \
             .sort_values(['sample']) \
             .to_csv(output[0], sep="\t", index=False)

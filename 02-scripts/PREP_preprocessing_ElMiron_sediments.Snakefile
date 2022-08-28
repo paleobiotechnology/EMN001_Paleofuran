@@ -133,7 +133,7 @@ rule run_eager:
         outdir = "04-analysis/eager/elmiron_sediments"
     shell:
         """
-        nextflow run nf-core/eager -r 2.4.3 \
+        nextflow run nf-core/eager -r 2.4.5 \
             -profile eva,archgen \
             --input "{input}" \
             --fasta '/mnt/archgen/Reference_Genomes/Human/hs37d5/hs37d5.fa' \
@@ -141,6 +141,7 @@ rule run_eager:
             --bwa_index '/mnt/archgen/Reference_Genomes/Human/hs37d5' \
             --seq_dict '/mnt/archgen/Reference_Genomes/Human/hs37d5/hs37d5.dict' \
             --skip_deduplication --skip_damage_calculation \
+            --skip_collapse \
             --complexity_filter_poly_g \
             --outdir "{params.outdir}"
         """
@@ -160,7 +161,7 @@ rule samtools_sort_by_name:
         mem = 12,
         cores = 4
     params:
-        bam = "04-analysis/eager/elmiron_sediments/mapping/bwa/{sample}_PE.mapped.bam"
+        bam = lambda wildcards: f"04-analysis/eager/elmiron_sediments/mapping/bwa/{wildcards.sample[:6]}_PE.mapped.bam"
     threads: 4
     shell:
         """
@@ -217,8 +218,9 @@ rule count_reads:
         mem = 2
     shell:
         """
-        reads_PE0=$(bioawk -c fastx 'END{{print NR}}' {input.pe0})
-        echo -e "{wildcards.sample}\t${{reads_PE0}}" > {output}
+        reads_PE1=$(bioawk -c fastx 'END{{print NR}}' {input.pe1})
+        reads_PE2=$(bioawk -c fastx 'END{{print NR}}' {input.pe2})
+        echo -e "{wildcards.sample}\t${{reads_PE1}}\t${{reads_PE2}}" > {output}
         """
 
 rule summarise_count_reads:
@@ -228,7 +230,7 @@ rule summarise_count_reads:
         "05-results/PREP_Nextflow_EAGER_noReads_ElMiron_sediments.tsv"
     message: "Summarise the number of reads per sample"
     run:
-        pd.concat([pd.read_csv(fn, sep="\t", header=None, names=['sample', 'R0'])
+        pd.concat([pd.read_csv(fn, sep="\t", header=None, names=['sample', 'R1', 'R2'])
                    for fn in input]) \
             .sort_values(['sample']) \
             .to_csv(output[0], sep="\t", index=False)

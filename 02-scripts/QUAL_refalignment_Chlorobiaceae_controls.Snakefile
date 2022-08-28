@@ -4,11 +4,12 @@
 # Step: Reference alignment and genome reconstruction of Chlorobiaceae genomes
 #
 # Dependent on:
-#   - PREP_preprocessing_dentalcalculus_sequencing_data.Snakefile
-#   - PREP_preprocessing_publishedNeanderthalcalculus.Snakefile
+#   - PREP_preprocessing_lab_negcontrols.Snakefile
+#   - PREP_preprocessing_ElMiron_sediments.Snakefile
+#   - PREP_preprocessing_ElMiron_toebone.Snakefile
 #   - ASMB_denovo_assembly_binning.Snakefile
 #
-# Alex Huebner, 22/06/22
+# Alex Huebner, 27/08/22
 ################################################################################
 
 from glob import glob
@@ -20,25 +21,41 @@ if not os.path.isdir("snakemake_tmp"):
     os.makedirs("snakemake_tmp")
 
 #### SAMPLES ###################################################################
-# Dental claculus samples this study
-SAMPLES = {os.path.basename(fn).replace("-alldata.concatenated", ""): fn.replace(".concatenated", "")
-           for fn in glob("03-data/eager_fastqs/*-alldata.concatenated")}
-# Published dental calculus samples
-for fn in glob("03-data/eager_weyrich2017/*_1.fastq.gz"):
-    SAMPLES[os.path.basename(fn).replace("_1.fastq.gz", "")] = fn.replace("_1.fastq.gz", "")
+# Lab controls
+SAMPLES = {os.path.basename(fn).replace("_1.fastq.gz", "").replace(".", "_"): fn.replace("_1.fastq.gz", "")
+           for fn in glob("03-data/eager_labcontrols/*_1.fastq.gz")}
+# El Miron sediments
+for sample in [f"EMN00{i}" for i in [2, 3, 4, 5, 7, 8]]:
+    SAMPLES[sample] = f"03-data/eager_elmironsediments/{sample}.A"
+# El Miron toe bone
+SAMPLES['ElMiron_toebone'] = "03-data/eager_elmirontoebone/ElMiron"
+# Contigs for the alignment
 EMN001_CONTIGS = "04-analysis/ancient_metagenome_assembly/alignment/megahit/EMN001-megahit.fasta.gz"
 EMN001_CHL_MAG = "04-analysis/automatic_MAG_refinement/aDNA_samples_human/EMN001-megahit/bins/EMN001-megahit_021.fasta.gz"
 ################################################################################
 
+#### SEQUENCING DATA TYPE ######################################################
+# Lab controls
+BLANKS = pd.read_csv("01-resources/overview_labcontrols.tsv", sep="\t",
+                     usecols=['libraryId', 'sequencingSetup'], index_col=[0])
+BLANKS.index = BLANKS.index.str.replace(".", "_", regex=False)
+SEQDATATYPE = BLANKS['sequencingSetup'].to_dict()
+# El Miron sediments
+for sample in [f"EMN00{i}" for i in [2, 3, 4, 5, 7, 8]]:
+    SEQDATATYPE[sample] = 'PE'
+# El Miron toe bone
+SEQDATATYPE['ElMiron_toebone'] = 'SE'
+################################################################################
+
 wildcard_constraints:
-    sample = "[A-Za-z]+[0-9]+"
+    sample = "[A-Za-z0-9_]+"
 
 localrules: unzip_fasta
 
 rule all:
     input:
-        expand("04-analysis/refalignment/{sample}.{reads}", sample=SAMPLES, reads=['n_aligned', 'n_total'])
-        "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv",
+        expand("04-analysis/refalignment/{sample}.{reads}", sample=SAMPLES, reads=['n_aligned', 'n_total']),
+        "05-results/QUAL_controls_Chlorobiaceae_refalignment.tsv"
 
 rule unzip_fasta:
     output:
@@ -78,14 +95,22 @@ rule align_sequences:
     params:
         pe1 = lambda wildcards: f"{SAMPLES[wildcards.sample]}_1.fastq.gz",
         pe2 = lambda wildcards: f"{SAMPLES[wildcards.sample]}_2.fastq.gz",
-        pe0 = lambda wildcards: f"-U {SAMPLES[wildcards.sample]}_0.fastq.gz" if os.path.isfile(f"{SAMPLES[wildcards.sample]}_0.fastq.gz") else "",
+        pe0 = lambda wildcards: f"{SAMPLES[wildcards.sample]}_0.fastq.gz",
+        seqsetup = lambda wildcards: SEQDATATYPE[wildcards.sample],
+        nmismatches = lambda wildcards: 1 if wildcards.sample == "ElMiron_toebone" else 0,
         fasta = "tmp/refalignment_emn001/EMN001.fa",
     threads: 16
     shell:
         """
-        bowtie2 -p {threads} -D 20 -R 3 -N 1 -L 20 -i S,1,0.50 -x {params.fasta} \
-            --rg-id {wildcards.sample} \
-            -1 {params.pe1} -2 {params.pe2} {params.pe0} -S {output}
+        if [[ "{params.seqsetup}" = "PE" ]]; then
+            bowtie2 -p {threads} -D 20 -R 3 -N {params.nmismatches} -L 20 -i S,1,0.50 -x {params.fasta} \
+                --rg-id {wildcards.sample} \
+                -1 {params.pe1} -2 {params.pe2} -S {output}
+        else
+            bowtie2 -p {threads} -D 20 -R 3 -N {params.nmismatches} -L 20 -i S,1,0.50 -x {params.fasta} \
+                --rg-id {wildcards.sample} \
+                -U {params.pe0} -S {output}
+        fi
         """
 
 rule samtools_view:
@@ -221,7 +246,7 @@ rule summary:
     input:
         expand("04-analysis/refalignment/{sample}.{reads}", sample=[s for s in SAMPLES if s != "EMN001"], reads=['n_aligned', 'n_total'])
     output:
-        "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv"
+        "05-results/QUAL_controls_Chlorobiaceae_refalignment.tsv"
     message: "Summarise the read counts"
     params:
         dir = "04-analysis/refalignment"

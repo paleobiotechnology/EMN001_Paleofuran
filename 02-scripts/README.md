@@ -86,6 +86,10 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     the quality evaluation before and after the automatic refinement of the metaWRAP refined MAGs
   - `PUBL_Dataset_S4.Snakefile`: combine the tables containing the results on the alignment of the
     short-read sequencing data against the contigs assembled from EMN001
+  - `PUBL_Dataset_S7.Snakefile`: combine the tables containing the information on the sequencing
+    data of the control samples from the site El Miron and the laboratory negative controls with the
+    the table containing the results on the alignment of these data against the contigs assembled
+    from EMN001
   - `PUBL_FigureS_freeBayescorrection.Snakefile`: plot the supplementary figure summarising the
     results of the substitution types and minor allele frequencies that were observed when
     correcting the contig sequences using freeBayes

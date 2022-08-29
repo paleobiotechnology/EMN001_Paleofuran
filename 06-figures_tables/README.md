@@ -27,7 +27,10 @@ This folder contains the final figures and tables presented in this study.
   for the dreplicated trees and for Figure2.
 - `Dataset_S6.xlsx` : XLXS file containing all the results of the functional annotation of the ancient
   bins using EggNog and diamond alignment.
-- `Dataset_S7.xlsx` : XLXS file containing the network analysis of the butyrolactone BGCs as generated
+- `Dataset_S7.xlsx`: XLXS file containing the information on the sequencing data of the control
+  samples from the site El Miron and the laboratory negative controls with the the table containing
+  the results on the alignment of these data against the contigs assembled from EMN001 
+- `Dataset_S9.xlsx` : XLXS file containing the network analysis of the butyrolactone BGCs as generated
   by bigscape and a summary of the GCFs and GCCs estimated.
 
 

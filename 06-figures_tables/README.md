@@ -53,3 +53,11 @@ This folder contains the final figures and tables presented in this study.
 - `FigureS_QUAL01.pdf`: Supplementary figure summarising the relative abundance of *Chlorobium* DNA
   in the dental calculus samples compared to the environmental control samples from El Miron and the
   laboratory negative controls
+- `FigureS_PHYL01.pdf`: Supplementary figure illustrating the phylogenetic tree constructed using the
+entire chlorobiales genomes (~596) available on the NCBI assembly database and the 8 ancient *Chlorobium* MAGs.
+- `FigureS_PHYL02.pdf`: Supplementary figure summarising the ANI analysis between the modern chlorobiales genomes, that are classified up to species level and the ancient *Chlorobium* MAGs.
+- `FigureS_PHYL03.pdf`: Supplementary figure illustrating the phylogenetic trees constructed using the 135 dereplicated Chlorobiales genomes and the ancient *Chlorobium* genomes based on amino acid and nucleotide levels using C.limicola and C.parvum core genes.
+- `FigureS_PHYL04.pdf`: Supplementary figure summarising, the proportions of functionally annotated genes (using COG annotations) found in the ancient *Chlorobium* MAGs and the closest modern Chlorobiales genomes.
+- `FigureS_PHYL07.pdf`: Supplementary figure summarising the BGCs present across 135 modern Chlorobiales genomes and ancient *Chlorobium* MAGs and the topology of the Butyrolactone BGCs across all butyrolactone containg genomes.
+- `FigureS_PHYL08.pdf`: Supplementary figure illustrating the phylogenetic tree constructed using all modern *afsA*-like synthase genes with one A-factor domain and the ancient *afsA*-like synthase genes from teh *Chlorobium* MAGs.
+- `FigureS_PHYL09.pdf`: Supplementary figure summarising the genetic percent identities between the butyrolactone core genes on amino acid and nucleotide levels.

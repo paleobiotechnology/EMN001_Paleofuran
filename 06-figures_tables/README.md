@@ -50,3 +50,6 @@ This folder contains the final figures and tables presented in this study.
 - `FigureS_ASM007.pdf`: Supplementary figure summarising of the ancient DNA damage of the samples
   with a HQ Chlorobium MAG against the representative MAG of the genus Chlorobium and Flexilinea of
   EMN001
+- `FigureS_QUAL01.pdf`: Supplementary figure summarising the relative abundance of *Chlorobium* DNA
+  in the dental calculus samples compared to the environmental control samples from El Miron and the
+  laboratory negative controls

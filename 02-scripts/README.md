@@ -107,6 +107,9 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
   - `PUBL_FigureS_aDNA_damage_Chlorobium_Flexilinea.Snakefile`: plot the summary of the ancient DNA
     damage of the samples with a HQ Chlorobium MAG against the representative MAG of the genus
     Chlorobium and Flexilinea of EMN001
+  - `PUBL_FigureS_ChlorobiumDNA_controls.Snakefile`: plot the overview of the relative abundance of
+    *Chlorobium* DNA in the dental calculus samples compared to the environmental control samples
+    from El Miron and the laboratory negative controls
 
 X. `ENVS`: conda environments for the use with Snakemake
 

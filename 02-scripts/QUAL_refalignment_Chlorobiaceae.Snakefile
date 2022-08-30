@@ -37,7 +37,7 @@ localrules: unzip_fasta
 
 rule all:
     input:
-        expand("04-analysis/refalignment/{sample}.{reads}", sample=SAMPLES, reads=['n_aligned', 'n_total'])
+        expand("04-analysis/refalignment/{sample}.{reads}", sample=SAMPLES, reads=['n_aligned', 'n_total']),
         "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv",
 
 rule unzip_fasta:
@@ -219,7 +219,7 @@ rule total_reads:
 
 rule summary:
     input:
-        expand("04-analysis/refalignment/{sample}.{reads}", sample=[s for s in SAMPLES if s != "EMN001"], reads=['n_aligned', 'n_total'])
+        expand("04-analysis/refalignment/{sample}.{reads}", sample=SAMPLES, reads=['n_aligned', 'n_total'])
     output:
         "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv"
     message: "Summarise the read counts"

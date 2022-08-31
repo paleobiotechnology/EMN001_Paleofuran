@@ -8,6 +8,8 @@ This folder contains the final figures and tables presented in this study.
   contig length distributions for the samples EMN001, PES001, and PLV001, the overview of the
   reconstructed MAGs for the five samples with a HQ Chlorobiaceae MAG, and the aDNA damage for two
   MAGs of EMN001
+- `Figure2.pdf`: main figure containing the pruned phylogneetic tree constructed using the modern Chlorobiales genomes classified to species level and the ancient *Chlorobium* MAGs along with their environmental sources and the ANI values.
+- `Figure3.pdf`: main figure containing the BIGSCAPE network analysis between the 46 Chlorobiales genomes containg butyrolactone BGC, the topology of the ancient butyrolactone BGCs, the chromatogram and structure of the paleofuran compounds.
 
 ### Supplementary Tables:
 

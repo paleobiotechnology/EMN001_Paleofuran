@@ -79,3 +79,10 @@ presented in the manuscript.
   - `PHYL_Flexilinea_proteintree_RAxML_bootstrap.tre`: the phylogenetic tree of a subset of the
     family Anaerolineaceae generated using RAxML with the clade support inferred from a bootstrap
     analysis
+  - `PHYL_Yersinia_completeness.tsv`: the overview of the fraction of sites per *Yersinia pestis*
+    genome that could not be genotyped by Andrades Valtuena *et al.* (2022)
+  - `PHYL_Yersinia_fastANI.tsv`: the pairwise average nucleotide identity for all members of the
+    species *Yersinia pestis* analysed by Andrades Valtuena *et al.* (2022)
+  - `PHYL_Yersinia_proteintree_RAxML_bootstrap.tre`: the phylogenetic tree of the *Yersinia pestis*
+    genomes analysed by Andrades Valtuena *et al.* (2022) generated using RAxML with the clade
+    support inferred from a bootstrap analysis

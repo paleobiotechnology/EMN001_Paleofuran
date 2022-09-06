@@ -6,7 +6,11 @@
 # Alex Huebner, 27/07/22
 ################################################################################
 
+from glob import glob
 import os
+
+import pandas as pd
+import pyfastx
 
 if not os.path.isdir("snakemake_tmp"):
     os.makedirs("snakemake_tmp")
@@ -17,8 +21,29 @@ SAMPLES, = glob_wildcards("01-resources/yersinia_genomes/{sample}.fa.gz")
 
 rule all:
     input:
+        "05-results/PHYL_Yersinia_completeness.tsv",
         "05-results/PHYL_Yersinia_proteintree_RAxML_bootstrap.tre",
         "05-results/PHYL_Yersinia_fastANI.tsv"
+
+#### Genome quality ############################################################
+
+rule no_missing_sites:
+    output:
+        "05-results/PHYL_Yersinia_completeness.tsv"
+    message: "Determine the completeness of the Y. pestis genomes"
+    params:
+        dir = "01-resources/yersinia_genomes"
+    run:
+        genomes = {name: seq.count("N") / len(seq)
+                   for fn in glob(f"{params.dir}/*.fa.gz")
+                   for name, seq in pyfastx.Fasta(fn, build_index=False)}
+
+        pd.DataFrame.from_dict(genomes, orient="index", columns=['fracNs']) \
+            .reset_index().rename(columns={'index': 'genome'}) \
+            .sort_values(['genome']) \
+            .to_csv(output[0], sep="\t", index=False, float_format="%.4f")
+
+################################################################################
 
 #### Phylogenetic analysis #####################################################
 

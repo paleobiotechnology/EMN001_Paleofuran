@@ -34,7 +34,7 @@ rule no_missing_sites:
     params:
         dir = "01-resources/yersinia_genomes"
     run:
-        genomes = {name: seq.count("N") / len(seq)
+        genomes = {os.path.basename(fn).replace(".fa.gz", ""): seq.count("N") / len(seq)
                    for fn in glob(f"{params.dir}/*.fa.gz")
                    for name, seq in pyfastx.Fasta(fn, build_index=False)}
 

@@ -70,6 +70,12 @@ presented in the manuscript.
 
 5. `PHYL`: results related to phylogenetic analyses
 
+  - `PHYL_Chlorobiaeceae_fastANI_3kb.tsv`: the matrix of the pairwise average nucleotide identity
+    values calculated for a subset of the genomes of the family Chlorobiaceae considering only
+    contigs with a minimum length of 3 kb
+  - `PHYL_Chlorobiaeceae_fastANI_1kb.tsv`: the matrix of the pairwise average nucleotide identity
+    values calculated for a subset of the genomes of the family Chlorobiaceae considering only
+    contigs with a minimum length of 1 kb
   - `PHYL_Flexilinea_proteintree_taxa.tsv`: the overview of the comparative genomes for the analysis
     of the family Anaerolineaceae
   - `PHYL_Flexilinea_proteintree_RAxML.tre`: the phylogenetic tree of the family Anaerolineaceae

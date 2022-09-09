@@ -51,7 +51,7 @@ This folder contains the final figures and tables presented in this study.
 - `FigureS_ASMB06.pdf`: Supplementary figure summarising the taxonomic assignmnet of the MAGs
   against the GTDB
 - `FigureS_ASM007.pdf`: Supplementary figure summarising of the ancient DNA damage of the samples
-  with a HQ Chlorobium MAG against the representative MAG of the genus Chlorobium and Flexilinea of
+  with a HQ *Chlorobium* MAG against the representative MAG of the genus Chlorobium and Flexilinea of
   EMN001
 - `FigureS_QUAL01.pdf`: Supplementary figure summarising the relative abundance of *Chlorobium* DNA
   in the dental calculus samples compared to the environmental control samples from El Miron and the
@@ -64,8 +64,8 @@ entire chlorobiales genomes (~596) available on the NCBI assembly database and t
   the 135 dereplicated Chlorobiales genomes and the ancient *Chlorobium* genomes based on amino acid
   and nucleotide levels using C.limicola and C.parvum core genes.
 - `FigureS_PHYL04.pdf`: Supplementary figure summarising, the proportions of functionally annotated
-  genes (using COG annotations) found in the ancient *Chlorobium* MAGs and the closest modern
-  Chlorobiales genomes.
+  genes (using COG pathway annotations) found in the ancient *Chlorobium* MAGs and the closest modern
+  chlorobiales genomes.
 - `FigureS_PHYL07.pdf`: Supplementary figure summarising the BGCs present across 135 modern
   Chlorobiales genomes and ancient *Chlorobium* MAGs and the topology of the Butyrolactone BGCs
   across all butyrolactone containg genomes.

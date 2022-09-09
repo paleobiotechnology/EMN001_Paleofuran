@@ -20,4 +20,4 @@ rule all:
         dataset_s3 = "06-figures_tables/Dataset_S3.xlsx",
     threads: 1
     script:
-        "rscripts/PUBL_FigureS_aDNA_Chlorobium_Flexilinea.R"
+        "rscripts/PUBL_FigureS_aDNA_damage_Chlorobium_Flexilinea.R"

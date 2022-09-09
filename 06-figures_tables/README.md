@@ -57,7 +57,8 @@ This folder contains the final figures and tables presented in this study.
   in the dental calculus samples compared to the environmental control samples from El Miron and the
   laboratory negative controls
 - `FigureS_PHYL01.pdf`: Supplementary figure illustrating the phylogenetic tree constructed using the
-entire chlorobiales genomes (~596) available on the NCBI assembly database and the 8 ancient *Chlorobium* MAGs.
+   entire chlorobiales genomes (~596) available on the NCBI assembly database and the 8 ancient
+   *Chlorobium* MAGs.
 - `FigureS_PHYL02.pdf`: Supplementary figure summarising the ANI analysis between the modern
   chlorobiales genomes, that are classified up to species level and the ancient *Chlorobium* MAGs.
 - `FigureS_PHYL03.pdf`: Supplementary figure illustrating the phylogenetic trees constructed using
@@ -74,3 +75,8 @@ entire chlorobiales genomes (~596) available on the NCBI assembly database and t
   synthase genes from teh *Chlorobium* MAGs.
 - `FigureS_PHYL09.pdf`: Supplementary figure summarising the genetic percent identities between the
   butyrolactone core genes on amino acid and nucleotide levels.
+- `FigureS_PHYL10_pANI.pdf`: panel of the Supplementary Figure `FigureS_PHYL10.pdf` containing the
+  heatmap with the pairwise average nucleotide identity values of the genus *Flexilinea*
+- `FigureS_PHYL10.pdf`: Supplementary figure consisting of the phylogenetic analysis of the genus
+  Flexilinea (RAxML tree with bootstrap values visualised using iTOL) and the panel shown in
+  `FigureS_PHYL10_pANI.pdf`; the figure was manually combined using Affinity Designer.

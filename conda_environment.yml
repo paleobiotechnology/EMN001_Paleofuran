@@ -24,3 +24,4 @@ dependencies:
   - conda-forge::r-ggrepel=0.9.1
   - conda-forge::r-ggpubr=0.4.0
   - conda-forge::r-scatterpie=0.1.6
+  - conda-forge::r-pheatmap=1.0.8

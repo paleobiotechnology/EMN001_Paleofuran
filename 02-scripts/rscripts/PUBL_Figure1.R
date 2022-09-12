@@ -84,7 +84,7 @@ world_map <- ggplot(data = ne_countries(scale = 110, returnclass = "sf")) +
           size = 0.3) +
   ## Restrict size of the map to Africa and Western Eurasia
   coord_sf(xlim = c(-15, 45),
-           ylim = c(-35, 55),
+           ylim = c(-40, 55),
            expand = F) +
   ## Plot the sample points
   geom_point(data = map_info,
@@ -179,7 +179,7 @@ panel_a <- eur_map +
                     ymin = -Inf, ymax = 32)
 
 # Panel b: The fragment length distribution of the samples EMN001, PES001, and PLV001
-fraglength_lt <- select(fraglength, -c(`no. of DNA molecules`, '> 140bp')) %>%
+fraglength_lt <- select(fraglength, -c('> 140bp')) %>%
   pivot_longer(-sample, names_to = "length", values_to = "prop") %>%
   mutate(length = as.double(str_replace(length, "bp", "")),
          sample = factor(sample, levels = c("EMN001", "PES001", "PLV001")))
@@ -300,7 +300,7 @@ panel_d <- ggplot() +
                aes(x = x - 0.2, xend = x + 0.2,
                    y = y - 0.5, yend = y - 0.5),
                colour = "#9C27B0") +
-  geom_hline(yintercept = 0, size = 0.5, colour = "grey50") +
+  geom_hline(yintercept = 8.75, size = 0.5, colour = "grey50") +
   coord_equal() +
   facet_wrap(~ id,
              labeller = as_labeller(sample_names),
@@ -316,6 +316,7 @@ panel_d <- ggplot() +
         legend.key.height = unit(3, "mm"),
         legend.key.width = unit(3, "mm"),
         axis.text = element_blank(),
+        axis.title.x = element_blank(),
         axis.ticks = element_blank(),
         axis.line = element_blank(),
         strip.text = element_text(size = 7),

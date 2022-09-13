@@ -71,7 +71,12 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     Anaerolineaceae using the ancient MAGs assigned to the genus Flexilinea based on the protein
     sequences of the UniProt genes associated with the species *Flexilinea flocculi*
 
-6. `PUBL`: preparing the final figures and tables
+6. `FUNC`: analyses related to functional repertoire
+
+  - `FUNC_pangenome_Climicola.Snakefile`: analyse the pan-genome of the 6 Chlorobium MAGs and the
+    four published *Chlorobium limicola* genomes using Roary and identify clade specific genes
+
+7. `PUBL`: preparing the final figures and tables
 
   - `PUBL_Figure1.Snakefile`: plot an overview map of all samples, the DNA molecule length
     and contig length distributions for the samples EMN001, PES001, and PLV001, the overview of the
@@ -117,10 +122,13 @@ X. `ENVS`: conda environments for the use with Snakemake
   - `ENVS_bowtie2.yaml`: [bowtie2](https://github.com/BenLangmead/bowtie2)
   - `ENVS_damageprofiler.yaml`: [damageprofiler](https://github.com/Integrative-Transcriptomics/DamageProfiler)
   - `ENVS_dRep.yaml`: [dRep](https://github.com/MrOlm/drep)
+  - `ENVS_eggnogmapper.yaml`: [eggnog-mapper](https://github.com/eggnogdb/eggnog-mapper)
   - `ENVS_entrez.yaml`: [entrez](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
   - `ENVS_infernal.yaml`: [INFERNAL](http://eddylab.org/infernal/)
   - `ENVS_fastp.yaml`: [fastp](https://github.com/OpenGene/fastp)
   - `ENVS_PhyloPhlAn3.yaml`: [PhyloPhlAn3](https://github.com/biobakery/phylophlan)
   - `ENVS_picard.yaml`: [picard](https://broadinstitute.github.io/picard)
+  - `ENVS_prokka.yaml`: [Prokka](https://github.com/tseemann/prokka)
+  - `ENVS_roary.yaml`: [Roary](https://github.com/sanger-pathogens/Roary)
   - `ENVS_samtools.yaml`: [samtools](https://github.com/samtools/samtools)
   - `ENVS_trnascanse.yaml`: [tRNAscan-SE](https://github.com/UCSC-LoweLab/tRNAscan-SE)

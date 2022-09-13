@@ -86,3 +86,9 @@ presented in the manuscript.
   - `PHYL_Yersinia_proteintree_RAxML_bootstrap.tre`: the phylogenetic tree of the *Yersinia pestis*
     genomes analysed by Andrades Valtuena *et al.* (2022) generated using RAxML with the clade
     support inferred from a bootstrap analysis
+
+6. `FUNC`: results related to the functional analyses
+
+  - `FUNC_roary_pangenome.tsv`: the results of the pan-genome analysis of the 6 Chlorobium MAGs and
+    the four published *Chlorobium limicola* genomes using Roary for identifying clade specific
+    genes and determining their function using eggNOG

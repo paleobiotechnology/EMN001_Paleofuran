@@ -1,0 +1,7 @@
+name: eggnog-mapper
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bioconda::eggnog-mapper=2.1.7

@@ -1,7 +1,7 @@
 ################################################################################
 # Project: Natural products from the Palaeolithic
 # Part: Publication
-# Step: Prepare Dataset S2
+# Step: Prepare Dataset S3
 #
 # Dependent on:
 #   - ASMB_denovo_assembly_binning.Snakefile

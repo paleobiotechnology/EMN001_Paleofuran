@@ -95,6 +95,9 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     data of the control samples from the site El Miron and the laboratory negative controls with the
     the table containing the results on the alignment of these data against the contigs assembled
     from EMN001
+  - `PUBL_Dataset_S8.Snakefile`: combines the tables containing the pairwise average nucleotide
+    identity for the analyses on the family Chlorobiaceae, the genus Flexilinea, or the species
+    Yersinia pestis
   - `PUBL_FigureS_freeBayescorrection.Snakefile`: plot the supplementary figure summarising the
     results of the substitution types and minor allele frequencies that were observed when
     correcting the contig sequences using freeBayes
@@ -115,6 +118,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
   - `PUBL_FigureS_ChlorobiumDNA_controls.Snakefile`: plot the overview of the relative abundance of
     *Chlorobium* DNA in the dental calculus samples compared to the environmental control samples
     from El Miron and the laboratory negative controls
+  - `PUBL_FigureS_Flexilinea_tree_ANI.Snakefile`: plot the heatmap of the pairwise average
+    nucleotide identity of the genus Flexilinea
 
 X. `ENVS`: conda environments for the use with Snakemake
 

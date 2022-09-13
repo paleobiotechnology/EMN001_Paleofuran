@@ -32,9 +32,10 @@ This folder contains the final figures and tables presented in this study.
 - `Dataset_S7.xlsx`: XLXS file containing the information on the sequencing data of the control
   samples from the site El Miron and the laboratory negative controls with the the table containing
   the results on the alignment of these data against the contigs assembled from EMN001 
+- `Dataset_S8.xlsx`: XLSX file containing the pairwise average nucleotide identity for the analyses
+  on the family Chlorobiaceae, the genus Flexilinea, or the species Yersinia pestis
 - `Dataset_S9.xlsx` : XLXS file containing the network analysis of the butyrolactone BGCs as generated
   by bigscape and a summary of the GCFs and GCCs estimated.
-
 
 ### Supplementary Figures:
 
@@ -50,16 +51,32 @@ This folder contains the final figures and tables presented in this study.
 - `FigureS_ASMB06.pdf`: Supplementary figure summarising the taxonomic assignmnet of the MAGs
   against the GTDB
 - `FigureS_ASM007.pdf`: Supplementary figure summarising of the ancient DNA damage of the samples
-  with a HQ Chlorobium MAG against the representative MAG of the genus Chlorobium and Flexilinea of
+  with a HQ *Chlorobium* MAG against the representative MAG of the genus Chlorobium and Flexilinea of
   EMN001
 - `FigureS_QUAL01.pdf`: Supplementary figure summarising the relative abundance of *Chlorobium* DNA
   in the dental calculus samples compared to the environmental control samples from El Miron and the
   laboratory negative controls
 - `FigureS_PHYL01.pdf`: Supplementary figure illustrating the phylogenetic tree constructed using the
-entire chlorobiales genomes (~596) available on the NCBI assembly database and the 8 ancient *Chlorobium* MAGs.
-- `FigureS_PHYL02.pdf`: Supplementary figure summarising the ANI analysis between the modern chlorobiales genomes, that are classified up to species level and the ancient *Chlorobium* MAGs.
-- `FigureS_PHYL03.pdf`: Supplementary figure illustrating the phylogenetic trees constructed using the 135 dereplicated Chlorobiales genomes and the ancient *Chlorobium* genomes based on amino acid and nucleotide levels using C.limicola and C.parvum core genes.
-- `FigureS_PHYL04.pdf`: Supplementary figure summarising, the proportions of functionally annotated genes (using COG annotations) found in the ancient *Chlorobium* MAGs and the closest modern Chlorobiales genomes.
-- `FigureS_PHYL07.pdf`: Supplementary figure summarising the BGCs present across 135 modern Chlorobiales genomes and ancient *Chlorobium* MAGs and the topology of the Butyrolactone BGCs across all butyrolactone containg genomes.
-- `FigureS_PHYL08.pdf`: Supplementary figure illustrating the phylogenetic tree constructed using all modern *afsA*-like synthase genes with one A-factor domain and the ancient *afsA*-like synthase genes from teh *Chlorobium* MAGs.
-- `FigureS_PHYL09.pdf`: Supplementary figure summarising the genetic percent identities between the butyrolactone core genes on amino acid and nucleotide levels.
+   entire chlorobiales genomes (~596) available on the NCBI assembly database and the 8 ancient
+   *Chlorobium* MAGs.
+- `FigureS_PHYL02.pdf`: Supplementary figure summarising the ANI analysis between the modern
+  chlorobiales genomes, that are classified up to species level and the ancient *Chlorobium* MAGs.
+- `FigureS_PHYL03.pdf`: Supplementary figure illustrating the phylogenetic trees constructed using
+  the 135 dereplicated Chlorobiales genomes and the ancient *Chlorobium* genomes based on amino acid
+  and nucleotide levels using C.limicola and C.parvum core genes.
+- `FigureS_PHYL04.pdf`: Supplementary figure summarising, the proportions of functionally annotated
+  genes (using COG pathway annotations) found in the ancient *Chlorobium* MAGs and the closest modern
+  chlorobiales genomes.
+- `FigureS_PHYL07.pdf`: Supplementary figure summarising the BGCs present across 135 modern
+  Chlorobiales genomes and ancient *Chlorobium* MAGs and the topology of the Butyrolactone BGCs
+  across all butyrolactone containg genomes.
+- `FigureS_PHYL08.pdf`: Supplementary figure illustrating the phylogenetic tree constructed using
+  all modern *afsA*-like synthase genes with one A-factor domain and the ancient *afsA*-like
+  synthase genes from teh *Chlorobium* MAGs.
+- `FigureS_PHYL09.pdf`: Supplementary figure summarising the genetic percent identities between the
+  butyrolactone core genes on amino acid and nucleotide levels.
+- `FigureS_PHYL10_pANI.pdf`: panel of the Supplementary Figure `FigureS_PHYL10.pdf` containing the
+  heatmap with the pairwise average nucleotide identity values of the genus *Flexilinea*
+- `FigureS_PHYL10.pdf`: Supplementary figure consisting of the phylogenetic analysis of the genus
+  Flexilinea (RAxML tree with bootstrap values visualised using iTOL) and the panel shown in
+  `FigureS_PHYL10_pANI.pdf`; the figure was manually combined using Affinity Designer.

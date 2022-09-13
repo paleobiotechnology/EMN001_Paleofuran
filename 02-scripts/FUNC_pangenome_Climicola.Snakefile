@@ -223,6 +223,8 @@ rule annotate_roary_results:
         roary.iloc[np.where(roary['specificity'] == "Chlorobium MAG")[0], -1] = \
             roary.iloc[np.where(roary['specificity'] == "Chlorobium MAG")[0], [14, 19, 20, 21, 22, 23]] \
             .apply(lambda r: r.loc[~r.isnull()].values[0], axis=1)
+        roary['repr_protein'] = roary['repr_protein'].str.replace("DOAKPEPN", "EMN001_021")
+        roary['repr_protein'] = roary['repr_protein'].str.replace("JHDCJAEM", "GOY005_001")
 
         roary.merge(pd.concat([eggnog_genomes, eggnog_mags]),
                     how="left", left_on="repr_protein", right_on="#query") \

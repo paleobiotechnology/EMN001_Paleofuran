@@ -206,7 +206,7 @@ rule annotate_roary_results:
         # Roary results
         roary = pd.read_csv(input.tsv, sep="\t")
         # Annotations
-        eggnog_genomes = pd.read_csv(input.annot,
+        eggnog_genomes = pd.read_csv("04-analysis/roary/eggnog/climicola_specific_genes.emapper.annotations",
                                      sep="\t", skiprows=4, skipfooter=3, engine="python",
                                      usecols=[0, 6, 7, 8, 10, 11, 13, 14, 15, 20])
         eggnog_mags = pd.concat([pd.read_excel(params.xlsx, sheet_name=i,
@@ -223,8 +223,10 @@ rule annotate_roary_results:
         roary.iloc[np.where(roary['specificity'] == "Chlorobium MAG")[0], -1] = \
             roary.iloc[np.where(roary['specificity'] == "Chlorobium MAG")[0], [14, 19, 20, 21, 22, 23]] \
             .apply(lambda r: r.loc[~r.isnull()].values[0], axis=1)
+
         roary['repr_protein'] = roary['repr_protein'].str.replace("DOAKPEPN", "EMN001_021")
         roary['repr_protein'] = roary['repr_protein'].str.replace("JHDCJAEM", "GOY005_001")
+        roary.iloc[:, 14:24] = roary.iloc[:, 14:24].apply(lambda c: c.str.replace(r"^[A-Z]+_", "", regex=True), axis =1)
 
         roary.merge(pd.concat([eggnog_genomes, eggnog_mags]),
                     how="left", left_on="repr_protein", right_on="#query") \

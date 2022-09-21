@@ -4,6 +4,7 @@
 # Step: Prepare Dataset S8
 #
 # Dependent on:
+#   - FUNC_pangenome_Climicola.Snakefile
 #   - PHYL_Flexilinea_proteinalignment.Snakefile
 #   - PHYL_Yersinia_proteinalignment.Snakefile
 #
@@ -21,6 +22,8 @@ rule all:
     params:
         chlorobiaceae_3kb = "05-results/PHYL_Chlorobiaeceae_fastANI_3kb.tsv",
         chlorobiaceae_1kb = "05-results/PHYL_Chlorobiaeceae_fastANI_1kb.tsv",
+        roary = "05-results/FUNC_roary_pangenome.tsv",
+        keggko = "05-results/FUNC_KEGG_specificKO.tsv",
         flexilinea_taxa = "05-results/PHYL_Flexilinea_proteintree_taxa.tsv",
         flexilinea_pani = "05-results/PHYL_Flexilinea_fastANI.tsv",
         ypestis_completeness = "05-results/PHYL_Yersinia_completeness.tsv",
@@ -86,8 +89,8 @@ rule all:
         chlorobiaceae_1kb.to_excel(writer, sheet_name="S8b - pANI Chlorobiaceae 1 kb", index=False,
                                  header=False, startrow=3, float_format="%.4f")
         ## Sheet: pairwise ANI Flexilinea
-        s8a_sheet = writer.sheets["S8b - pANI Chlorobiaceae 1 kb"]
-        s8a_sheet.write(0, 0, "Table S8b: Overview of the pairwise average "
+        s8b_sheet = writer.sheets["S8b - pANI Chlorobiaceae 1 kb"]
+        s8b_sheet.write(0, 0, "Table S8b: Overview of the pairwise average "
                         "nucleotide identity (ANI) between all pairs of the "
                         "reconstructed Chlorobiaceae MAGs and published "
                         "comparative genomes of the family Chlorobiaceae. "
@@ -100,17 +103,83 @@ rule all:
             'border': 0
         })
         for ci, cname in enumerate(chlorobiaceae_1kb.columns.values):
-            s8a_sheet.write(2, ci, cname, header_format)
-        s8a_sheet.set_column(0, 0, determine_col_width(chlorobiaceae_1kb.iloc[:, 0],
+            s8b_sheet.write(2, ci, cname, header_format)
+        s8b_sheet.set_column(0, 0, determine_col_width(chlorobiaceae_1kb.iloc[:, 0],
                                                        chlorobiaceae_1kb.columns[0]) + 1,
                              workbook.add_format({'align': 'center'}))
         for i in range(1, 42):
-            s8a_sheet.set_column(i, i, determine_col_width(chlorobiaceae_1kb.iloc[:, i].astype(str),
+            s8b_sheet.set_column(i, i, determine_col_width(chlorobiaceae_1kb.iloc[:, i].astype(str),
                                                            chlorobiaceae_1kb.columns[i]) + 1,
                                  workbook.add_format({'align': 'center',
                                                       'num_format': "0.00"}))
 
-        # Dataset S8c: pairwise ANI for Flexilinea with contigs >= 3 kb
+        # Dataset S8c: pan-genome analysis with Roary
+        roary = pd.read_csv(params.roary, sep="\t")
+        roary.columns = [c.replace("-megahit", "") for c in roary.columns]
+        roary = roary.iloc[:, list(range(4)) + list(range(14, 34))]
+        roary.iloc[:, 4:14] = roary.iloc[:, 4:14].fillna(0).astype(int).astype(str)
+        roary.iloc[:, 4:14] = roary.iloc[:, 4:14].apply(lambda c: c.str.replace(r'^0$', '', regex=True), axis=1)
+        roary.to_excel(writer, sheet_name="S8c - pan-genome", index=False,
+                       header=False, startrow=3, float_format="%.4f")
+        ## Sheet: pan-genome analysis
+        s8c_sheet = writer.sheets["S8c - pan-genome"]
+        s8c_sheet.write(0, 0, "Table S8c: Overview of pan-genome analysis "
+                        "resuls obtained from Roary. All annotated genes of "
+                        "four published Chlorobium limicola and the six ancient "
+                        "Chlorobium MAGs were used as input. We identified a "
+                        "gene as specific for either the published genomes or "
+                        "the ancient MAGs when it was present in 67% of the "
+                        "members of one group and absent in 67% of the other. "
+                        "We annotated specific genes using the eggNOG database "
+                        "based on the alignments obtained from DIAMOND.",
+                         workbook.add_format({'bold': True, 'align': 'left'}))
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'border': 0
+        })
+        for ci, cname in enumerate(roary.columns.values):
+            s8c_sheet.write(2, ci, cname, header_format)
+        for i in list(range(2)) + list(range(4, 24)):
+            s8c_sheet.set_column(0, 0, determine_col_width(roary.iloc[:, i],
+                                                           roary.columns[i]) + 1,
+                                 workbook.add_format({'align': 'center'}))
+        s8c_sheet.set_column(3, 3,
+                             determine_col_width(roary.iloc[:, 3].astype(str),
+                                                 roary.columns[3]) + 1,
+                             workbook.add_format({'align': 'center',
+                                                 'num_format': "#,##0"}))
+
+        # Dataset S8d: KEGG pathways for clade-specific KEGG kos
+        keggko = pd.read_csv(params.keggko, sep="\t")
+        keggko = pd.read_csv("05-results/FUNC_KEGG_specificKO.tsv", sep="\t")
+        keggko.columns = ["KEGG KO", "pathway 1st level", "pathway 2nd level",
+                          "pathway 3rd level", "description", "specificity"]
+        keggko['pathway 1st level'] = keggko['pathway 1st level'].str.replace(r"^ +", "", regex=True)
+        keggko.to_excel(writer, sheet_name="S8d - KEGG KO and pathways", index=False,
+                        header=False, startrow=3, float_format="%.4f")
+        ## Sheet: KEGG KO analysis
+        s8d_sheet = writer.sheets["S8d - KEGG KO and pathways"]
+        s8d_sheet.write(0, 0, "Table S8d: Overview of the KEGG orthologs (KO) "
+                        "and their associated pathways for orthologs that were "
+                        "found exclusively in either the C. limicola genomes or "
+                        "in the ancient Chlorobium MAGs.",
+                         workbook.add_format({'bold': True, 'align': 'left'}))
+        header_format = workbook.add_format({
+            'bold': True,
+            'align': 'center',
+            'valign': 'vcenter',
+            'border': 0
+        })
+        for ci, cname in enumerate(keggko.columns.values):
+            s8d_sheet.write(2, ci, cname, header_format)
+        for i in range(6):
+            s8d_sheet.set_column(i, i, determine_col_width(keggko.iloc[:, i],
+                                                           keggko.columns[i]) + 1,
+                                 workbook.add_format({'align': 'center'}))
+
+        # Dataset S8e: pairwise ANI for Flexilinea with contigs >= 3 kb
         ## Prepare the taxa information for the reference genomes
         flexilinea_taxa = pd.read_csv(params.flexilinea_taxa, sep="\t")
         flexilinea_taxa = flexilinea_taxa.loc[(flexilinea_taxa['NCBI taxonomy Id'] \
@@ -145,11 +214,11 @@ rule all:
         flexilinea_wtbl.columns = [c[0] if i < 3 else c[1]
                                    for i, c in enumerate(flexilinea_wtbl.columns)]
 
-        flexilinea_wtbl.to_excel(writer, sheet_name="S8c - pANI Flexilinea", index=False,
+        flexilinea_wtbl.to_excel(writer, sheet_name="S8e - pANI Flexilinea", index=False,
                                  header=False, startrow=3, float_format="%.4f")
         ## Sheet: pairwise ANI Flexilinea
-        s8c_sheet = writer.sheets["S8c - pANI Flexilinea"]
-        s8c_sheet.write(0, 0, "Table S8c: Overview of the pairwise average "
+        s8e_sheet = writer.sheets["S8e - pANI Flexilinea"]
+        s8e_sheet.write(0, 0, "Table S8e: Overview of the pairwise average "
                         "nucleotide identity (ANI) between all pairs of the "
                         "reconstructed Flexilinea MAGs and published comparative "
                         "genomes. For these comparative genomes, the common name "
@@ -162,18 +231,18 @@ rule all:
             'border': 0
         })
         for ci, cname in enumerate(flexilinea_wtbl.columns.values):
-            s8c_sheet.write(2, ci, cname, header_format)
+            s8e_sheet.write(2, ci, cname, header_format)
         for i in range(0, 3):
-            s8c_sheet.set_column(i, i, determine_col_width(flexilinea_wtbl.iloc[:, i],
+            s8e_sheet.set_column(i, i, determine_col_width(flexilinea_wtbl.iloc[:, i],
                                                            flexilinea_wtbl.columns[i]) + 1,
                                  workbook.add_format({'align': 'center'}))
         for i in range(4, 44):
-            s8c_sheet.set_column(i, i, determine_col_width(flexilinea_wtbl.iloc[:, i].astype(str),
+            s8e_sheet.set_column(i, i, determine_col_width(flexilinea_wtbl.iloc[:, i].astype(str),
                                                            flexilinea_wtbl.columns[i]) + 1,
                                  workbook.add_format({'align': 'center',
                                                       'num_format': "0.00"}))
 
-        # Dataset S8d: overview of the MAG quality pre-filtering
+        # Dataset S8f: overview of the MAG quality pre-filtering
         ypestis_completeness = pd.read_csv(params.ypestis_completeness, sep="\t")
         ypestis_hq_samples = ypestis_completeness.query("fracNs < 0.1")['genome'].tolist()
         ## Calculate the mean ANI values because the reported ANI values aren't symmetrical
@@ -193,11 +262,11 @@ rule all:
             .merge(ypestis_pani.groupby(['pair']).agg({'ANI': 'mean'}),
                    how="left", on="pair") \
             .drop(['pair'], axis=1)
-        ypestis_pani.to_excel(writer, sheet_name="S8d - pANI Yersinia pestis", index=False,
+        ypestis_pani.to_excel(writer, sheet_name="S8f - pANI Yersinia pestis", index=False,
                               header=False, startrow=3, float_format="%.4f")
         ## Sheet: pairwise ANI Y. pestis
-        s8d_sheet = writer.sheets["S8d - pANI Yersinia pestis"]
-        s8d_sheet.write(0, 0, "Table S8d: Overview of the pairwise average "
+        s8f_sheet = writer.sheets["S8f - pANI Yersinia pestis"]
+        s8f_sheet.write(0, 0, "Table S8f: Overview of the pairwise average "
                         "nucleotide identity (ANI) between all pairs of the "
                         "Yersinia pestis genomes that were reported by "
                         "Andrades Valtueña et al. (2022). Genomes were only "
@@ -211,12 +280,12 @@ rule all:
             'border': 0
         })
         for ci, cname in enumerate(ypestis_pani.columns.values):
-            s8d_sheet.write(2, ci, cname, header_format)
+            s8f_sheet.write(2, ci, cname, header_format)
         for i in range(0, 2):
-            s8d_sheet.set_column(i, i, determine_col_width(ypestis_pani.iloc[:, i],
+            s8f_sheet.set_column(i, i, determine_col_width(ypestis_pani.iloc[:, i],
                                                         ypestis_pani.columns[i]) + 1,
                                  workbook.add_format({'align': 'center'}))
-        s8d_sheet.set_column(2, 2,
+        s8f_sheet.set_column(2, 2,
                                 determine_col_width(ypestis_pani.iloc[:, 2].astype(str),
                                                     ypestis_pani.columns[2]) + 1,
                                 workbook.add_format({'align': 'center',

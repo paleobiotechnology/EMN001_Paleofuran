@@ -11,7 +11,9 @@
 
 from glob import glob
 import os
+from urllib.error import HTTPError
 
+from Bio.KEGG import REST
 import numpy as np
 import pandas as pd
 import pyfastx
@@ -42,7 +44,8 @@ wildcard_constraints:
 
 rule all:
     input:
-        "05-results/FUNC_roary_pangenome.tsv"
+        "05-results/FUNC_roary_pangenome.tsv",
+        "05-results/FUNC_KEGG_specificKO.tsv"
 
 #### Annotate C. limicola genomes with Prokka ##################################
 
@@ -232,6 +235,55 @@ rule annotate_roary_results:
                     how="left", left_on="repr_protein", right_on="#query") \
             .drop(['#query', 'repr_protein'], axis=1) \
             .iloc[:, list(range(14)) + list(range(15, 19)) + [14] + list(range(19, 34))] \
+            .to_csv(output[0], sep="\t", index=False)
+
+rule kegg_pathway_analysis:
+    input:
+        "05-results/FUNC_roary_pangenome.tsv"
+    output:
+        "05-results/FUNC_KEGG_specificKO.tsv"
+    message: "Infer the associated pathways for specific KOs using KEGG's REST API"
+    run:
+        # Read data
+        roary = pd.read_csv(input[0], sep="\t")
+
+        # Count the occurrences of a KO per group
+        spec_genes_ko = roary.query('specificity != "none"') \
+            .query('KEGG_ko != "-"') \
+            .query('~KEGG_ko.isnull()')[['specificity', 'KEGG_ko']]
+        spec_genes_ko['KEGG_ko'] = spec_genes_ko['KEGG_ko'].str.split(",")
+        spec_genes_ko = spec_genes_ko.explode('KEGG_ko')
+        ko_counts = spec_genes_ko.groupby(['specificity'])['KEGG_ko'].value_counts()
+
+        # Determine the KOs specific for a group
+        clim_kos = set(ko_counts.loc['C. limicola'].index.tolist())
+        cmag_kos = set(ko_counts.loc['Chlorobium MAG'].index.tolist())
+        kos_only_clim = clim_kos.difference(cmag_kos)
+        kos_only_cmag = cmag_kos.difference(clim_kos)
+        specific_kos = kos_only_clim.union(kos_only_cmag)
+
+        kegg_ko_info = {}
+        for n, k in enumerate(specific_kos):
+            print(f"{n}:{k}")
+            try:
+                results = REST.kegg_get(k[3:]).read().split("\n")
+                brite_start = [i for i, line in enumerate(results) if line.startswith("BRITE")][0]
+                brite_end = [i for i, line in enumerate(results) if line.startswith("GENES")][0]
+                kegg_ko_info[k] = "\n".join(results[brite_start:brite_end])
+            except HTTPError:
+                pass
+
+        ko_tbl = [tuple(e.split("\n")[1:5]) for k, e in kegg_ko_info.items()]
+        ko_tbl_df = pd.DataFrame(ko_tbl, columns = ['pathway_1stl', 'pathway_2ndl', 'pathway_3rdl', 'ko'])
+        ko_tbl_df['pathway_1stl'] = ko_tbl_df['pathway_1stl'].str.replace(r'^PATHWAY +', '', regex=True)
+        ko_tbl_df['pathway_2ndl'] = ko_tbl_df['pathway_2ndl'].str.replace(r'^ +', '', regex=True)
+        ko_tbl_df['pathway_3rdl'] = ko_tbl_df['pathway_3rdl'].str.replace(r'^ +', '', regex=True)
+        ko_tbl_df['ko'] = ko_tbl_df['ko'].str.replace(r'^ +', '', regex=True)
+        ko_tbl_df['ko_desc'] = ko_tbl_df['ko'].str.split("  ").str[1]
+        ko_tbl_df['ko'] = ko_tbl_df['ko'].str.split("  ").str[0]
+        ko_tbl_df['specificity'] = ["C. limicola" if f"ko:{k}" in kos_only_clim else  "Chlorobium MAG" for k in ko_tbl_df['ko']]
+
+        ko_tbl_df[['ko', 'pathway_1stl', 'pathway_2ndl', 'pathway_3rdl', 'ko_desc', 'specificity']] \
             .to_csv(output[0], sep="\t", index=False)
 
 

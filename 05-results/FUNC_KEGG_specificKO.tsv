@@ -1,0 +1,358 @@
+ko	pathway_1stl	pathway_2ndl	pathway_3rdl	ko_desc	specificity
+K08259	             09180 Brite Hierarchies	09181 Protein families: metabolism	01002 Peptidases and inhibitors	lytM; lysostaphin	C. limicola
+K04654	             09190 Not Included in Pathway or Brite	09192 Unclassified: genetic information processing	99975 Protein processing	hypD; hydrogenase expression/formation protein HypD	C. limicola
+K03654	             09120 Genetic Information Processing	09123 Folding, sorting and degradation	03018 RNA degradation	recQ; ATP-dependent DNA helicase RecQ	C. limicola
+K02863	             09120 Genetic Information Processing	09122 Translation	03010 Ribosome	RP-L1, MRPL1, rplA; large subunit ribosomal protein L1	C. limicola
+K15230	             09100 Metabolism	09101 Carbohydrate metabolism	00020 Citrate cycle (TCA cycle)	aclA; ATP-citrate lyase alpha-subunit	C. limicola
+K02588	             09100 Metabolism	09102 Energy metabolism	00910 Nitrogen metabolism	nifH; nitrogenase iron protein NifH	C. limicola
+K02020	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	modA; molybdate transport system substrate-binding protein	C. limicola
+K00884	             09100 Metabolism	09101 Carbohydrate metabolism	00520 Amino sugar and nucleotide sugar metabolism	NAGK, nagK; N-acetylglucosamine kinase	C. limicola
+K03394	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00860 Porphyrin metabolism	cobI-cbiL; precorrin-2/cobalt-factor-2 C20-methyltransferase	Chlorobium MAG
+K01236	             09100 Metabolism	09101 Carbohydrate metabolism	00500 Starch and sucrose metabolism	treZ, glgZ; maltooligosyltrehalose trehalohydrolase	Chlorobium MAG
+K16293	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	psrB; polysulfide reductase chain B	C. limicola
+K07806	             09100 Metabolism	09101 Carbohydrate metabolism	00520 Amino sugar and nucleotide sugar metabolism	arnB, pmrH; UDP-4-amino-4-deoxy-L-arabinose-oxoglutarate aminotransferase	C. limicola
+K12543	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	lapE; outer membrane protein, adhesin transport system	C. limicola
+K02019	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	modE; molybdate transport system regulatory protein	C. limicola
+K07315	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03021 Transcription machinery	rsbU_P; phosphoserine phosphatase RsbU/P	C. limicola
+K08950	             09180 Brite Hierarchies	09181 Protein families: metabolism	00194 Photosynthesis proteins	csmF; chlorosome envelope protein F	C. limicola
+K13657	             09100 Metabolism	09107 Glycan biosynthesis and metabolism	00543 Exopolysaccharide biosynthesis	gumH, aceA; alpha-1,3-mannosyltransferase	C. limicola
+K21023	             09140 Cellular Processes	09145 Cellular community - prokaryotes	02025 Biofilm formation - Pseudomonas aeruginosa	mucR; diguanylate cyclase	Chlorobium MAG
+K10680	             09100 Metabolism	09111 Xenobiotics biodegradation and metabolism	00633 Nitrotoluene degradation	nemA; N-ethylmaleimide reductase	C. limicola
+K09155	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K09155; uncharacterized protein	Chlorobium MAG
+K03442	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	mscS; small conductance mechanosensitive channel	Chlorobium MAG
+K09116	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	K09116; damage-control phosphatase, subfamily I	C. limicola
+K01174	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	nuc; micrococcal nuclease	C. limicola
+K02911	             09120 Genetic Information Processing	09122 Translation	03010 Ribosome	RP-L32, MRPL32, rpmF; large subunit ribosomal protein L32	C. limicola
+K09137	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K09137; uncharacterized protein	C. limicola
+K00354	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	E1.6.99.1; NADPH2 dehydrogenase	C. limicola
+K01039	             09100 Metabolism	09101 Carbohydrate metabolism	00650 Butanoate metabolism	gctA; glutaconate CoA-transferase, subunit A	Chlorobium MAG
+K16422	             09100 Metabolism	09109 Metabolism of terpenoids and polyketides	01055 Biosynthesis of vancomycin group antibiotics	hmo, nocN; 4-hydroxymandelate oxidase	Chlorobium MAG
+K01488	             09100 Metabolism	09104 Nucleotide metabolism	00230 Purine metabolism	add, ADA; adenosine deaminase	Chlorobium MAG
+K22051	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	mscM, bspA; miniconductance mechanosensitive channel	C. limicola
+K07722	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	nikR; CopG family transcriptional regulator, nickel-responsive regulator	C. limicola
+K03605	             09180 Brite Hierarchies	09181 Protein families: metabolism	01002 Peptidases and inhibitors	hyaD, hybD; hydrogenase maturation protease	C. limicola
+K06218	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	relE, stbE; mRNA interferase RelE/StbE	C. limicola
+K01270	             09100 Metabolism	09106 Metabolism of other amino acids	00480 Glutathione metabolism	pepD; dipeptidase D	C. limicola
+K00426	             09100 Metabolism	09102 Energy metabolism	00190 Oxidative phosphorylation	cydB; cytochrome bd ubiquinol oxidase subunit II	C. limicola
+K04653	             09190 Not Included in Pathway or Brite	09192 Unclassified: genetic information processing	99975 Protein processing	hypC; hydrogenase expression/formation protein HypC	C. limicola
+K00986	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	ltrA; RNA-directed DNA polymerase	C. limicola
+K00571	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	E2.1.1.72; site-specific DNA-methyltransferase (adenine-specific)	C. limicola
+K16013	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	cydD; ATP-binding cassette, subfamily C, bacterial CydD	C. limicola
+K19119	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	cas5d; CRISPR-associated protein Cas5d	Chlorobium MAG
+K07126	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K07126; uncharacterized protein	C. limicola
+K03439	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03016 Transfer RNA biogenesis	trmB, METTL1, TRM8; tRNA (guanine-N7-)-methyltransferase	C. limicola
+K09879	             09100 Metabolism	09109 Metabolism of terpenoids and polyketides	00906 Carotenoid biosynthesis	crtU, cruE; carotenoid phi-ring synthase / carotenoid chi-ring synthase	C. limicola
+K02377	             09100 Metabolism	09101 Carbohydrate metabolism	00051 Fructose and mannose metabolism	TSTA3, fcl; GDP-L-fucose synthase	Chlorobium MAG
+K04655	             09190 Not Included in Pathway or Brite	09192 Unclassified: genetic information processing	99975 Protein processing	hypE; hydrogenase expression/formation protein HypE	C. limicola
+K00436	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	hoxH; NAD-reducing hydrogenase large subunit	C. limicola
+K05886	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	sdh; serine 3-dehydrogenase (NADP+)	C. limicola
+K03752	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00790 Folate biosynthesis	mobA; molybdenum cofactor guanylyltransferase	C. limicola
+K03639	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00790 Folate biosynthesis	moaA, CNX2; GTP 3',8-cyclase	C. limicola
+K04014	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99982 Energy metabolism	nrfC; protein NrfC	C. limicola
+K01953	             09100 Metabolism	09105 Amino acid metabolism	00250 Alanine, aspartate and glutamate metabolism	asnB, ASNS; asparagine synthase (glutamine-hydrolysing)	Chlorobium MAG
+K00128	             09100 Metabolism	09101 Carbohydrate metabolism	00010 Glycolysis / Gluconeogenesis	ALDH; aldehyde dehydrogenase (NAD+)	C. limicola
+K01653	             09100 Metabolism	09101 Carbohydrate metabolism	00650 Butanoate metabolism	E2.2.1.6S, ilvH, ilvN; acetolactate synthase I/III small subunit	C. limicola
+K02585	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99982 Energy metabolism	nifB; nitrogen fixation protein NifB	C. limicola
+K03660	             09120 Genetic Information Processing	09124 Replication and repair	03410 Base excision repair	OGG1; N-glycosylase/DNA lyase	C. limicola
+K01587	             09100 Metabolism	09104 Nucleotide metabolism	00230 Purine metabolism	PAICS; phosphoribosylaminoimidazole carboxylase / phosphoribosylaminoimidazole-succinocarboxamide synthase	Chlorobium MAG
+K04651	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03110 Chaperones and folding catalysts	hypA, hybF; hydrogenase nickel incorporation protein HypA/HybF	C. limicola
+K00595	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00860 Porphyrin metabolism	cobL-cbiET; precorrin-6B C5,15-methyltransferase / cobalt-precorrin-6B C5,C15-methyltransferase	Chlorobium MAG
+K07305	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	msrB; peptide-methionine (R)-S-oxide reductase	C. limicola
+K07746	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	parD1_3_4; antitoxin ParD1/3/4	C. limicola
+K03320	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	amt, AMT, MEP; ammonium transporter, Amt family	C. limicola
+K20866	             09100 Metabolism	09101 Carbohydrate metabolism	00010 Glycolysis / Gluconeogenesis	yihX; glucose-1-phosphatase	C. limicola
+K15342	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03400 DNA repair and recombination proteins	cas1; CRISP-associated protein Cas1	Chlorobium MAG
+K07012	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	cas3; CRISPR-associated endonuclease/helicase Cas3	Chlorobium MAG
+K05568	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	mnhD, mrpD; multicomponent Na+:H+ antiporter subunit D	C. limicola
+K10907	             09180 Brite Hierarchies	09181 Protein families: metabolism	01007 Amino acid related enzymes	K10907; aminotransferase	C. limicola
+K19784	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99988 Secondary metabolism	chrR, NQR; chromate reductase, NAD(P)H dehydrogenase (quinone)	Chlorobium MAG
+K07182	             09190 Not Included in Pathway or Brite	09193 Unclassified: signaling and cellular processes	99995 Signaling proteins	K07182; CBS domain-containing protein	C. limicola
+K05565	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	mnhA, mrpA; multicomponent Na+:H+ antiporter subunit A	C. limicola
+K03574	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03400 DNA repair and recombination proteins	mutT, NUDT15, MTH2; 8-oxo-dGTP diphosphatase	C. limicola
+K03750	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00790 Folate biosynthesis	moeA; molybdopterin molybdotransferase	C. limicola
+K11180	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	dsrA; dissimilatory sulfite reductase alpha subunit	C. limicola
+K03672	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03110 Chaperones and folding catalysts	trxC; thioredoxin 2	C. limicola
+K10716	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	kch, trkA, mthK, pch; voltage-gated potassium channel	C. limicola
+K06076	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	fadL; long-chain fatty acid transport protein	C. limicola
+K00675	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	nhoA; N-hydroxyarylamine O-acetyltransferase	C. limicola
+K14445	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	SLC13A2_3_5; solute carrier family 13 (sodium-dependent dicarboxylate transporter), member 2/3/5	C. limicola
+K07726	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	K07726; putative transcriptional regulator	C. limicola
+K08358	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	ttrB; tetrathionate reductase subunit B	C. limicola
+K03073	             09120 Genetic Information Processing	09123 Folding, sorting and degradation	03060 Protein export	secE; preprotein translocase subunit SecE	C. limicola
+K13821	             09100 Metabolism	09105 Amino acid metabolism	00250 Alanine, aspartate and glutamate metabolism	putA; RHH-type transcriptional regulator, proline utilization regulon repressor / proline dehydrogenase / delta 1-pyrroline-5-carboxylate dehydrogenase	C. limicola
+K00568	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00130 Ubiquinone and other terpenoid-quinone biosynthesis	ubiG; 2-polyprenyl-6-hydroxyphenyl methylase / 3-demethylubiquinone-9 3-methyltransferase	C. limicola
+K03200	             09130 Environmental Information Processing	09131 Membrane transport	03070 Bacterial secretion system	virB5, lvhB5; type IV secretion system protein VirB5	Chlorobium MAG
+K13582	             09140 Cellular Processes	09143 Cell growth and death	04112 Cell cycle - Caulobacter	podJ; localization factor PodJL	C. limicola
+K06193	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99996 General function prediction only	phnA; protein PhnA	C. limicola
+K01644	             09130 Environmental Information Processing	09132 Signal transduction	02020 Two-component system	citE; citrate lyase subunit beta / citryl-CoA lyase	C. limicola
+K14645	             09140 Cellular Processes	09145 Cellular community - prokaryotes	02024 Quorum sensing	K14645; serine protease	C. limicola
+K04656	             09190 Not Included in Pathway or Brite	09192 Unclassified: genetic information processing	99975 Protein processing	hypF; hydrogenase maturation protein HypF	C. limicola
+K09858	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99996 General function prediction only	K09858; SEC-C motif domain protein	C. limicola
+K03620	             09130 Environmental Information Processing	09132 Signal transduction	02020 Two-component system	hyaC; Ni/Fe-hydrogenase 1 B-type cytochrome subunit	C. limicola
+K17230	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	fccA; cytochrome subunit of sulfide dehydrogenase	C. limicola
+K01595	             09100 Metabolism	09101 Carbohydrate metabolism	00620 Pyruvate metabolism	ppc; phosphoenolpyruvate carboxylase	C. limicola
+K03046	             09120 Genetic Information Processing	09121 Transcription	03020 RNA polymerase	rpoC; DNA-directed RNA polymerase subunit beta'	C. limicola
+K01975	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03016 Transfer RNA biogenesis	thpR; RNA 2',3'-cyclic 3'-phosphodiesterase	C. limicola
+K06188	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	aqpZ; aquaporin Z	C. limicola
+K12988	             09180 Brite Hierarchies	09181 Protein families: metabolism	01005 Lipopolysaccharide biosynthesis proteins	wapR; alpha-1,3-rhamnosyltransferase	C. limicola
+K06996	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K06996; uncharacterized protein	C. limicola
+K05559	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	phaA; multicomponent K+:H+ antiporter subunit A	C. limicola
+K20391	             09140 Cellular Processes	09145 Cellular community - prokaryotes	02024 Quorum sensing	plcR; HTH-type transcriptional regulator, pleiotropic regulator of extracellular virulence genes	C. limicola
+K09793	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K09793; uncharacterized protein	C. limicola
+K11747	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	kefB; glutathione-regulated potassium-efflux system protein KefB	C. limicola
+K02601	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03021 Transcription machinery	nusG; transcription termination/antitermination protein NusG	C. limicola
+K15725	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	czcC, cusC, cnrC; outer membrane protein, heavy metal efflux system	C. limicola
+K03406	             09130 Environmental Information Processing	09132 Signal transduction	02020 Two-component system	mcp; methyl-accepting chemotaxis protein	C. limicola
+K00661	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	maa; maltose O-acetyltransferase	Chlorobium MAG
+K03823	             09100 Metabolism	09106 Metabolism of other amino acids	00440 Phosphonate and phosphinate metabolism	pat, bar; phosphinothricin acetyltransferase	C. limicola
+K05570	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	mnhF, mrpF; multicomponent Na+:H+ antiporter subunit F	C. limicola
+K08352	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	phsA, psrA; thiosulfate reductase / polysulfide reductase chain A	C. limicola
+K06079	             09160 Human Diseases	09175 Drug resistance: antimicrobial	01503 Cationic antimicrobial peptide (CAMP) resistance	cutF, nlpE; copper homeostasis protein (lipoprotein)	Chlorobium MAG
+K18118	             09100 Metabolism	09101 Carbohydrate metabolism	00020 Citrate cycle (TCA cycle)	aarC, cat1; succinyl-CoA:acetate CoA-transferase	Chlorobium MAG
+K04652	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03110 Chaperones and folding catalysts	hypB; hydrogenase nickel incorporation protein HypB	C. limicola
+K21600	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	csoR, ricR; CsoR family transcriptional regulator, copper-sensing transcriptional repressor	C. limicola
+K00598	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	tam; trans-aconitate 2-methyltransferase	Chlorobium MAG
+K02587	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99982 Energy metabolism	nifE; nitrogenase molybdenum-cofactor synthesis protein NifE	C. limicola
+K02078	             09100 Metabolism	09103 Lipid metabolism	00061 Fatty acid biosynthesis	acpP; acyl carrier protein	Chlorobium MAG
+K02483	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02022 Two-component system	K02483; two-component system, OmpR family, response regulator	C. limicola
+K21303	             09180 Brite Hierarchies	09181 Protein families: metabolism	01005 Lipopolysaccharide biosynthesis proteins	wecP; UDP-GalNAc:undecaprenyl-phosphate GalNAc-1-phosphate transferase	C. limicola
+K09814	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	hrtA; hemin transport system ATP-binding protein	C. limicola
+K06901	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	pbuG, azgA, ghxP, ghxQ, adeQ; adenine/guanine/hypoxanthine permease	C. limicola
+K04770	             09180 Brite Hierarchies	09181 Protein families: metabolism	01002 Peptidases and inhibitors	lonH; Lon-like ATP-dependent protease	C. limicola
+K03825	             09100 Metabolism	09105 Amino acid metabolism	00360 Phenylalanine metabolism	aaaT; L-phenylalanine/L-methionine N-acetyltransferase	Chlorobium MAG
+K19519	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	04990 Domain-containing proteins not elsewhere classified	TGFBI, BIGH3; transforming growth factor-beta-induced protein	C. limicola
+K00622	             09100 Metabolism	09110 Biosynthesis of other secondary metabolites	00232 Caffeine metabolism	nat; arylamine N-acetyltransferase	C. limicola
+K21071	             09100 Metabolism	09101 Carbohydrate metabolism	00010 Glycolysis / Gluconeogenesis	pfk, pfp; ATP-dependent phosphofructokinase / diphosphate-dependent phosphofructokinase	C. limicola
+K13926	             09190 Not Included in Pathway or Brite	09192 Unclassified: genetic information processing	99974 Translation	rbbA; ribosome-dependent ATPase	Chlorobium MAG
+K13660	             09100 Metabolism	09107 Glycan biosynthesis and metabolism	00543 Exopolysaccharide biosynthesis	gumM; beta-1,4-glucosyltransferase	C. limicola
+K21449	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	ata, sadA, emaA; trimeric autotransporter adhesin	C. limicola
+K19138	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	csm2; CRISPR-associated protein Csm2	C. limicola
+K00425	             09100 Metabolism	09102 Energy metabolism	00190 Oxidative phosphorylation	cydA; cytochrome bd ubiquinol oxidase subunit I	C. limicola
+K02017	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	modC; molybdate transport system ATP-binding protein	C. limicola
+K06897	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00790 Folate biosynthesis	K06897; 7,8-dihydropterin-6-yl-methyl-4-(beta-D-ribofuranosyl)aminobenzene 5'-phosphate synthase	C. limicola
+K00574	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	cfa; cyclopropane-fatty-acyl-phospholipid synthase	C. limicola
+K05567	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	mnhC, mrpC; multicomponent Na+:H+ antiporter subunit C	C. limicola
+K05516	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03110 Chaperones and folding catalysts	cbpA; curved DNA-binding protein	Chlorobium MAG
+K01623	             09100 Metabolism	09101 Carbohydrate metabolism	00010 Glycolysis / Gluconeogenesis	ALDO; fructose-bisphosphate aldolase, class I	C. limicola
+K03616	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	rnfB; H+/Na+-translocating ferredoxin:NAD+ oxidoreductase subunit B	C. limicola
+K03325	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	ACR3, arsB; arsenite transporter	C. limicola
+K19294	             09100 Metabolism	09107 Glycan biosynthesis and metabolism	00543 Exopolysaccharide biosynthesis	algI; alginate O-acetyltransferase complex protein AlgI	Chlorobium MAG
+K04085	             09120 Genetic Information Processing	09123 Folding, sorting and degradation	04122 Sulfur relay system	tusA, sirA; tRNA 2-thiouridine synthesizing protein A	C. limicola
+K01424	             09100 Metabolism	09105 Amino acid metabolism	00250 Alanine, aspartate and glutamate metabolism	E3.5.1.1, ansA, ansB; L-asparaginase	C. limicola
+K03612	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99982 Energy metabolism	rnfG; H+/Na+-translocating ferredoxin:NAD+ oxidoreductase subunit G	C. limicola
+K18292	             09100 Metabolism	09101 Carbohydrate metabolism	00660 C5-Branched dibasic acid metabolism	E4.1.3.25; (S)-citramalyl-CoA lyase	C. limicola
+K02228	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00860 Porphyrin metabolism	cobF; precorrin-6A synthase	Chlorobium MAG
+K13651	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	mqsR; motility quorum-sensing regulator / GCU-specific mRNA interferase toxin	C. limicola
+K01153	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	hsdR; type I restriction enzyme, R subunit	C. limicola
+K03522	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	04147 Exosome	fixB, etfA; electron transfer flavoprotein alpha subunit	C. limicola
+K01968	             09100 Metabolism	09105 Amino acid metabolism	00280 Valine, leucine and isoleucine degradation	E6.4.1.4A; 3-methylcrotonyl-CoA carboxylase alpha subunit	C. limicola
+K03813	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	modD; molybdenum transport protein	C. limicola
+K22214	             09100 Metabolism	09101 Carbohydrate metabolism	00640 Propanoate metabolism	scpC; propionyl-CoA:succinyl-CoA transferase	Chlorobium MAG
+K07039	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K07039; uncharacterized protein	C. limicola
+K06895	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	lysE, argO; L-lysine exporter family protein LysE/ArgO	C. limicola
+K20531	             09140 Cellular Processes	09145 Cellular community - prokaryotes	02024 Quorum sensing	trbF; type IV secretion system protein TrbF	Chlorobium MAG
+K07343	             09190 Not Included in Pathway or Brite	09193 Unclassified: signaling and cellular processes	99993 Cell motility	tfoX; DNA transformation protein and related proteins	C. limicola
+K05825	             09100 Metabolism	09105 Amino acid metabolism	00300 Lysine biosynthesis	LYSN; 2-aminoadipate transaminase	Chlorobium MAG
+K04069	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	pflA, pflC, pflE; pyruvate formate lyase activating enzyme	Chlorobium MAG
+K03803	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03021 Transcription machinery	rseC; sigma-E factor negative regulatory protein RseC	C. limicola
+K04076	             09180 Brite Hierarchies	09181 Protein families: metabolism	01002 Peptidases and inhibitors	lonB; ATP-dependent Lon protease	C. limicola
+K01142	             09120 Genetic Information Processing	09124 Replication and repair	03410 Base excision repair	E3.1.11.2, xthA; exodeoxyribonuclease III	C. limicola
+K12264	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99982 Energy metabolism	norV; anaerobic nitric oxide reductase flavorubredoxin	C. limicola
+K07005	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K07005; uncharacterized protein	C. limicola
+K02592	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99982 Energy metabolism	nifN; nitrogenase molybdenum-iron protein NifN	C. limicola
+K13497	             09100 Metabolism	09105 Amino acid metabolism	00400 Phenylalanine, tyrosine and tryptophan biosynthesis	trpGD; anthranilate synthase/phosphoribosyltransferase	C. limicola
+K19073	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00860 Porphyrin metabolism	DVR; divinyl chlorophyllide a 8-vinyl-reductase	C. limicola
+K02851	             09100 Metabolism	09107 Glycan biosynthesis and metabolism	00542 O-Antigen repeat unit biosynthesis	wecA, tagO, rfe; UDP-GlcNAc:undecaprenyl-phosphate/decaprenyl-phosphate GlcNAc-1-phosphate transferase	Chlorobium MAG
+K03617	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99982 Energy metabolism	rnfA; H+/Na+-translocating ferredoxin:NAD+ oxidoreductase subunit A	C. limicola
+K16881	             09100 Metabolism	09101 Carbohydrate metabolism	00051 Fructose and mannose metabolism	K16881; mannose-1-phosphate guanylyltransferase / phosphomannomutase	C. limicola
+K09939	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K09939; uncharacterized protein	Chlorobium MAG
+K03502	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03400 DNA repair and recombination proteins	umuC; DNA polymerase V	C. limicola
+K06199	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	crcB, FEX; fluoride exporter	C. limicola
+K21210	             09100 Metabolism	09109 Metabolism of terpenoids and polyketides	01059 Biosynthesis of enediyne antibiotics	ncsC; NDP-mannose synthase	Chlorobium MAG
+K01256	             09100 Metabolism	09106 Metabolism of other amino acids	00480 Glutathione metabolism	pepN; aminopeptidase N	C. limicola
+K03615	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	rnfC; H+/Na+-translocating ferredoxin:NAD+ oxidoreductase subunit C	C. limicola
+K11927	             09120 Genetic Information Processing	09123 Folding, sorting and degradation	03018 RNA degradation	rhlE; ATP-dependent RNA helicase RhlE	C. limicola
+K07533	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03110 Chaperones and folding catalysts	prsA; foldase protein PrsA	C. limicola
+K07124	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K07124; uncharacterized protein	C. limicola
+K21903	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	cadC, smtB; ArsR family transcriptional regulator, lead/cadmium/zinc/bismuth-responsive transcriptional repressor	C. limicola
+K17227	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	soxZ; sulfur-oxidizing protein SoxZ	C. limicola
+K10231	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	kojP; kojibiose phosphorylase	C. limicola
+K17226	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	soxY; sulfur-oxidizing protein SoxY	C. limicola
+K19118	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	csd2, cas7; CRISPR-associated protein Csd2	Chlorobium MAG
+K00590	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	E2.1.1.113; site-specific DNA-methyltransferase (cytosine-N4-specific)	C. limicola
+K00008	             09100 Metabolism	09101 Carbohydrate metabolism	00040 Pentose and glucuronate interconversions	SORD, gutB; L-iditol 2-dehydrogenase	C. limicola
+K05566	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	mnhB, mrpB; multicomponent Na+:H+ antiporter subunit B	C. limicola
+K01681	             09100 Metabolism	09101 Carbohydrate metabolism	00020 Citrate cycle (TCA cycle)	ACO, acnA; aconitate hydratase	C. limicola
+K03503	             09180 Brite Hierarchies	09181 Protein families: metabolism	01002 Peptidases and inhibitors	umuD; DNA polymerase V	C. limicola
+K03734	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	apbE; FAD:protein FMN transferase	C. limicola
+K08981	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99996 General function prediction only	K08981; putative membrane protein	C. limicola
+K03763	             09120 Genetic Information Processing	09124 Replication and repair	03030 DNA replication	polC; DNA polymerase III subunit alpha, Gram-positive type	C. limicola
+K08954	             09180 Brite Hierarchies	09181 Protein families: metabolism	00194 Photosynthesis proteins	csmX; chlorosome envelope protein X	C. limicola
+K01082	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	cysQ, MET22, BPNT1; 3'(2'), 5'-bisphosphate nucleotidase	C. limicola
+K01083	             09100 Metabolism	09101 Carbohydrate metabolism	00562 Inositol phosphate metabolism	E3.1.3.8; 3-phytase	C. limicola
+K12541	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	lapB; ATP-binding cassette, subfamily C, bacterial LapB	C. limicola
+K01077	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00730 Thiamine metabolism	E3.1.3.1, phoA, phoB; alkaline phosphatase	C. limicola
+K15231	             09100 Metabolism	09101 Carbohydrate metabolism	00020 Citrate cycle (TCA cycle)	aclB; ATP-citrate lyase beta-subunit	C. limicola
+K16784	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	bioM; biotin transport system ATP-binding protein	C. limicola
+K21498	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	higA-1; antitoxin HigA-1	C. limicola
+K01040	             09100 Metabolism	09101 Carbohydrate metabolism	00650 Butanoate metabolism	gctB; glutaconate CoA-transferase, subunit B	Chlorobium MAG
+K16012	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	cydC; ATP-binding cassette, subfamily C, bacterial CydC	C. limicola
+K00925	             09100 Metabolism	09101 Carbohydrate metabolism	00620 Pyruvate metabolism	ackA; acetate kinase	Chlorobium MAG
+K21063	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00740 Riboflavin metabolism	K21063; 5-amino-6-(5-phospho-D-ribitylamino)uracil phosphatase	C. limicola
+K21430	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	yliI; aldose sugar dehydrogenase	Chlorobium MAG
+K07025	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99996 General function prediction only	K07025; putative hydrolase of the HAD superfamily	C. limicola
+K00185	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	dmsC; dimethyl sulfoxide reductase membrane subunit	C. limicola
+K04095	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03036 Chromosome and associated proteins	fic; cell filamentation protein	C. limicola
+K00158	             09100 Metabolism	09101 Carbohydrate metabolism	00620 Pyruvate metabolism	E1.2.3.3, poxL; pyruvate oxidase	C. limicola
+K21405	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	acoR; sigma-54 dependent transcriptional regulator, acetoin dehydrogenase operon transcriptional activator AcoR	C. limicola
+K00375	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	K00375; GntR family transcriptional regulator / MocR family aminotransferase	Chlorobium MAG
+K11179	             09120 Genetic Information Processing	09123 Folding, sorting and degradation	04122 Sulfur relay system	tusE, dsrC; tRNA 2-thiouridine synthesizing protein E	C. limicola
+K00226	             09100 Metabolism	09104 Nucleotide metabolism	00240 Pyrimidine metabolism	pyrD; dihydroorotate dehydrogenase (fumarate)	C. limicola
+K08353	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	phsB; thiosulfate reductase electron transport protein	C. limicola
+K19640	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02022 Two-component system	hypX, hoxX; putative two-component system protein, hydrogenase maturation factor HypX/HoxX	C. limicola
+K00216	             09100 Metabolism	09109 Metabolism of terpenoids and polyketides	01053 Biosynthesis of siderophore group nonribosomal peptides	entA; 2,3-dihydro-2,3-dihydroxybenzoate dehydrogenase	Chlorobium MAG
+K03569	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03036 Chromosome and associated proteins	mreB; rod shape-determining protein MreB and related proteins	C. limicola
+K19055	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03016 Transfer RNA biogenesis	prdX, proX; Ala-tRNA(Pro) deacylase	C. limicola
+K07034	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K07034; uncharacterized protein	C. limicola
+K00864	             09100 Metabolism	09103 Lipid metabolism	00561 Glycerolipid metabolism	glpK, GK; glycerol kinase	C. limicola
+K07335	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	bmpA, bmpB, tmpC; basic membrane protein A and related proteins	C. limicola
+K03782	             09100 Metabolism	09105 Amino acid metabolism	00360 Phenylalanine metabolism	katG; catalase-peroxidase	C. limicola
+K02590	             09190 Not Included in Pathway or Brite	09192 Unclassified: genetic information processing	99973 Transcription	nifHD2, nifI2; nitrogen regulatory protein PII 2	C. limicola
+K18911	             09100 Metabolism	09105 Amino acid metabolism	00340 Histidine metabolism	egtD; L-histidine Nalpha-methyltransferase	C. limicola
+K01679	             09100 Metabolism	09101 Carbohydrate metabolism	00020 Citrate cycle (TCA cycle)	E4.2.1.2B, fumC, FH; fumarate hydratase, class II	C. limicola
+K06399	             09180 Brite Hierarchies	09181 Protein families: metabolism	01002 Peptidases and inhibitors	spoIVB; stage IV sporulation protein B	Chlorobium MAG
+K06990	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	04812 Cytoskeleton proteins	MEMO1; MEMO1 family protein	C. limicola
+K07108	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K07108; uncharacterized protein	C. limicola
+K07133	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K07133; uncharacterized protein	C. limicola
+K11181	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	dsrB; dissimilatory sulfite reductase beta subunit	C. limicola
+K03583	             09120 Genetic Information Processing	09124 Replication and repair	03440 Homologous recombination	recC; exodeoxyribonuclease V gamma subunit	Chlorobium MAG
+K07237	             09120 Genetic Information Processing	09123 Folding, sorting and degradation	04122 Sulfur relay system	tusB, dsrH; tRNA 2-thiouridine synthesizing protein B	C. limicola
+K03559	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	exbD; biopolymer transport protein ExbD	Chlorobium MAG
+K03746	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03036 Chromosome and associated proteins	hns; DNA-binding protein H-NS	C. limicola
+K04042	             09100 Metabolism	09101 Carbohydrate metabolism	00520 Amino sugar and nucleotide sugar metabolism	glmU; bifunctional UDP-N-acetylglucosamine pyrophosphorylase / glucosamine-1-phosphate N-acetyltransferase	C. limicola
+K03547	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03400 DNA repair and recombination proteins	sbcD, mre11; DNA repair protein SbcD/Mre11	C. limicola
+K08325	             09100 Metabolism	09101 Carbohydrate metabolism	00640 Propanoate metabolism	yqhD; NADP-dependent alcohol dehydrogenase	C. limicola
+K03613	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99982 Energy metabolism	rnfE; H+/Na+-translocating ferredoxin:NAD+ oxidoreductase subunit E	C. limicola
+K03328	             09190 Not Included in Pathway or Brite	09193 Unclassified: signaling and cellular processes	99977 Transport	TC.PST; polysaccharide transporter, PST family	C. limicola
+K06281	             09100 Metabolism	09111 Xenobiotics biodegradation and metabolism	00633 Nitrotoluene degradation	hyaB, hybC; hydrogenase large subunit	C. limicola
+K04749	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03021 Transcription machinery	rsbV; anti-sigma B factor antagonist	C. limicola
+K02056	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	ABC.SS.A; simple sugar transport system ATP-binding protein	C. limicola
+K05521	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	draG; ADP-ribosyl-[dinitrogen reductase] hydrolase	C. limicola
+K06133	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00770 Pantothenate and CoA biosynthesis	LYS5, acpT; 4'-phosphopantetheinyl transferase	C. limicola
+K05571	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	mnhG, mrpG; multicomponent Na+:H+ antiporter subunit G	C. limicola
+K03809	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00130 Ubiquinone and other terpenoid-quinone biosynthesis	wrbA; NAD(P)H dehydrogenase (quinone)	C. limicola
+K15257	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03016 Transfer RNA biogenesis	cmoB; tRNA (mo5U34)-methyltransferase	C. limicola
+K01960	             09100 Metabolism	09101 Carbohydrate metabolism	00020 Citrate cycle (TCA cycle)	pycB; pyruvate carboxylase subunit B	C. limicola
+K07007	             09100 Metabolism	09103 Lipid metabolism	00121 Secondary bile acid biosynthesis	baiN; 3-dehydro-bile acid Delta4,6-reductase	C. limicola
+K16703	             09100 Metabolism	09107 Glycan biosynthesis and metabolism	00543 Exopolysaccharide biosynthesis	wcaL, amsK, cpsK; colanic acid/amylovoran/stewartan biosynthesis glycosyltransferase WcaL/AmsK/CpsK	C. limicola
+K00027	             09100 Metabolism	09101 Carbohydrate metabolism	00620 Pyruvate metabolism	ME2, sfcA, maeA; malate dehydrogenase (oxaloacetate-decarboxylating)	C. limicola
+K09914	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99996 General function prediction only	K09914; putative lipoprotein	C. limicola
+K09951	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	cas2; CRISPR-associated protein Cas2	Chlorobium MAG
+K05569	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	mnhE, mrpE; multicomponent Na+:H+ antiporter subunit E	C. limicola
+K07978	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	plmA; GntR family transcriptional regulator	Chlorobium MAG
+K02591	             09100 Metabolism	09102 Energy metabolism	00910 Nitrogen metabolism	nifK; nitrogenase molybdenum-iron protein beta chain	C. limicola
+K09144	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K09144; uncharacterized protein	C. limicola
+K02614	             09100 Metabolism	09105 Amino acid metabolism	00360 Phenylalanine metabolism	paaI; acyl-CoA thioesterase	C. limicola
+K06911	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	PIR; quercetin 2,3-dioxygenase	C. limicola
+K02006	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	cbiO; cobalt/nickel transport system ATP-binding protein	C. limicola
+K07645	             09130 Environmental Information Processing	09132 Signal transduction	02020 Two-component system	qseC; two-component system, OmpR family, sensor histidine kinase QseC	C. limicola
+K00788	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00730 Thiamine metabolism	thiE; thiamine-phosphate pyrophosphorylase	C. limicola
+K21053	             09100 Metabolism	09104 Nucleotide metabolism	00230 Purine metabolism	ade; adenine deaminase	Chlorobium MAG
+K02303	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00860 Porphyrin metabolism	cobA; uroporphyrin-III C-methyltransferase	C. limicola
+K01999	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	livK; branched-chain amino acid transport system substrate-binding protein	C. limicola
+K17830	             09100 Metabolism	09103 Lipid metabolism	00564 Glycerophospholipid metabolism	GGR; digeranylgeranylglycerophospholipid reductase	C. limicola
+K07102	             09100 Metabolism	09101 Carbohydrate metabolism	00520 Amino sugar and nucleotide sugar metabolism	amgK; N-acetylmuramate 1-kinase	C. limicola
+K02342	             09120 Genetic Information Processing	09124 Replication and repair	03030 DNA replication	dnaQ; DNA polymerase III subunit epsilon	C. limicola
+K07043	             09100 Metabolism	09104 Nucleotide metabolism	00240 Pyrimidine metabolism	upp; UTP pyrophosphatase	C. limicola
+K07341	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	doc; death on curing protein	C. limicola
+K03762	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	proP; MFS transporter, MHS family, proline/betaine transporter	Chlorobium MAG
+K04047	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03036 Chromosome and associated proteins	dps; starvation-inducible DNA-binding protein	Chlorobium MAG
+K01560	             09100 Metabolism	09111 Xenobiotics biodegradation and metabolism	00625 Chloroalkane and chloroalkene degradation	E3.8.1.2; 2-haloacid dehalogenase	C. limicola
+K08953	             09180 Brite Hierarchies	09181 Protein families: metabolism	00194 Photosynthesis proteins	csmJ; chlorosome envelope protein J	C. limicola
+K21028	             09120 Genetic Information Processing	09123 Folding, sorting and degradation	04122 Sulfur relay system	ynjE; molybdopterin synthase sulfurtransferase	C. limicola
+K01507	             09100 Metabolism	09102 Energy metabolism	00190 Oxidative phosphorylation	ppa; inorganic pyrophosphatase	C. limicola
+K08289	             09100 Metabolism	09104 Nucleotide metabolism	00230 Purine metabolism	purT; phosphoribosylglycinamide formyltransferase 2	C. limicola
+K13924	             09130 Environmental Information Processing	09132 Signal transduction	02020 Two-component system	cheBR; two-component system, chemotaxis family, CheB/CheR fusion protein	C. limicola
+K03582	             09120 Genetic Information Processing	09124 Replication and repair	03440 Homologous recombination	recB; exodeoxyribonuclease V beta subunit	Chlorobium MAG
+K01338	             09140 Cellular Processes	09143 Cell growth and death	04112 Cell cycle - Caulobacter	lon; ATP-dependent Lon protease	C. limicola
+K14393	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	actP; cation/acetate symporter	C. limicola
+K03818	             09100 Metabolism	09107 Glycan biosynthesis and metabolism	00543 Exopolysaccharide biosynthesis	wcaF; putative colanic acid biosynthesis acetyltransferase WcaF	Chlorobium MAG
+K09384	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K09384; uncharacterized protein	C. limicola
+K01669	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03400 DNA repair and recombination proteins	phr, PHR1; deoxyribodipyrimidine photo-lyase	C. limicola
+K02068	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	STAR1, fetA; UDP-glucose/iron transport system ATP-binding protein	C. limicola
+K07089	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K07089; uncharacterized protein	C. limicola
+K19139	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	csm4; CRISPR-associated protein Csm4	C. limicola
+K01958	             09100 Metabolism	09101 Carbohydrate metabolism	00020 Citrate cycle (TCA cycle)	PC, pyc; pyruvate carboxylase	C. limicola
+K07054	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K07054; uncharacterized protein	C. limicola
+K01433	             09100 Metabolism	09101 Carbohydrate metabolism	00630 Glyoxylate and dicarboxylate metabolism	purU; formyltetrahydrofolate deformylase	C. limicola
+K11065	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	tpx; thioredoxin-dependent peroxiredoxin	C. limicola
+K18907	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	norG; GntR family transcriptional regulator, regulator for abcA and norABC	Chlorobium MAG
+K03614	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	rnfD; H+/Na+-translocating ferredoxin:NAD+ oxidoreductase subunit D	C. limicola
+K00117	             09100 Metabolism	09101 Carbohydrate metabolism	00030 Pentose phosphate pathway	gcd; quinoprotein glucose dehydrogenase	Chlorobium MAG
+K02230	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00860 Porphyrin metabolism	cobN; cobaltochelatase CobN	Chlorobium MAG
+K00564	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03009 Ribosome biogenesis	rsmC; 16S rRNA (guanine1207-N2)-methyltransferase	C. limicola
+K18918	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	relB; RHH-type transcriptional regulator, rel operon repressor / antitoxin RelB	C. limicola
+K20533	             09140 Cellular Processes	09145 Cellular community - prokaryotes	02024 Quorum sensing	trbI; type IV secretion system protein TrbI	Chlorobium MAG
+K03799	             09180 Brite Hierarchies	09181 Protein families: metabolism	01002 Peptidases and inhibitors	htpX; heat shock protein HtpX	C. limicola
+K07236	             09120 Genetic Information Processing	09123 Folding, sorting and degradation	04122 Sulfur relay system	tusC, dsrF; tRNA 2-thiouridine synthesizing protein C	C. limicola
+K12410	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00760 Nicotinate and nicotinamide metabolism	npdA; NAD-dependent deacetylase	Chlorobium MAG
+K01573	             09100 Metabolism	09101 Carbohydrate metabolism	00620 Pyruvate metabolism	oadG; oxaloacetate decarboxylase (Na+ extruding) subunit gamma	C. limicola
+K07636	             09130 Environmental Information Processing	09132 Signal transduction	02020 Two-component system	phoR; two-component system, OmpR family, phosphate regulon sensor histidine kinase PhoR	C. limicola
+K08952	             09180 Brite Hierarchies	09181 Protein families: metabolism	00194 Photosynthesis proteins	csmI; chlorosome envelope protein I	C. limicola
+K00558	             09100 Metabolism	09105 Amino acid metabolism	00270 Cysteine and methionine metabolism	DNMT1, dcm; DNA (cytosine-5)-methyltransferase 1	C. limicola
+K19117	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	csd1, cas8c; CRISPR-associated protein Csd1	Chlorobium MAG
+K00760	             09100 Metabolism	09104 Nucleotide metabolism	00230 Purine metabolism	hprT, hpt, HPRT1; hypoxanthine phosphoribosyltransferase	Chlorobium MAG
+K07464	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	cas4; CRISPR-associated exonuclease Cas4	Chlorobium MAG
+K02589	             09190 Not Included in Pathway or Brite	09192 Unclassified: genetic information processing	99973 Transcription	nifHD1, nifI1; nitrogen regulatory protein PII 1	C. limicola
+K00616	             09100 Metabolism	09101 Carbohydrate metabolism	00030 Pentose phosphate pathway	E2.2.1.2, talA, talB; transaldolase	C. limicola
+K17838	             09160 Human Diseases	09175 Drug resistance: antimicrobial	01501 beta-Lactam resistance	oxa; beta-lactamase class D	C. limicola
+K13655	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	mqsA; HTH-type transcriptional regulator / antitoxin MqsA	C. limicola
+K03546	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03400 DNA repair and recombination proteins	sbcC, rad50; DNA repair protein SbcC/Rad50	C. limicola
+K01724	             09100 Metabolism	09108 Metabolism of cofactors and vitamins	00790 Folate biosynthesis	PCBD, phhB; 4a-hydroxytetrahydrobiopterin dehydratase	C. limicola
+K01770	             09100 Metabolism	09109 Metabolism of terpenoids and polyketides	00900 Terpenoid backbone biosynthesis	ispF; 2-C-methyl-D-erythritol 2,4-cyclodiphosphate synthase	Chlorobium MAG
+K00382	             09100 Metabolism	09101 Carbohydrate metabolism	00010 Glycolysis / Gluconeogenesis	DLD, lpd, pdhD; dihydrolipoamide dehydrogenase	C. limicola
+K06600	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	chpE; chemosensory pili system protein ChpE	C. limicola
+K03892	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	arsR; ArsR family transcriptional regulator, arsenate/arsenite/antimonite-responsive transcriptional repressor	C. limicola
+K04752	             09190 Not Included in Pathway or Brite	09192 Unclassified: genetic information processing	99973 Transcription	glnK; nitrogen regulatory protein P-II 2	C. limicola
+K02660	             09130 Environmental Information Processing	09132 Signal transduction	02020 Two-component system	pilJ; twitching motility protein PilJ	C. limicola
+K06888	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K06888; uncharacterized protein	C. limicola
+K15738	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	uup; ABC transport system ATP-binding/permease protein	C. limicola
+K02069	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	STAR2, fetB; UDP-glucose/iron transport system permease protein	C. limicola
+K06207	             09190 Not Included in Pathway or Brite	09193 Unclassified: signaling and cellular processes	99995 Signaling proteins	typA, bipA; GTP-binding protein	C. limicola
+K02586	             09100 Metabolism	09102 Energy metabolism	00910 Nitrogen metabolism	nifD; nitrogenase molybdenum-iron protein alpha chain	C. limicola
+K00284	             09100 Metabolism	09101 Carbohydrate metabolism	00630 Glyoxylate and dicarboxylate metabolism	GLU, gltS; glutamate synthase (ferredoxin)	C. limicola
+K16087	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	TC.FEV.OM3, tbpA, hemR, lbpA, hpuB, bhuR, hugA, hmbR; hemoglobin/transferrin/lactoferrin receptor protein	Chlorobium MAG
+K02057	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	ABC.SS.P; simple sugar transport system permease protein	C. limicola
+K01621	             09100 Metabolism	09101 Carbohydrate metabolism	00030 Pentose phosphate pathway	xfp, xpk; xylulose-5-phosphate/fructose-6-phosphate phosphoketolase	Chlorobium MAG
+K04751	             09130 Environmental Information Processing	09132 Signal transduction	02020 Two-component system	glnB; nitrogen regulatory protein P-II 1	C. limicola
+K02594	             09100 Metabolism	09101 Carbohydrate metabolism	00620 Pyruvate metabolism	nifV; homocitrate synthase NifV	C. limicola
+K02867	             09120 Genetic Information Processing	09122 Translation	03010 Ribosome	RP-L11, MRPL11, rplK; large subunit ribosomal protein L11	C. limicola
+K03710	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03000 Transcription factors	K03710; GntR family transcriptional regulator	Chlorobium MAG
+K01734	             09100 Metabolism	09101 Carbohydrate metabolism	00640 Propanoate metabolism	mgsA; methylglyoxal synthase	C. limicola
+K19092	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	parE1_3_4; toxin ParE1/3/4	C. limicola
+K13280	             09120 Genetic Information Processing	09123 Folding, sorting and degradation	03060 Protein export	SEC11, sipW; signal peptidase I	C. limicola
+K16423	             09100 Metabolism	09109 Metabolism of terpenoids and polyketides	01055 Biosynthesis of vancomycin group antibiotics	hpgT, nocG; (S)-3,5-dihydroxyphenylglycine transaminase	Chlorobium MAG
+K05685	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	macB; macrolide transport system ATP-binding/permease protein	C. limicola
+K19091	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	cas6; CRISPR-associated endoribonuclease Cas6	Chlorobium MAG
+K01843	             09100 Metabolism	09105 Amino acid metabolism	00310 Lysine degradation	kamA; lysine 2,3-aminomutase	C. limicola
+K01711	             09100 Metabolism	09101 Carbohydrate metabolism	00051 Fructose and mannose metabolism	gmd, GMDS; GDPmannose 4,6-dehydratase	Chlorobium MAG
+K01965	             09100 Metabolism	09101 Carbohydrate metabolism	00630 Glyoxylate and dicarboxylate metabolism	PCCA, pccA; propionyl-CoA carboxylase alpha chain	C. limicola
+K05801	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03110 Chaperones and folding catalysts	djlA; DnaJ like chaperone protein	Chlorobium MAG
+K00311	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	ETFDH; electron-transferring-flavoprotein dehydrogenase	C. limicola
+K01993	             09190 Not Included in Pathway or Brite	09193 Unclassified: signaling and cellular processes	99992 Structural proteins	ABC-2.TX; HlyD family secretion protein	Chlorobium MAG
+K09790	             09190 Not Included in Pathway or Brite	09194 Poorly characterized	99997 Function unknown	K09790; uncharacterized protein	Chlorobium MAG
+K02018	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	modB; molybdate transport system permease protein	C. limicola
+K02909	             09120 Genetic Information Processing	09122 Translation	03010 Ribosome	RP-L31, rpmE; large subunit ribosomal protein L31	C. limicola
+K13668	             09100 Metabolism	09107 Glycan biosynthesis and metabolism	00571 Lipoarabinomannan (LAM) biosynthesis	pimB; phosphatidyl-myo-inositol dimannoside synthase	C. limicola
+K13888	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	macA; membrane fusion protein, macrolide-specific efflux system	C. limicola
+K15034	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03012 Translation factors	yaeJ; ribosome-associated protein	C. limicola
+K00129	             09100 Metabolism	09101 Carbohydrate metabolism	00010 Glycolysis / Gluconeogenesis	ALDH3; aldehyde dehydrogenase (NAD(P)+)	C. limicola
+K02022	             09190 Not Included in Pathway or Brite	09193 Unclassified: signaling and cellular processes	99992 Structural proteins	ABC.MR.TX; HlyD family secretion protein	C. limicola
+K00184	             09100 Metabolism	09102 Energy metabolism	00920 Sulfur metabolism	dmsB; dimethyl sulfoxide reductase iron-sulfur subunit	C. limicola
+K02315	             09180 Brite Hierarchies	09182 Protein families: genetic information processing	03032 DNA replication proteins	dnaC; DNA replication protein DnaC	C. limicola
+K11085	             09130 Environmental Information Processing	09131 Membrane transport	02010 ABC transporters	msbA; ATP-binding cassette, subfamily B, bacterial MsbA	C. limicola
+K09002	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02048 Prokaryotic defense system	csm3; CRISPR-associated protein Csm3	C. limicola
+K07397	             09190 Not Included in Pathway or Brite	09192 Unclassified: genetic information processing	99975 Protein processing	yhfA; putative redox protein	C. limicola
+K00428	             09190 Not Included in Pathway or Brite	09191 Unclassified: metabolism	99980 Enzymes with EC numbers	E1.11.1.5; cytochrome c peroxidase	C. limicola
+K06282	             09100 Metabolism	09111 Xenobiotics biodegradation and metabolism	00633 Nitrotoluene degradation	hyaA, hybO; hydrogenase small subunit	C. limicola
+K06148	             09180 Brite Hierarchies	09183 Protein families: signaling and cellular processes	02000 Transporters	ABCC-BAC; ATP-binding cassette, subfamily C, bacterial	C. limicola

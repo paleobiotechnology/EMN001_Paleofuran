@@ -98,3 +98,5 @@ presented in the manuscript.
   - `FUNC_roary_pangenome.tsv`: the results of the pan-genome analysis of the 6 Chlorobium MAGs and
     the four published *Chlorobium limicola* genomes using Roary for identifying clade specific
     genes and determining their function using eggNOG
+  - `FUNC_KEGG_specificKO.tsv`: the KEGG pathway annotations of all KEGG orthologs that were
+    specific to either the *Chlorobium limicola* or the *Chlorobium* MAGs

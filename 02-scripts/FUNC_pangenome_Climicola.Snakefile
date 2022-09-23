@@ -211,12 +211,12 @@ rule annotate_roary_results:
         # Annotations
         eggnog_genomes = pd.read_csv("04-analysis/roary/eggnog/climicola_specific_genes.emapper.annotations",
                                      sep="\t", skiprows=4, skipfooter=3, engine="python",
-                                     usecols=[0, 6, 7, 8, 10, 11, 13, 14, 15, 20])
+                                     usecols=[0, 6, 7, 8, 10, 11, 13, 14, 15, 18, 20])
         eggnog_mags = pd.concat([pd.read_excel(params.xlsx, sheet_name=i,
-                                               skipfooter=3)
+                                               skiprows=2, skipfooter=3)
                                  for i in [0, 1, 3, 5, 6, 7]])
         eggnog_mags = eggnog_mags[['#query', 'COG_category', 'Description', 'Preferred_name', 'EC',
-                     'KEGG_ko', 'KEGG_Module', 'KEGG_Reaction', 'KEGG_rclass', 'PFAMs']]
+                     'KEGG_ko', 'KEGG_Module', 'KEGG_Reaction', 'KEGG_rclass', 'CAZy', 'PFAMs']]
 
         # Select representative gene
         roary['repr_protein'] = np.nan
@@ -234,7 +234,7 @@ rule annotate_roary_results:
         roary.merge(pd.concat([eggnog_genomes, eggnog_mags]),
                     how="left", left_on="repr_protein", right_on="#query") \
             .drop(['#query', 'repr_protein'], axis=1) \
-            .iloc[:, list(range(14)) + list(range(15, 19)) + [14] + list(range(19, 34))] \
+            .iloc[:, list(range(14)) + list(range(15, 19)) + [14] + list(range(19, 35))] \
             .to_csv(output[0], sep="\t", index=False)
 
 rule kegg_pathway_analysis:

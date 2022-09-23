@@ -116,7 +116,7 @@ rule all:
         # Dataset S8c: pan-genome analysis with Roary
         roary = pd.read_csv(params.roary, sep="\t")
         roary.columns = [c.replace("-megahit", "") for c in roary.columns]
-        roary = roary.iloc[:, list(range(4)) + list(range(14, 34))]
+        roary = roary.iloc[:, list(range(4)) + list(range(14, 35))]
         roary.iloc[:, 4:14] = roary.iloc[:, 4:14].fillna(0).astype(int).astype(str)
         roary.iloc[:, 4:14] = roary.iloc[:, 4:14].apply(lambda c: c.str.replace(r'^0$', '', regex=True), axis=1)
         roary.to_excel(writer, sheet_name="S8c - pan-genome", index=False,
@@ -131,7 +131,9 @@ rule all:
                         "the ancient MAGs when it was present in 67% of the "
                         "members of one group and absent in 67% of the other. "
                         "We annotated specific genes using the eggNOG database "
-                        "based on the alignments obtained from DIAMOND.",
+                        "based on the alignments obtained from DIAMOND. The "
+                        "gene identifiers for the samples are the ones inferred "
+                        "by Prokka.",
                          workbook.add_format({'bold': True, 'align': 'left'}))
         header_format = workbook.add_format({
             'bold': True,
@@ -141,7 +143,7 @@ rule all:
         })
         for ci, cname in enumerate(roary.columns.values):
             s8c_sheet.write(2, ci, cname, header_format)
-        for i in list(range(2)) + list(range(4, 24)):
+        for i in list(range(2)) + list(range(4, 25)):
             s8c_sheet.set_column(0, 0, determine_col_width(roary.iloc[:, i],
                                                            roary.columns[i]) + 1,
                                  workbook.add_format({'align': 'center'}))

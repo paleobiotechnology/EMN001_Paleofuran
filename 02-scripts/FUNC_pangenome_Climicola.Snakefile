@@ -229,7 +229,8 @@ rule annotate_roary_results:
 
         roary['repr_protein'] = roary['repr_protein'].str.replace("DOAKPEPN", "EMN001_021")
         roary['repr_protein'] = roary['repr_protein'].str.replace("JHDCJAEM", "GOY005_001")
-        roary.iloc[:, 14:24] = roary.iloc[:, 14:24].apply(lambda c: c.str.replace(r"^[A-Z]+_", "", regex=True), axis =1)
+        for i in range(14, 24):
+            roary.iloc[:, i] = roary.iloc[:, i].str.replace("^[A-Z]+_", "", regex=True)
 
         roary.merge(pd.concat([eggnog_genomes, eggnog_mags]),
                     how="left", left_on="repr_protein", right_on="#query") \

@@ -51,12 +51,12 @@ rule all:
             contigs = [name for name, _ in pyfastx.Fasta(return_fasta_fn(binID), build_index=False)]
             pyres_bin = pydamage.loc[pydamage['reference'].isin(contigs)]
             pydamage_summary.append(
-                pyres_bin[['qvalue', 'predicted_accuracy', 'CtoT-0', 'CtoT-1',
+                pyres_bin[['qvalue', 'predicted_accuracy', 'damage_model_p', 'CtoT-0', 'CtoT-1',
                            'CtoT-2', 'CtoT-3', 'CtoT-4']].median() \
                 .to_frame() \
                 .transpose() \
                 .assign(binID=binID))
 
         pd.concat(pydamage_summary) \
-            .iloc[:, [7] + list(range(7))] \
+            .iloc[:, [8] + list(range(8))] \
             .to_csv(output[0], sep="\t", index=False, float_format="%.4f")

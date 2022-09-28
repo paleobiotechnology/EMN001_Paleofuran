@@ -4,6 +4,9 @@ Repository for data, code &amp; figures related to the publication: "Paleome rec
 Navigation:
 
 01-ressources contains xxx 
+
 02-scripts contains xxx 
+
 03-results contains xxx 
+
 05-figures contains xxx 

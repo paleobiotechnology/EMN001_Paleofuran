@@ -40,6 +40,10 @@ presented in the manuscript.
     the representative MAGs in the HOMD database and their respective evolutionary distance
   - `ASMB_taxonomic_profiling_MAGs.tsv`: the overview of the taxonomic assignments of the
     representative MAGs against the GTDB and the SGB database
+  - `ASMB_pyDamage_individualContigs.tsv.gz`: the pyDamage results for all individual contigs across
+    all ancient dental calculus samples
+  - `ASMB_pyDamage_MAGs.tsv`: the summary of the pyDamage results across all contigs of a MAG
+    generated from ancient dental calculus samples
 
 3. `QUAL`: results related to the data quality
 

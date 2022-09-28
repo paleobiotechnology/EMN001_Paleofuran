@@ -42,6 +42,9 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     compare these representative genomes against the HOMD for close matches
   - `ASMB_taxonomic_profiling_MAGs.Snakefile`: generate the taxonomic profiles of the representative
     MAGs using the GTDBTK and PhyloPhlAn3's metagenomic mode
+  - `ASMB_pyDamage_individualContigs.Snakefile`: concatenate the pyDamage results for all individual
+    contigs of the ancient dental calculus samples into a single file
+  - `ASMB_pyDamage_MAGs.Snakefile`: summarise the pyDamage results across all contigs of a MAG
 
 3. `QUAL`: analyses related to the data quality
 

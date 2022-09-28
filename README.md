@@ -1,6 +1,6 @@
 # EMN001_Paleofuran
-Repository for data, figures &amp; code on the EMN001 (Red Lady) BGC project
+Repository for data, code &amp; figures related to the publication: "Paleome reconstruction reveals Middle and Upper Paleolithic bacterial species and adds time axis in natural product discovery"
 
-We'll soon (once we decided what to add to the publication) start to add code e.g. in form of a jupyter notebook that allows to reproduce our downstream BGC analysis.
-All code to prepare the corresponding assembly(/ies) and the pydamage analysis would also be required.
-Possibly we also need code for the curation of the megahit assembly / single contig.
+Navigation:
+
+01_xxx contains xxx 

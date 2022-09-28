@@ -3,4 +3,4 @@ Repository for data, code &amp; figures related to the publication: "Paleome rec
 
 Navigation:
 
-01_xxx contains xxx 
+01-ressources contains xxx 

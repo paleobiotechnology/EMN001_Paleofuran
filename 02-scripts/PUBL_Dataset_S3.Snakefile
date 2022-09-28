@@ -229,6 +229,7 @@ rule all:
                      'polyrate': 'ratio non-syn. to syn. minor alleles [%]',
                      'qvalue': 'pyDamage q-value',
                      'predicted_accuracy': 'pyDamage predicted accuracy',
+                     'damage_model_p': 'p-value damage model',
                      'CtoT-0': 'C>T pos. 1',
                      'CtoT-1': 'C>T pos. 2',
                      'CtoT-2': 'C>T pos. 3',
@@ -281,7 +282,7 @@ rule all:
                                                  dataset_s3c.columns[5]) + 1,
                              workbook.add_format({'align': 'center',
                                                   'num_format': "0.00"}))
-        for i in [1, 5] + list(range(8, 11)) + list(range(13, 23)):  # float columns
+        for i in [1, 5] + list(range(8, 11)) + list(range(13, 24)):  # float columns
             s3c_sheet.set_column(i, i,
                                  ceil(determine_col_width(None,
                                                           dataset_s3c.columns[i]) / 2),

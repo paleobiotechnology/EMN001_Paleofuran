@@ -73,6 +73,19 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
   - `PHYL_Flexilinea_proteinalignment.Snakefile`: reconstruct the phylogeny of the family
     Anaerolineaceae using the ancient MAGs assigned to the genus Flexilinea based on the protein
     sequences of the UniProt genes associated with the species *Flexilinea flocculi*
+  - `PHYL_Chlorobiales_genomes_alignment.ipynb`: download the Chlorobiales genomes from the NCBI assembly
+    database and construct the phylogenetc trees of all modern Chlorobiales and ancient *Chlorobium* genomes 
+    and prune the tree to only those classified upto sp. level.
+  - `PHYL_Dereplicate_chlorobiales_genomes_phylogenetics.ipynb`: dereplicate the *Chlorobium* genomes 
+    and construct the aminoacid and nucleotide trees and estimate the ANI values.
+  - `PHYL_BGC_presence_and_absence_antismash.ipynb`: screen for BGCs in the dereplicated modern genomes and
+    and ancient *Chlorobium* MAGs using aantismah
+  - `PHYL_antismash_to_tsv.py`: tabulate the antismash results
+  - `PHYL_Genomes_wide_eggnog_analysis.ipynb`: functional annotation of the ancient MAGs and 4 complete modern
+    genomes using EggNOG analysis.
+  - `PHYL_Phylogenetic_analysis_of_Butyrolactone_BGC.ipynb`: phylgenetic network analysis doen using Bigscape
+    and the synteny of the BGCs visualised with Corason and the ancient Butyrolactone family cluster is
+    phylogenetically classified.
 
 6. `FUNC`: analyses related to functional repertoire
 
@@ -85,6 +98,10 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     and contig length distributions for the samples EMN001, PES001, and PLV001, the overview of the
     reconstructed MAGs for the five samples with a HQ Chlorobiaceae MAG, and the aDNA damage for two
     MAGs of EMN001
+  - `rscripts/PUBL_Figure2b_and_FigureS_ANIvalues_chlorobiaceae.R`: plot the ANI values for Chlorobiales
+    genomes using 1000 and 3000 bases
+  - `rscripts/PUBL_Figure3a.R`: plot the phylogenetic network of modern and ancient MAGs/genomes constructed
+    using BIGSCAPE
   - `PUBL_Dataset_S1.Snakefile`: combine the tables containing the information about the samples,
     the sequencing data, and the number of DNA molecules available for *de novo* assembly into a
     single XSLX file
@@ -123,6 +140,9 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     from El Miron and the laboratory negative controls
   - `PUBL_FigureS_Flexilinea_tree_ANI.Snakefile`: plot the heatmap of the pairwise average
     nucleotide identity of the genus Flexilinea
+  - `PUBL_FigureS_BGC_core_genes_pident.R`: plot the percent identities of the BGC core genes
+  - `PUBL_FigureS_presence_absence_BGCs.R`: plot the presence and absence of BGCs across the modern
+    reference genomes and ancient Chlorobiales genomes
 
 X. `ENVS`: conda environments for the use with Snakemake
 

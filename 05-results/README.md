@@ -126,6 +126,8 @@ presented in the manuscript.
     contigs of all ancient *Chlorobium* MAGs and 4 modern reference genomes
   - `PHYL_pruned_ancient_clade_boostrap_proteintree.tre`: the pruned tree of Chlorobiales genomes that is
     constructed using all modern genomes classified upto a species level and the ancoent *Chlorobium* genomes
+  - `PHYL_AFSA_clustered_family.faa`: a list of modern AFSA that contain a single A-factor domain resembling
+    the ancient AFSA
 
 6. `FUNC`: results related to the functional analyses
 

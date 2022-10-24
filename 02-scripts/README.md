@@ -45,6 +45,8 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
   - `ASMB_pyDamage_individualContigs.Snakefile`: concatenate the pyDamage results for all individual
     contigs of the ancient dental calculus samples into a single file
   - `ASMB_pyDamage_MAGs.Snakefile`: summarise the pyDamage results across all contigs of a MAG
+  - `ASMB_plasmid_assembly.ipynb`: workflow used to assemble the plasmids used in the heterologous expression
+  - `ASMB_single_cell_genome_assembly.ipynb`: workflow used to assemble the single celled genomes used in heterologous expression
 
 3. `QUAL`: analyses related to the data quality
 

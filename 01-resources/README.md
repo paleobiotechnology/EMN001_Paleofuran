@@ -12,3 +12,6 @@ This folder contains the basic information to reproduce the results of this stud
 - `overview_sequencingdata.tsv`: the overview of the sequencing data that were used in this study
 - `overview_ElMiron_humanremains.tsv`: the overview of the metagenomic sequencing data of the human
   remain of El Miron originally analysed by Fu *et al.* (Nature, 2016)
+- `yersinia_genomes`: the genome assemblies corresponding to yersinia pestis datasets used
+- `plasmid_sequences`: all plasmid sequences used in heterologous expression
+- `overview_ElMiron_humanremains.tsv`: all genomes used for heterologous expression

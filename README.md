@@ -1,10 +1,10 @@
 # EMN001_Paleofuran
 
-##  Paleome reconstruction reveals Middle and Upper Paleolithic bacterial species and adds time axis in natural product discovery
+##  Natural products from reconstructed bacterial genomes of the Middle and Upper Paleolithic
 
 De novo assembly of ancient metagenomes to reconstruct biosynthetic machinery and access Pleistocene bacterial metabolites
 
-Klapper, M., Hübner, A., Ibrahim A. et al. "Paleome reconstruction reveals Middle and Upper Paleolithic bacterial species and adds time axis in natural product discovery", submitted.
+Klapper, M., Hübner, A., Ibrahim A. et al. "Natural products from reconstructed bacterial genomes of the Middle and Upper Paleolithic", submitted.
 
 **Additional code, data, and figures to complement the supplementary information of the study can be found in :**
 

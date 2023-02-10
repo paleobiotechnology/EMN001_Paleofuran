@@ -1,6 +1,18 @@
 # EMN001_Paleofuran
-Repository for data, figures &amp; code on the EMN001 (Red Lady) BGC project
 
-We'll soon (once we decided what to add to the publication) start to add code e.g. in form of a jupyter notebook that allows to reproduce our downstream BGC analysis.
-All code to prepare the corresponding assembly(/ies) and the pydamage analysis would also be required.
-Possibly we also need code for the curation of the megahit assembly / single contig.
+##  Natural products from reconstructed bacterial genomes of the Middle and Upper Paleolithic
+
+De novo assembly of ancient metagenomes to reconstruct biosynthetic machinery and access Pleistocene bacterial metabolites
+
+Klapper, M., Hübner, A., Ibrahim A. et al. "Natural products from reconstructed bacterial genomes of the Middle and Upper Paleolithic", submitted.
+
+**Additional code, data, and figures to complement the supplementary information of the study can be found in :**
+
+- [**01-ressources**](https://raw.githubusercontent.com/paleobiotechnology/EMN001_Paleofuran/main/01-resources/README.md?token=GHSAT0AAAAAABUTSYFCGXDKIH6K7KKXMHYGY2X2KTQ) contains the basic information to reproduce the results of this study.
+
+ - [**02-scripts**](https://raw.githubusercontent.com/paleobiotechnology/EMN001_Paleofuran/main/02-scripts/README.md?token=GHSAT0AAAAAABUTSYFDHEFNYWPEVURDWMBOY2X2JEA) contains all the scripts and Jupyter notebooks to prepare and analyse the data.
+
+ - [**05-results**](https://raw.githubusercontent.com/paleobiotechnology/EMN001_Paleofuran/main/05-results/README.md?token=GHSAT0AAAAAABUTSYFCX3AJD55ZRVSGBZOEY2X2LEA) contains the results of the analyses that are used to produce the figures and tables presented in the manuscript. 
+
+ - [**06-figures_tables**](https://raw.githubusercontent.com/paleobiotechnology/EMN001_Paleofuran/main/06-figures_tables/README.md?token=GHSAT0AAAAAABUTSYFDNTTEZVRNFVB6QGVGY2X2LSA) contains the final figures and tables presented in the study. 
+

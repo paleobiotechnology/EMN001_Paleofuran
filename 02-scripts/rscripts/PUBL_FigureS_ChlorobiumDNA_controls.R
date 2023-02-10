@@ -5,6 +5,11 @@ library(ggh4x)
 
 theme_set(theme_classic(base_size = 9))
 
+gg_color_hue <- function(n) {
+  hues = seq(15, 375, length = n + 1)
+  hcl(h = hues, l = 65, c = 100)[1:n]
+}
+
 # Load data
 dentalcalculus <- fread(snakemake@params[["dentalcalculus"]])
 controls <- readxl::read_excel(snakemake@params[["dataset_s7"]],
@@ -26,19 +31,24 @@ relab <- bind_rows(dentalcalculus %>%
                              levels = c("dental calculus",
                                         "sediments",
                                         "toe bone",
-                                        "lab controls")))
+                                        "lab controls")),
+         highlight = as.character(sampletype),
+         highlight = ifelse(sample == "EMN001", sample, highlight),
+         highlight = factor(highlight, levels = c(levels(sampletype), "EMN001")))
 
 # Plot
 plt <- ggplot(relab,
               aes(x = sampletype, y = relab, group = sampletype)) +
   geom_boxplot(outlier.shape = NA) +
-  geom_jitter(aes(fill = sampletype), size = 2.25, pch = 21, width = .25, alpha = .7) +
+  geom_jitter(aes(fill = highlight, size = highlight), pch = 21, width = .25, alpha = .7) +
   labs(x = "",
        y = "relative abundance",
        fill = "sample type") +
   scale_y_log10(breaks = c(0.0001, 0.01, 0.1),
-                labels = c("0.1%", "1%", "10%"),
+                labels = c("0.01%", "1%", "10%"),
                 guide = "axis_logticks") +
+  scale_size_manual(values = c(rep(2.25, 4), 3)) +
+  scale_fill_manual(values = c(gg_color_hue(4), "grey20")) +
   theme(legend.position = "none",
         panel.grid.major.y = element_line(size = 0.5, colour = "grey50", linetype = 3),
         axis.line = element_blank(),

@@ -1,0 +1,38 @@
+name: single_genome_assembly
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=conda_forge
+  - _openmp_mutex=4.5=2_gnu
+  - _sysroot_linux-64_curr_repodata_hack=3=h5bd9786_13
+  - bzip2=1.0.8=h7f98852_4
+  - ca-certificates=2022.6.15=ha878542_0
+  - csvtk=0.24.0=h9ee0642_0
+  - kernel-headers_linux-64=3.10.0=h4a8ded7_13
+  - ld_impl_linux-64=2.36.1=hea4e1c9_2
+  - libffi=3.4.2=h7f98852_5
+  - libgcc-ng=12.1.0=h8d9b700_16
+  - libgomp=12.1.0=h8d9b700_16
+  - libnsl=2.0.0=h7f98852_0
+  - libsqlite=3.39.2=h753d276_1
+  - libstdcxx-ng=12.1.0=ha89aaad_16
+  - libuuid=2.32.1=h7f98852_1000
+  - libzlib=1.2.12=h166bdaf_2
+  - llvm-openmp=8.0.1=hc9558a2_0
+  - ncurses=6.3=h27087fc_1
+  - openmp=8.0.1=0
+  - openssl=3.0.5=h166bdaf_1
+  - pip=22.2.2=pyhd8ed1ab_0
+  - python=3.8.13=ha86cf86_0_cpython
+  - python_abi=3.8=2_cp38
+  - readline=8.1.2=h0f457ee_0
+  - seqkit=2.3.0=h9ee0642_0
+  - setuptools=65.0.2=py38h578d9bd_0
+  - spades=3.15.5=h95f258a_0
+  - sqlite=3.39.2=h4ff8645_1
+  - sysroot_linux-64=2.17=h4a8ded7_13
+  - tk=8.6.12=h27826a3_0
+  - wheel=0.37.1=pyhd8ed1ab_0
+  - xz=5.2.6=h166bdaf_0

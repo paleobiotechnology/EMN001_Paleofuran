@@ -96,6 +96,38 @@ presented in the manuscript.
   - `PHYL_Yersinia_proteintree_RAxML_bootstrap.tre`: the phylogenetic tree of the *Yersinia pestis*
     genomes analysed by Andrades Valtuena *et al.* (2022) generated using RAxML with the clade
     support inferred from a bootstrap analysis
+  - `PHYL_AFSA_corason.svg`: the result of the corason analysis shoowing the syteny of the 
+    Butyrolactone BGC
+  - `PHYL_AFSA_family_aa_tree.tre`: the resulting tree from phylophlan analysis using the AFSA 
+    family cluster
+  - `PHYL_BGC_antismash_presence_absence.txt`: the resulting table from teh antismash anaysis resulting
+    in the presence absence of BGCs across modern and ancient genomes
+  - `PHYL_BGC_coregenes_alignment.xlsx`: the percent identities of the Butyrolactone BGC core genes 
+    using both amino acid and nucleotide sequences
+  - `PHYL_bigscape_analysis.xlsx`: The resulting pairwise distances between the ancient and modern
+    Butyrolactone BGCs from BIGSCAPE analysis
+  - `PHYL_chlorobiales_assembly-accs.txt`: the list of accessions from the Chlorobiales genomes downloaded
+    from NCBI
+  - `PHYL_chlorobiales_drep_climicola_bootstrap_nucleotide_tree.tre`: the phylogenetic tree constructed using
+    *Chlorobium limicola* as the core genes and the dereplicated modern reference Chlorobiales genomes and the
+    ancient *Chlorobium* genomes on the nucleotide level 
+  - `PHYL_chlorobiales_drep_climicola_bootstrap_protein_tree.tre`: the the phylogenetic tree constructed using
+    *Chlorobium limicola* as the core genes and the dereplicated modern reference Chlorobiales genomes and the
+    ancient *Chlorobium* genomes on the protein level
+  - `PHYL_chlorobiales_drep_cparvum_bootstrap_protein_tree.tre`: the phylogenetic tree constructed using
+    *CChlorobaculum parvum* as the core genes and teh dereplicated modern reference Chlorobiales genomes and the
+    ancient *Chlorobium* genomes
+  - `PHYL_chlorobiales_genomes_annotated_to_spp.txt`: the list of accession numbers of genomes used in the pruned
+    Chlorobiales genomes phylogenetic tree
+  - `PHYL_chlorobiales_genomes_RaxML_proteintree.tre`: the phylogenetic tree constructed using
+    *Chlorobium limicola* as the core genes and the entire modern reference Chlorobiales genomes downloaded from
+     the NCBI assembly database and the ancient *Chlorobium* genomes on the nucleotide level
+  - `PHYL_eggnog_mapper.xlsx`: the resulting tables from the EGGNOG analysis that functionally classifies the
+    contigs of all ancient *Chlorobium* MAGs and 4 modern reference genomes
+  - `PHYL_pruned_ancient_clade_boostrap_proteintree.tre`: the pruned tree of Chlorobiales genomes that is
+    constructed using all modern genomes classified upto a species level and the ancoent *Chlorobium* genomes
+  - `PHYL_AFSA_clustered_family.faa`: a list of modern AFSA that contain a single A-factor domain resembling
+    the ancient AFSA
 
 6. `FUNC`: results related to the functional analyses
 

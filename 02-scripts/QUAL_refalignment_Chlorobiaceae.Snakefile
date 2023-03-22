@@ -38,7 +38,8 @@ localrules: unzip_fasta
 rule all:
     input:
         expand("04-analysis/refalignment/{sample}.{reads}", sample=SAMPLES, reads=['n_aligned', 'n_total']),
-        "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv",
+        expand("04-analysis/refalignment/{sample}.breadth_depth.txt", sample=SAMPLES),
+        "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv"
 
 rule unzip_fasta:
     output:
@@ -176,7 +177,7 @@ rule samtools_index:
 
 rule return_mag_contigs:
     output:
-        pipe("tmp/refalignment_emn001/{sample}.contigs")
+        temp("tmp/refalignment_emn001/{sample}.contigs")
     message: "Return contigs belonging to EMN001's Chlorobiaceae MAG"
     conda: "ENVS_bioawk.yaml"
     resources:
@@ -217,15 +218,51 @@ rule total_reads:
         samtools flagstat {input} | head -1 | cut -f 1 -d" " > {output}
         """
 
+rule subset_bam:
+    input:
+        bam = "04-analysis/refalignment/{sample}.sorted.calmd.markdup.bam",
+        bai = "04-analysis/refalignment/{sample}.sorted.calmd.markdup.bam.bai",
+        contigs = "tmp/refalignment_emn001/{sample}.contigs"
+    output:
+        bam = temp("tmp/refalignment_emn001/{sample}.mag.bam"),
+        bai = temp("tmp/refalignment_emn001/{sample}.mag.bam.bai")
+    message: "Subset BAM file to the contigs of the Chlorobiaceae MAG: {wildcards.sample}"
+    conda: "ENVS_samtools.yaml"
+    resources:
+        mem = 2
+    shell:
+        """
+        cat {input.contigs} | \
+        xargs samtools view -uh {input.bam} > {output.bam}
+        samtools index {output.bam}
+        """
+
+rule breadth_depth:
+    input:
+        bam = "tmp/refalignment_emn001/{sample}.mag.bam",
+        bai = "tmp/refalignment_emn001/{sample}.mag.bam.bai",
+    output:
+        "04-analysis/refalignment/{sample}.breadth_depth.txt"
+    message: "Infer the breadth and depth along the Chlorobiaceae MAG: {wildcards.sample}"
+    conda: "ENVS_cmseq.yaml"
+    resources:
+        mem = 4
+    shell:
+        """
+        breadth_depth.py {input.bam} > {output}
+        """
+
 rule summary:
     input:
-        expand("04-analysis/refalignment/{sample}.{reads}", sample=SAMPLES, reads=['n_aligned', 'n_total'])
+        reads = expand("04-analysis/refalignment/{sample}.{reads}", sample=SAMPLES, reads=['n_aligned', 'n_total']),
+        breadth = expand("04-analysis/refalignment/{sample}.breadth_depth.txt", sample=SAMPLES)
     output:
         "05-results/QUAL_dentalcalculus_Chlorobiaceae_refalignment.tsv"
     message: "Summarise the read counts"
     params:
         dir = "04-analysis/refalignment"
     run:
+        # Read counts
         read_counts = []
         for sample in SAMPLES:
             chlorobiaceae_reads = open(f"{params.dir}/{sample}.n_aligned", "rt") \
@@ -233,10 +270,32 @@ rule summary:
             total_reads = open(f"{params.dir}/{sample}.n_total", "rt") \
                 .readline().rstrip()
             read_counts.append((sample, chlorobiaceae_reads, total_reads))
-
         df = pd.DataFrame(read_counts, columns=['sample', 'alignedReads', 'totalReads'])
         df['alignedReads'] = df['alignedReads'].astype(int)
         df['totalReads'] = df['totalReads'].astype(int)
 
-        df.sort_values(['sample']) \
-            .to_csv(output[0], sep="\t", index=False)
+        # Breadth and depth
+        def bd_summary(r):
+            s = []
+            s.append((r['Contig'].str.startswith("NODE_").sum()))
+            s.append(r['Breadth'].mean())
+            s.append(r['Depth avg'].mean())
+            s.append(r['Depth avg'].std())
+            return pd.Series(s, index=['nContigs', 'meanBreadth', 'meanDepth', 'stdDepth'])
+
+        bd = []
+        for fn in input:
+            res = pd.read_csv(fn, sep="\t") \
+                .assign(sample=os.path.basename(fn).replace(".breadth_depth.txt", ""))
+            if res.shape[0] < 21:
+                dummy_res = pd.DataFrame([(f"contig_{i}", 0, 0, 0,
+                                           os.path.basename(fn).replace(".breadth_depth.txt", ""))
+                                          for i in range(21 - res.shape[0])],
+                                         columns=res.columns)
+            bd.append(pd.concat([res, dummy_res]))
+        bd_res = pd.concat(bd).groupby(['sample']).apply(bd_summary).reset_index()
+        bd_res['nContigs'] = bd_res['nContigs'].astype(int)
+
+        df.merge(bd_res, how="left", on="sample") \
+            .sort_values(['sample']) \
+            .to_csv(output[0], sep="\t", index=False, float_format="%.3f")

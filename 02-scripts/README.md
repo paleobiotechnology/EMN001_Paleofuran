@@ -162,3 +162,4 @@ X. `ENVS`: conda environments for the use with Snakemake
   - `ENVS_roary.yaml`: [Roary](https://github.com/sanger-pathogens/Roary)
   - `ENVS_samtools.yaml`: [samtools](https://github.com/samtools/samtools)
   - `ENVS_trnascanse.yaml`: [tRNAscan-SE](https://github.com/UCSC-LoweLab/tRNAscan-SE)
+  - `ENVS_clinker.yaml`: [clinker](https://github.com/gamcil/clinker)

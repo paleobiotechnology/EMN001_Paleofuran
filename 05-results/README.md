@@ -77,9 +77,13 @@ presented in the manuscript.
   - `PHYL_Chlorobiaeceae_fastANI_3kb.tsv`: the matrix of the pairwise average nucleotide identity
     values calculated for a subset of the genomes of the family Chlorobiaceae considering only
     contigs with a minimum length of 3 kb
+  - `PHYL_Chlorobiaeceae_fastANI_3kb_mapped_fragments.tsv`: The raw fastANI output with percentage of 
+    mapped fragments considering only contigs with a minimum length of 3 kb.
   - `PHYL_Chlorobiaeceae_fastANI_1kb.tsv`: the matrix of the pairwise average nucleotide identity
     values calculated for a subset of the genomes of the family Chlorobiaceae considering only
     contigs with a minimum length of 1 kb
+  - `PHYL_Chlorobiaeceae_fastANI_1kb_mapped_fragments.tsv`: The raw fastANI output with percentage of 
+    mapped fragments considering onlyncontigs with a minimum length of 1 kb.
   - `PHYL_Flexilinea_proteintree_taxa.tsv`: the overview of the comparative genomes for the analysis
     of the family Anaerolineaceae
   - `PHYL_Flexilinea_proteintree_RAxML.tre`: the phylogenetic tree of the family Anaerolineaceae

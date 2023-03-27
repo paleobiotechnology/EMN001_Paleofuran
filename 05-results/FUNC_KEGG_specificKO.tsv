@@ -1,4 +1,4 @@
-ko	pathway_1stl	pathway_2ndl	pathway_3rdl	ko_desc	specificity
+ko	hierarchy_1stl	hierarchy_2ndl	hierarchy_3rdl	ko_desc	specificity
 K08259	             09180 Brite Hierarchies	09181 Protein families: metabolism	01002 Peptidases and inhibitors	lytM; lysostaphin	C. limicola
 K04654	             09190 Not Included in Pathway or Brite	09192 Unclassified: genetic information processing	99975 Protein processing	hypD; hydrogenase expression/formation protein HypD	C. limicola
 K03654	             09120 Genetic Information Processing	09123 Folding, sorting and degradation	03018 RNA degradation	recQ; ATP-dependent DNA helicase RecQ	C. limicola

@@ -275,16 +275,16 @@ rule kegg_pathway_analysis:
                 pass
 
         ko_tbl = [tuple(e.split("\n")[1:5]) for k, e in kegg_ko_info.items()]
-        ko_tbl_df = pd.DataFrame(ko_tbl, columns = ['pathway_1stl', 'pathway_2ndl', 'pathway_3rdl', 'ko'])
-        ko_tbl_df['pathway_1stl'] = ko_tbl_df['pathway_1stl'].str.replace(r'^PATHWAY +', '', regex=True)
-        ko_tbl_df['pathway_2ndl'] = ko_tbl_df['pathway_2ndl'].str.replace(r'^ +', '', regex=True)
-        ko_tbl_df['pathway_3rdl'] = ko_tbl_df['pathway_3rdl'].str.replace(r'^ +', '', regex=True)
+        ko_tbl_df = pd.DataFrame(ko_tbl, columns = ['hierarchy_1stl', 'hierarchy_2ndl', 'hierarchy_3rdl', 'ko'])
+        ko_tbl_df['hierarchy_1stl'] = ko_tbl_df['hierarchy_1stl'].str.replace(r'^PATHWAY +', '', regex=True)
+        ko_tbl_df['hierarchy_2ndl'] = ko_tbl_df['hierarchy_2ndl'].str.replace(r'^ +', '', regex=True)
+        ko_tbl_df['hierarchy_3rdl'] = ko_tbl_df['hierarchy_3rdl'].str.replace(r'^ +', '', regex=True)
         ko_tbl_df['ko'] = ko_tbl_df['ko'].str.replace(r'^ +', '', regex=True)
         ko_tbl_df['ko_desc'] = ko_tbl_df['ko'].str.split("  ").str[1]
         ko_tbl_df['ko'] = ko_tbl_df['ko'].str.split("  ").str[0]
         ko_tbl_df['specificity'] = ["C. limicola" if f"ko:{k}" in kos_only_clim else  "Chlorobium MAG" for k in ko_tbl_df['ko']]
 
-        ko_tbl_df[['ko', 'pathway_1stl', 'pathway_2ndl', 'pathway_3rdl', 'ko_desc', 'specificity']] \
+        ko_tbl_df[['ko', 'hierarchy_1stl', 'hierarchy_2ndl', 'hierarchy_3rdl', 'ko_desc', 'specificity']] \
             .to_csv(output[0], sep="\t", index=False)
 
 

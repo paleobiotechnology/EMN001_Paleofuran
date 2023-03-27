@@ -45,13 +45,16 @@ rule all:
         workbook = writer.book
 
         # Dataset S2a: summary of the assembly stats
-        asmb_stats = pd.read_csv(params.asmb_stats, sep="\t")
+        asmb_stats = pd.read_csv("05-results/ASMB_assemblystats_calN50_metaQUAST.tsv", sep="\t")
         asmb_stats = asmb_stats.iloc[:,:19]
         asmb_stats.columns = ['sample', 'total length [bp]', '# of contigs',
                               '# of contigs >= 1,000 bp', '# of contigs >= 5,000 bp',
                               '# of contigs >= 10,000 bp', '# of contigs >= 25,000 bp',
                               '# of contigs >= 50,000 bp', 'N0', 'N10', 'N20', 'N30',
                               'N40', 'N50', 'N60', 'N70', 'N80', 'N90', 'N100']
+        asmb_stats['sample type'] = ["present-day" if sample[:3] == "JAE" or sample[:3] == "VLC" else "ancient"
+                                     for sample in asmb_stats['sample'].values]
+        asmb_stats = asmb_stats.iloc[:, [0, 19] + list(range(1, 19))]
         asmb_stats.to_excel(writer, sheet_name="S2a - de novo assembly stats", index=False,
                              header=False, startrow=3)
         ## Sheet: Sample overview
@@ -70,16 +73,17 @@ rule all:
         })
         for ci, cname in enumerate(asmb_stats.columns.values):
             s2a_sheet.write(2, ci, cname, header_format)
-        s2a_sheet.set_column(0, 0, determine_col_width(asmb_stats.iloc[:, 0],
-                                                       asmb_stats.columns[0]) + 1,
-                             workbook.add_format({'align': 'center'}))
-        for i in range(1, 8):
+        for i in range(2):
+            s2a_sheet.set_column(i, i, determine_col_width(asmb_stats.iloc[:, i],
+                                                        asmb_stats.columns[i]) + 1,
+                                workbook.add_format({'align': 'center'}))
+        for i in range(2, 9):
             s2a_sheet.set_column(i, i,
                                  determine_col_width(asmb_stats.iloc[:, i].astype(str),
                                                      asmb_stats.columns[i]),
                                  workbook.add_format({'align': 'center',
                                                      'num_format': "#,##0"}))
-        for i in range(8, asmb_stats.shape[1]):
+        for i in range(9, asmb_stats.shape[1]):
             s2a_sheet.set_column(i, i,
                                  determine_col_width(asmb_stats.iloc[:, i].astype(str),
                                                      asmb_stats.columns[i]) + 2,

@@ -11,7 +11,7 @@ mafs <- fread(snakemake@params[["maf"]], header = T) %>%
 
 # Plot
 ## Panel a: ratio transition vs. transversions
-panel_a <- substitutions %>%
+ratio_ts_tv <- substitutions %>%
   pivot_longer(-sample, names_to = "subst", values_to = "counts") %>%
   mutate(substtype = if_else(subst %in% c("AG", "CT", "GA", "TC"),
                              "transition", "transversion")) %>%
@@ -24,7 +24,9 @@ panel_a <- substitutions %>%
   mutate(sample = factor(sample, levels = .$sample)) %>%
   select(-total) %>%
   pivot_longer(-sample, names_to = "substtype", values_to = "freq") %>%
-  mutate(substtype = factor(substtype, levels = c("transition", "transversion"))) %>%
+  mutate(substtype = factor(substtype, levels = c("transition", "transversion")))
+
+panel_a <- ratio_ts_tv %>%
   ggplot(aes(x = sample, y = freq, fill = substtype)) +
   geom_col(position = position_stack(reverse = T)) +
   geom_hline(yintercept = 0.5, colour = "grey50", lty = 1, size = 0.5) +
@@ -44,17 +46,18 @@ panel_a <- substitutions %>%
   guides(fill = guide_legend(nrow = 1))
 
 ## Panel b: ratio T>C and A>G to C>T and G>A
-panel_b <- substitutions %>%
+ratio_damage_muts <- substitutions %>%
   select(sample, AG, CT, GA, TC) %>%
   mutate(`C>T & G>A` = CT + GA,
          `T>C & A>G` = AG + TC,
          total = `C>T & G>A` + `T>C & A>G`,
          across(`C>T & G>A`:`T>C & A>G`, ~ . / total)) %>%
-  arrange(`T>C & A>G`) %>%
-  mutate(sample = factor(sample, levels = .$sample)) %>%
+  mutate(sample = factor(sample, levels = levels(ratio_ts_tv$sample))) %>%
   select(sample, `C>T & G>A`, `T>C & A>G`) %>%
   pivot_longer(-sample, names_to = "substtype", values_to = "freq") %>%
-  mutate(substtype = factor(substtype, levels = c("C>T & G>A", "T>C & A>G"))) %>%
+  mutate(substtype = factor(substtype, levels = c("C>T & G>A", "T>C & A>G")))
+
+panel_b <- ratio_damage_muts %>%
   ggplot(aes(x = sample, y = freq, fill = substtype)) +
   geom_col(position = position_stack(reverse = T)) +
   geom_hline(yintercept = 0.5, colour = "grey50", lty = 1, size = 0.5) +

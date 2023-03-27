@@ -153,20 +153,20 @@ rule all:
                              workbook.add_format({'align': 'center',
                                                  'num_format': "#,##0"}))
 
-        # Dataset S8d: KEGG pathways for clade-specific KEGG kos
+        # Dataset S8d: KEGG BRITE hierarchy for clade-specific KEGG kos
         keggko = pd.read_csv(params.keggko, sep="\t")
         keggko = pd.read_csv("05-results/FUNC_KEGG_specificKO.tsv", sep="\t")
-        keggko.columns = ["KEGG KO", "pathway 1st level", "pathway 2nd level",
-                          "pathway 3rd level", "description", "specificity"]
-        keggko['pathway 1st level'] = keggko['pathway 1st level'].str.replace(r"^ +", "", regex=True)
-        keggko.to_excel(writer, sheet_name="S8d - KEGG KO and pathways", index=False,
+        keggko.columns = ["KEGG KO", "BRITE hierarchy 1st level", "BRITE hierarchy 2nd level",
+                          "BRITE hierarchy 3rd level", "description", "specificity"]
+        keggko['BRITE hierarchy 1st level'] = keggko['BRITE hierarchy 1st level'].str.replace(r"^ +", "", regex=True)
+        keggko.to_excel(writer, sheet_name="S8d - KEGG KO and hierarchy", index=False,
                         header=False, startrow=3, float_format="%.4f")
         ## Sheet: KEGG KO analysis
-        s8d_sheet = writer.sheets["S8d - KEGG KO and pathways"]
+        s8d_sheet = writer.sheets["S8d - KEGG KO and hierarchy"]
         s8d_sheet.write(0, 0, "Table S8d: Overview of the KEGG orthologs (KO) "
-                        "and their associated pathways for orthologs that were "
-                        "found exclusively in either the C. limicola genomes or "
-                        "in the ancient Chlorobium MAGs.",
+                        "and their associated BRITE hierarchy for orthologs "
+                        "that were found exclusively in either the C. limicola "
+                        "genomes or in the ancient Chlorobium MAGs.",
                          workbook.add_format({'bold': True, 'align': 'left'}))
         header_format = workbook.add_format({
             'bold': True,

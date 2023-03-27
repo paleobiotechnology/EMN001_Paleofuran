@@ -142,6 +142,9 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     from El Miron and the laboratory negative controls
   - `PUBL_FigureS_Flexilinea_tree_ANI.Snakefile`: plot the heatmap of the pairwise average
     nucleotide identity of the genus Flexilinea
+  - `PUBL_FigureS_KEGG_KO_BRITE.Snakefile`: plot the number of KEGG orthologs grouped by KEGG BRITE
+    hierarchy for orthologs that were either specific for C. limicola or the ancient Chlorobium MAGs
+    plus an in-depth analysis of the presence and absence of genes of the photosynthesis pathway
   - `./rscripts/PUBL_FigureS_BGC_core_genes_pident.R`: plot the percent identities of the BGC core genes
   - `./rscripts/PUBL_FigureS_presence_absence_BGCs.R`: plot the presence and absence of BGCs across the modern
     reference genomes and ancient Chlorobiales genomes

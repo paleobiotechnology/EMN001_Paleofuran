@@ -73,9 +73,14 @@ rule prepare_dataset_s4:
         ref_aln_calc = pd.read_csv(params.ref_alignment_calc, sep="\t") \
             .sort_values(['alignedReads'], ascending=False) \
             .rename({'alignedReads': '# of reads against the Chlorobium MAG',
-                     'totalReads': 'total # of reads'}, axis=1)
+                     'totalReads': 'total # of reads',
+                     'nContigs': '# of contigs',
+                     'meanBreadth': 'mean breadth',
+                     'meanDepth': 'mean depth',
+                     'stdDepth': 'std depth'}, axis=1)
         ref_aln_calc['% aligned'] = (ref_aln_calc['# of reads against the Chlorobium MAG'] * 100 /
                                      ref_aln_calc['total # of reads']).round(2)
+        ref_aln_calc = ref_aln_calc.iloc[:, [0, 1, 2, 7, 3, 4, 5, 6]]
         ref_aln_calc.to_excel(writer, sheet_name="S4b - ref. alignment ag. EMN001", index=False,
                              header=False, startrow=3)
         ## Sheet: Sample overview
@@ -85,7 +90,13 @@ rule prepare_dataset_s4:
                         "of EMN001 for all dental calculus samples. The available "
                         "short-read sequencing data were aligned against all contigs "
                         "assembled from the sample EMN001 to avoid spurious "
-                        "alignments in the absence of any other reference genomes.",
+                        "alignments in the absence of any other reference genomes. "
+                        "The number of contigs indicates to how many contigs reads "
+                        "could be aligned. For calculating the mean breadth, the "
+                        "mean depth, and the standard deviation of the depth, we "
+                        "first calculated the breadth and mean depth per contig "
+                        "and then summarised the data considering all contigs of "
+                        "the reference genome even when they were absent in the sample.",
                         workbook.add_format({'bold': True, 'align': 'left'}))
         header_format = workbook.add_format({
             'bold': True,
@@ -99,16 +110,18 @@ rule prepare_dataset_s4:
         s4b_sheet.set_column(0, 0, determine_col_width(ref_aln_calc.iloc[:, 0],
                                                        ref_aln_calc.columns[0]) + 1,
                             workbook.add_format({'align': 'center'}))
-        s4b_sheet.set_column(1, 2,  # numerical columns
-                             determine_col_width(ref_aln_calc.iloc[:, 2].astype(str),
-                                                 ref_aln_calc.columns[2]),
-                             workbook.add_format({'align': 'center',
-                                                 'num_format': "#,##0"}))
-        s4b_sheet.set_column(3, 3,  # float columns
-                             determine_col_width(ref_aln_calc.iloc[:, 3].astype(str),
-                                                 ref_aln_calc.columns[3]),
-                             workbook.add_format({'align': 'center',
-                                                 'num_format': "0.00"}))
+        for i in [1, 2, 4]:
+            s4b_sheet.set_column(i, i,  # numerical columns
+                                 determine_col_width(ref_aln_calc.iloc[:, i].astype(str),
+                                                     ref_aln_calc.columns[i]),
+                                 workbook.add_format({'align': 'center',
+                                                     'num_format': "#,##0"}))
+        for i in [3, 5, 6, 7]:
+            s4b_sheet.set_column(i, i,  # float columns
+                                 determine_col_width(ref_aln_calc.iloc[:, i].astype(str),
+                                                     ref_aln_calc.columns[i]),
+                                 workbook.add_format({'align': 'center',
+                                                     'num_format': "0.00"}))
 
         # Dataset S4c: overview of snpAD genotyping results
         snpad = pd.read_csv(params.snpad, sep="\t") \

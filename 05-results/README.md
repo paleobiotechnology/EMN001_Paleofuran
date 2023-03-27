@@ -77,9 +77,13 @@ presented in the manuscript.
   - `PHYL_Chlorobiaeceae_fastANI_3kb.tsv`: the matrix of the pairwise average nucleotide identity
     values calculated for a subset of the genomes of the family Chlorobiaceae considering only
     contigs with a minimum length of 3 kb
+  - `PHYL_Chlorobiaeceae_fastANI_3kb_mapped_fragments.tsv`: The raw fastANI output with percentage of 
+    mapped fragments considering only contigs with a minimum length of 3 kb.
   - `PHYL_Chlorobiaeceae_fastANI_1kb.tsv`: the matrix of the pairwise average nucleotide identity
     values calculated for a subset of the genomes of the family Chlorobiaceae considering only
     contigs with a minimum length of 1 kb
+  - `PHYL_Chlorobiaeceae_fastANI_1kb_mapped_fragments.tsv`: The raw fastANI output with percentage of 
+    mapped fragments considering onlyncontigs with a minimum length of 1 kb.
   - `PHYL_Flexilinea_proteintree_taxa.tsv`: the overview of the comparative genomes for the analysis
     of the family Anaerolineaceae
   - `PHYL_Flexilinea_proteintree_RAxML.tre`: the phylogenetic tree of the family Anaerolineaceae
@@ -122,8 +126,6 @@ presented in the manuscript.
   - `PHYL_chlorobiales_genomes_RaxML_proteintree.tre`: the phylogenetic tree constructed using
     *Chlorobium limicola* as the core genes and the entire modern reference Chlorobiales genomes downloaded from
      the NCBI assembly database and the ancient *Chlorobium* genomes on the nucleotide level
-  - `PHYL_eggnog_mapper.xlsx`: the resulting tables from the EGGNOG analysis that functionally classifies the
-    contigs of all ancient *Chlorobium* MAGs and 4 modern reference genomes
   - `PHYL_pruned_ancient_clade_boostrap_proteintree.tre`: the pruned tree of Chlorobiales genomes that is
     constructed using all modern genomes classified upto a species level and the ancoent *Chlorobium* genomes
   - `PHYL_AFSA_clustered_family.faa`: a list of modern AFSA that contain a single A-factor domain resembling
@@ -136,3 +138,7 @@ presented in the manuscript.
     genes and determining their function using eggNOG
   - `FUNC_KEGG_specificKO.tsv`: the KEGG pathway annotations of all KEGG orthologs that were
     specific to either the *Chlorobium limicola* or the *Chlorobium* MAGs
+  - `PHYL_eggnog_mapper.xlsx`: the resulting tables from the EGGNOG analysis that functionally classifies the
+    contigs of all ancient *Chlorobium* MAGs and 4 modern reference genomes
+  - `FUNC_ko00194_kegg_pathway.txt`: the KEGG orthologues genes classified as photosynthetic proteins. This is
+    attributed to ko00194

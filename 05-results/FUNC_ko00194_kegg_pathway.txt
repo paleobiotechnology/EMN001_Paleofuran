@@ -1,0 +1,138 @@
+K02703;psbA;photosystem II P680 reaction center D1 protein [EC:1.10.3.9]
+K02706;psbD;photosystem II P680 reaction center D2 protein [EC:1.10.3.9]
+K02705;psbC;photosystem II CP43 chlorophyll apoprotein
+K02704;psbB;photosystem II CP47 chlorophyll apoprotein
+K02707;psbE;photosystem II cytochrome b559 subunit alpha
+K02708;psbF;photosystem II cytochrome b559 subunit beta
+K02713;psbL;photosystem II PsbL protein
+K02711;psbJ;photosystem II PsbJ protein
+K02709;psbH;photosystem II PsbH protein
+K02710;psbI;photosystem II PsbI protein
+K02712;psbK;photosystem II PsbK protein
+K02714;psbM;photosystem II PsbM protein
+K02718;psbT;photosystem II PsbT protein
+K02724;psbZ;photosystem II PsbZ protein
+K02723;psbY;photosystem II PsbY protein
+K08902;psb27;photosystem II Psb27 protein
+K08903;psb28;photosystem II 13kDa protein
+K02716;psbO;photosystem II oxygen-evolving enhancer protein 1
+K02717;psbP;photosystem II oxygen-evolving enhancer protein 2
+K08901;psbQ;photosystem II oxygen-evolving enhancer protein 3
+K03541;psbR;photosystem II 10kDa protein
+K03542;psbS;photosystem II 22kDa protein
+K02721;psbW;photosystem II PsbW protein
+K02720;psbV;photosystem II cytochrome c550
+K02719;psbU;photosystem II PsbU protein
+K02722;psbX;photosystem II PsbX protein
+K08904;psb28-2;photosystem II Psb28-2 protein
+K02689;psaA;photosystem I P700 chlorophyll a apoprotein A1
+K02690;psaB;photosystem I P700 chlorophyll a apoprotein A2
+K02691;psaC;photosystem I subunit VII
+K02692;psaD;photosystem I subunit II
+K02693;psaE;photosystem I subunit IV
+K02694;psaF;photosystem I subunit III
+K02696;psaI;photosystem I subunit VIII
+K02697;psaJ;photosystem I subunit IX
+K02698;psaK;photosystem I subunit X
+K02699;psaL;photosystem I subunit XI
+K08905;psaG;photosystem I subunit V
+K02695;psaH;photosystem I subunit VI
+K02701;psaN;photosystem I subunit PsaN
+K14332;psaO;photosystem I subunit PsaO
+K02700;psaM;photosystem I subunit XII
+K02702;psaX;photosystem I 4.8kDa protein
+K02634;petA;apocytochrome f
+K02635;petB;cytochrome b6
+K02636;petC;cytochrome b6-f complex iron-sulfur subunit [EC:7.1.1.6]
+K02637;petD;cytochrome b6-f complex subunit 4
+K02640;petG;cytochrome b6-f complex subunit 5
+K02642;petL;cytochrome b6-f complex subunit 6
+K02643;petM;cytochrome b6-f complex subunit 7
+K03689;petN;cytochrome b6-f complex subunit 8
+K02638;petE;plastocyanin
+K02639;petF;ferredoxin
+K02641;petH;ferredoxin--NADP+ reductase [EC:1.18.1.2]
+K08906;petJ;cytochrome c6
+K02114;ATPF1E, atpC; F-type H+-transporting ATPase subunit epsilon
+K02112;ATPF1B, atpD; F-type H+/Na+-transporting ATPase subunit beta [EC:7.1.2.2 7.2.2.1]
+K02115;ATPF1G, atpG; F-type H+-transporting ATPase subunit gamma
+K02111;ATPF1A, atpA; F-type H+/Na+-transporting ATPase subunit alpha [EC:7.1.2.2 7.2.2.1]
+K02113;ATPF1D, atpH; F-type H+-transporting ATPase subunit delta
+K02109;ATPF0B, atpF; F-type H+-transporting ATPase subunit b
+K02110;ATPF0C, atpE; F-type H+-transporting ATPase subunit c
+K02108;ATPF0A, atpB; F-type H+-transporting ATPase subunit a
+K02116;atpI;ATP synthase protein I
+K02092;apcA;allophycocyanin alpha subunit
+K02093;apcB;allophycocyanin beta subunit
+K02094;apcC;phycobilisome core linker protein
+K02095;apcD;allophycocyanin-B
+K02096;apcE;phycobilisome core-membrane linker protein
+K02097;apcF;phycobilisome core component
+K02284;cpcA;phycocyanin alpha chain
+K02285;cpcB;phycocyanin beta chain
+K02286;cpcC;phycocyanin-associated rod linker protein
+K02287;cpcD;phycocyanin-associated, rod
+K02288;cpcE;phycocyanobilin lyase subunit alpha [EC:4.4.1.32]
+K02289;cpcF;phycocyanobilin lyase subunit beta [EC:4.4.1.32]
+K20713;rpcG;R-phycocyanin alpha-cysteine-84 phycourobilin lyase/isomerase [EC:4.4.1.33]
+K02290;cpcG;phycobilisome rod-core linker protein
+K02628;pecA;phycoerythrocyanin alpha chain
+K02629;pecB;phycoerythrocyanin beta chain
+K02630;pecC;phycoerythrocyanin-associated rod linker protein
+K02631;pecE;phycoerythrocyanin alpha-cysteine-84 phycoviolobilin lyase/isomerase subunit PecE [EC:4.4.1.31]
+K02632;pecF;phycoerythrocyanin alpha-cysteine-84 phycoviolobilin lyase/isomerase subunit PecF [EC:4.4.1.31]
+K05376;cpeA, mpeA;phycoerythrin alpha chain
+K05377;cpeB, mpeB;phycoerythrin beta chain
+K05378;cpeC, mpeC;phycoerythrin-associated linker protein
+K05379;cpeD, mpeD;phycoerythrin-associated linker protein
+K05380;cpeE;phycoerythrin-associated linker protein
+K05381;cpeR;phycoerythrin-associated linker protein
+K05382;cpeS;phycoerythrin-associated linker protein
+K05383;cpeT;CpeTprotein
+K05384;cpeU, mpeU;bilin biosynthesis protein
+K05385;cpeY;bilin biosynthesis protein
+K05386;cpeZ;bilin biosynthesis protein
+K08907;LHCA1;light-harvesting complex I chlorophyll a/b binding protein 1
+K08908;LHCA2;light-harvesting complex I chlorophyll a/b binding protein 2
+K08909;LHCA3;light-harvesting complex I chlorophyll a/b binding protein 3
+K08910;LHCA4;light-harvesting complex I chlorophyll a/b binding protein 4
+K08911;LHCA5;light-harvesting complex I chlorophyll a/b binding protein 5
+K08912;LHCB1;light-harvesting complex II chlorophyll a/b binding protein 1
+K08913;LHCB2;light-harvesting complex II chlorophyll a/b binding protein 2
+K08914;LHCB3;light-harvesting complex II chlorophyll a/b binding protein 3
+K08915;LHCB4;light-harvesting complex II chlorophyll a/b binding protein 4
+K08916;LHCB5;light-harvesting complex II chlorophyll a/b binding protein 5
+K08917;LHCB6;light-harvesting complex II chlorophyll a/b binding protein 6
+K14172;LHCB7;light-harvesting complex II chlorophyll a/b binding protein 7
+K08918;pcbA;chlorophyll a/b binding light-harvesting protein PcbA
+K08919;pcbB;chlorophyll a/b binding light-harvesting protein PcbB
+K08920;pcbC;chlorophyll a/b binding light-harvesting protein PcbC
+K08921;pcbD;chlorophyll a/b binding light-harvesting protein PcbD
+K08922;pcbE;chlorophyll a/b binding light-harvesting protein PcbE
+K08923;pcbF;chlorophyll a/b binding light-harvesting protein PcbF
+K08924;pcbG;chlorophyll a/b binding light-harvesting protein PcbG
+K08925;pcbH;chlorophyll a/b binding light-harvesting protein PcbH
+K08928;pufL;photosynthetic reaction center L subunit
+K08929;pufM;photosynthetic reaction center M subunit
+K13991;puhA;photosynthetic reaction center H subunit
+K13994;pufX;photosynthetic reaction center PufX protein
+K13992;pufC;photosynthetic reaction center cytochrome c subunit
+K08926;pufA;light-harvesting complex 1 alpha chain
+K08927;pufB;light-harvesting complex 1 beta chain
+K08930;pucA;light-harvesting protein B-800-850 alpha chain
+K08939;pucB;light-harvesting protein B-800-850 beta chain
+K08940;pscA;photosystem P840 reaction center large subunit
+K08941;pscB;photosystem P840 reaction center iron-sulfur protein
+K08942;pscC;photosystem P840 reaction center cytochrome c551
+K08943;pscD;photosystem P840 reaction center protein PscD
+K08944;fmoA;bacteriochlorophyll A protein
+K08945;csmA;chlorosome envelope protein A
+K08946;csmB;chlorosome envelope protein B
+K08947;csmC;chlorosome envelope protein C
+K08948;csmD;chlorosome envelope protein D
+K08949;csmE;chlorosome envelope protein E
+K08950;csmF;chlorosome envelope protein F
+K08951;csmH;chlorosome envelope protein H
+K08952;csmI;chlorosome envelope protein I
+K08953;csmJ;chlorosome envelope protein J
+K08954;csmX;chlorosome envelope protein X

@@ -142,9 +142,11 @@ This folder contains all the scripts and Jupyter notebooks to prepare and analys
     from El Miron and the laboratory negative controls
   - `PUBL_FigureS_Flexilinea_tree_ANI.Snakefile`: plot the heatmap of the pairwise average
     nucleotide identity of the genus Flexilinea
-  - `PUBL_FigureS_BGC_core_genes_pident.R`: plot the percent identities of the BGC core genes
-  - `PUBL_FigureS_presence_absence_BGCs.R`: plot the presence and absence of BGCs across the modern
+  - `./rscripts/PUBL_FigureS_BGC_core_genes_pident.R`: plot the percent identities of the BGC core genes
+  - `./rscripts/PUBL_FigureS_presence_absence_BGCs.R`: plot the presence and absence of BGCs across the modern
     reference genomes and ancient Chlorobiales genomes
+  - `./rscripts/PUBL_FigureS_Eggnog_comparisons.R`: plot the COG categories and photosynthesis KEGG genes across
+    ancient and modern genomes and the AFSA containing contig
 
 X. `ENVS`: conda environments for the use with Snakemake
 

@@ -142,3 +142,5 @@ presented in the manuscript.
     contigs of all ancient *Chlorobium* MAGs and 4 modern reference genomes
   - `FUNC_ko00194_kegg_pathway.txt`: the KEGG orthologues genes classified as photosynthetic proteins. This is
     attributed to ko00194
+  - `FUNC_eggnog_mapper.tar.gz`: the eggnog files used for generating the photosynthetic genes heatmap
+  - `FUNC_prokka.tar.gz`: the prokka tables used used for generating the photosynthetic genes heatmap

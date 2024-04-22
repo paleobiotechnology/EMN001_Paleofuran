@@ -16,3 +16,4 @@ Klapper, M., Hübner, A., Ibrahim A. _et al._ "Natural products from reconstruct
 
  - [**06-figures_tables**](https://raw.githubusercontent.com/paleobiotechnology/EMN001_Paleofuran/main/06-figures_tables/README.md?token=GHSAT0AAAAAABUTSYFDNTTEZVRNFVB6QGVGY2X2LSA) contains the final figures and tables presented in the study. 
 
+A compressed version of this repository together with huge NMR and GCMS data has been deposited in this long-term Zenodo archive: [https://zenodo.org/records/7244132](https://zenodo.org/records/7244132) (1.3 GB)
